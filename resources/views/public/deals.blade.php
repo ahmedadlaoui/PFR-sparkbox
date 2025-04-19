@@ -29,8 +29,12 @@
                 },
                 keyframes: {
                     float: {
-                        '0%, 100%': { transform: 'translateY(0)' },
-                        '50%': { transform: 'translateY(-10px)' },
+                        '0%, 100%': {
+                            transform: 'translateY(0)'
+                        },
+                        '50%': {
+                            transform: 'translateY(-10px)'
+                        },
                     }
                 }
             }
@@ -119,43 +123,12 @@
 </head>
 
 <body class="font-inter bg-white text-sm antialiased">
-    <!-- Header - Same as index.html -->
-    <header class="bg-white backdrop-blur-sm shadow-soft fixed w-full z-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between h-20 items-center px-6">
-                <!-- Brand Name -->
-                <div class="pl-8 sm:pl-12 md:pl-16 pr-8">
-                    <span class="text-xl font-bold text-dark">SparkBox</span>
-                </div>
 
-                <!-- Navigation -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="index.html"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Home</a>
-                    <a href="#" class="text-dark text-base font-medium font-['Inter',_sans-serif]">Startups</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Investors</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">About</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Blog</a>
-                </nav>
 
-                <!-- Get Started Button -->
-                <div>
-                    <a href="#"
-                        class="px-6 py-2.5 bg-white text-gray-800 text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all border-2 border-gray-800 hover:bg-gray-100 font-['Inter',_sans-serif]">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Page Content Container -->
+<x-header />
     <main class="pt-32 pb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header Section with consistent alignment -->
+
             <div class="mb-10">
                 <h1 class="text-3xl md:text-5xl font-extrabold text-black font-['Inter',_sans-serif]">Investment
                     opportunities</h1>
@@ -165,17 +138,20 @@
                 </p>
             </div>
 
-            <!-- Redesigned Filter/Search Bar - Everything on one line -->
+
+
             <div class="mb-8 border-b border-gray-200 pb-5">
                 <div class="flex flex-wrap items-center gap-3">
-                    <!-- Search with icon - Maximized width with flex-grow -->
+
+
                     <div class="flex items-center bg-gray-50 rounded-lg px-4 py-2.5 shadow-sm flex-grow">
                         <i data-feather="search" class="h-5 w-5 text-gray-400 mr-3"></i>
                         <input type="text" placeholder="Search opportunities"
                             class="clean-search w-full font-['Inter',_sans-serif] text-gray-700 bg-transparent text-base">
                     </div>
 
-                    <!-- Filters in a scrollable container -->
+
+
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-nowrap">
                         <button
                             class="category-filter active whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
@@ -201,14 +177,17 @@
                 </div>
             </div>
 
-            <!-- Results Count - Cleaner alignment -->
+
+
             <div class="flex justify-between items-center mb-6">
                 <p class="text-gray-600 font-medium font-['Inter',_sans-serif]">127 results found</p>
             </div>
 
-            <!-- Cards Grid - More consistent layout -->
+
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 - Consistent styling -->
+
+
                 <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                     <div class="relative h-[255px]">
                         <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
@@ -239,7 +218,8 @@
                     </div>
                 </div>
 
-                <!-- Card 2 - Using index.html card design -->
+
+
                 <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                     <div class="relative h-[255px]">
                         <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
@@ -269,7 +249,8 @@
                     </div>
                 </div>
 
-                <!-- Card 3 - Using index.html card design -->
+
+
                 <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                     <div class="relative h-[255px]">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
@@ -301,10 +282,12 @@
                 </div>
             </div>
 
-            <!-- Modern Minimal Pagination -->
+
+
             <div class="flex justify-center mt-14">
                 <div class="flex items-center space-x-2">
-                    <!-- Previous Button - Simplified -->
+
+
                     <button
                         class="w-10 h-10 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -313,11 +296,13 @@
                         </svg>
                     </button>
 
-                    <!-- Current Page - Cleaner design -->
+
+
                     <span
                         class="w-10 h-10 flex items-center justify-center rounded-md bg-[#0049FF] text-white font-medium">1</span>
 
-                    <!-- Next Button - Simplified -->
+
+
                     <button
                         class="w-10 h-10 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -330,11 +315,12 @@
         </div>
     </main>
 
-    <!-- Footer - Same as index.html -->
+
     <footer class="bg-[#1A1A1A] text-white pt-16 pb-8 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap ml-0 md:ml-12 lg:ml-16">
-                <!-- Logo and Description -->
+
+
                 <div class="w-full md:w-1/3 mb-10 md:mb-0 pr-0 md:pr-10">
                     <div class="flex items-center mb-6">
                         <h3 class="text-xl font-bold font-['Inter',_sans-serif]">SparkBox</h3>
@@ -369,7 +355,8 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
+
+
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Platform</h4>
                     <ul class="space-y-3">
@@ -388,7 +375,8 @@
                     </ul>
                 </div>
 
-                <!-- Resources -->
+
+
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Resources
                     </h4>
@@ -405,7 +393,8 @@
                     </ul>
                 </div>
 
-                <!-- Company -->
+
+
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Company</h4>
                     <ul class="space-y-3">
@@ -421,7 +410,8 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter -->
+
+
                 <div class="w-full md:w-1/6">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Stay Updated
                     </h4>
@@ -439,7 +429,8 @@
                 </div>
             </div>
 
-            <!-- Bottom bar -->
+
+
             <div
                 class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between ml-0 md:ml-12 lg:ml-16">
                 <p class="text-gray-500 text-xs mb-4 md:mb-0 font-['Inter',_sans-serif]">
@@ -457,7 +448,7 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu -->
+
     <div
         class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 px-6 flex justify-around items-center md:hidden z-50">
         <a href="index.html" class="flex flex-col items-center text-gray-500">
@@ -494,24 +485,19 @@
         </a>
     </div>
 
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize Feather icons
-            feather.replace({ stroke: 1.5 });
 
-            // Category filter functionality
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace({
+                stroke: 1.5
+            });
+
             const categoryFilters = document.querySelectorAll('.category-filter');
 
             categoryFilters.forEach(filter => {
-                filter.addEventListener('click', function () {
-                    // Remove active class from all filters
+                filter.addEventListener('click', function() {
                     categoryFilters.forEach(f => f.classList.remove('active'));
-
-                    // Add active class to clicked filter
                     this.classList.add('active');
-
-                    // Here you would normally filter the results
                     console.log('Filter selected:', this.textContent.trim());
                 });
             });

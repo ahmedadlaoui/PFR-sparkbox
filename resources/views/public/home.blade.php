@@ -187,16 +187,16 @@
 </head>
 
 <body class="font-inter bg-whitetext-gray-800 text-sm antialiased">
-    <!-- Header with exact matching alignment to the CTA section -->
+    
     <header class="bg-white backdrop-blur-sm shadow-soft fixed w-full z-50">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between h-20 items-center px-6">
-                <!-- Brand Name with exact same padding as CTA content -->
+                
                 <div class="pl-8 sm:pl-12 md:pl-16  pr-8">
                     <span class="text-xl font-bold text-dark">SparkBox</span>
                 </div>
 
-                <!-- Navigation with Inter Font -->
+                
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#" class="text-dark text-base font-medium font-['Inter',_sans-serif]">Home</a>
                     <a href="#"
@@ -209,7 +209,7 @@
                         class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Blog</a>
                 </nav>
 
-                <!-- Single Button - White background with dark border -->
+                
                 <div>
                     <a href="#"
                         class="px-6 py-2.5 bg-white text-gray-800 text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all border-2 border-gray-800 hover:bg-gray-100 font-['Inter',_sans-serif]">
@@ -220,12 +220,12 @@
         </div>
     </header>
 
-    <!-- Modern CTA Section with updated styling -->
+    
     <section class="pt-14 bg-[#F2F2F2] relative" style="height: 550px;">
         <div id="domain-display" class="h-full w-full relative overflow-hidden">
-            <!-- Main Display Area (Text + Illustration) -->
+            
             <div class="flex w-full h-full items-center">
-                <!-- Left Content Text Section - Updated heading styling -->
+                
                 <div id="domain-content"
                     class="w-full md:w-1/2 xl:w-5.5/12 pl-8 sm:pl-12 md:pl-16 lg:pl-28 pr-8 z-10 ml-0 md:ml-12 lg:ml-16">
                     <h2 class="text-[48px] font-bold leading-tight text-[#1A1A1A] mb-4 font-['Inter',_sans-serif]">
@@ -244,12 +244,12 @@
                     </div>
                 </div>
 
-                <!-- Right Image Section - Two-Column Vertical Grid Layout (moved further left) -->
+                
                 <div
                     class="hidden md:flex md:flex-row md:gap-2 absolute right-28 lg:right-44 top-1/2 transform -translate-y-1/2 z-10">
-                    <!-- Left Column - Fixed width -->
+                    
                     <div class="w-[197px] flex flex-col gap-2">
-                        <!-- Image 1 - AI with improved hover effect -->
+                        
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="https://in-focusindia.com/wp-content/uploads/2023/12/shutterstock_2263545623.jpg"
@@ -257,14 +257,14 @@
 
                         </div>
 
-                        <!-- Image 2 - Real Estate with improved hover effect -->
+                        
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/realestate.png" class="w-full rounded-[20px]" alt="Real Estate Industry">
 
                         </div>
 
-                        <!-- Image 3 - Content with improved hover effect -->
+                        
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/conent.png" class="w-full rounded-[20px]" alt="Content Industry">
@@ -272,9 +272,9 @@
                         </div>
                     </div>
 
-                    <!-- Right Column - Fixed width -->
+                    
                     <div class="w-[197px] flex flex-col gap-2 h-full">
-                        <!-- Image 4 - Finance with improved hover effect -->
+                        
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/finance.png" class="w-full rounded-[20px]" alt="Finance Industry">
@@ -282,7 +282,7 @@
 
                         </div>
 
-                        <!-- Image 5 - Renewable Energy with improved hover effect -->
+                        
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 flex-grow relative overflow-hidden domain-card">
                             <img src="https://www.ibef.org/assets/images/Renewable-Energy-3.jpg"
@@ -295,41 +295,41 @@
         </div>
     </section>
 
-    <!-- Statistics Section - Better aligned with CTA section -->
+    
     <section class="bg-white py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between pr-8 ml-0 md:ml-12 lg:ml-16">
-                <!-- Stats Container - Adjusted to align with CTA content's left edge -->
+                
                 <div class="flex flex-wrap w-full md:w-full mb-8 md:mb-0">
-                    <!-- Stat 1: Global investor community -->
+                    
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 pr-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">3M+</p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Global investor
                             community</p>
                     </div>
                     
-                    <!-- Stat 2: Ventures supported -->
+                    
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">2,500+
                         </p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Ventures supported</p>
                     </div>
 
-                    <!-- Stat 3: Unicorns in portfolio -->
+                    
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">31</p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Unicorns in portfolio
                         </p>
                     </div>
 
-                    <!-- Stat 4: Capital raised -->
+                    
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">$2.6B+
                         </p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Capital raised</p>
                     </div>
 
-                    <!-- Stat 5: Powered by OpenAI -->
+                    
                     <div class="w-1/5 text-left pl-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">Powered
                             by</p>
@@ -344,7 +344,7 @@
         </div>
     </section>
 
-    <!-- Most Traction Deals Section - Matched with CTA section's left edge -->
+    
     <section class="bg-white py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12 pr-8 ml-0 md:ml-12 lg:ml-16">
@@ -353,9 +353,9 @@
                     most interest</p>
             </div>
 
-            <!-- Cards Container - Aligned in one row -->
+            
             <div class="flex flex-nowrap overflow-x-auto pr-8 ml-0 md:ml-12 lg:ml-16 gap-[44px] pb-4">
-                <!-- Card 1 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -387,7 +387,7 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -419,7 +419,7 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -452,7 +452,7 @@
                 </div>
             </div>
 
-            <!-- View All Button - Aligned with cards -->
+            
             <div class="flex justify-center mt-10 ml-0  ">
                 <a href="#"
                     class="w-[350px] py-3 bg-white text-gray-800 text-base font-medium rounded-lg   transition-all border-2 border-gray-200  flex items-center justify-center font-['Inter',_sans-serif]">
@@ -462,7 +462,7 @@
         </div>
     </section>
 
-    <!-- Just Launched Startups Section - Same design as Most Traction -->
+    
     <section class="bg-white py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12 pr-8 ml-0 md:ml-12 lg:ml-16">
@@ -471,9 +471,9 @@
                     on the platform</p>
             </div>
 
-            <!-- Cards Container - Aligned in one row -->
+            
             <div class="flex flex-nowrap overflow-x-auto pr-8 ml-0 md:ml-12 lg:ml-16 gap-[44px] pb-4">
-                <!-- Card 1 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -504,7 +504,7 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -536,7 +536,7 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
+                
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
@@ -568,7 +568,7 @@
                 </div>
             </div>
 
-            <!-- View All Button - Aligned with cards -->
+            
             <div class="flex justify-center mt-10 ml-0  ">
                 <a href="#"
                     class="w-[350px] py-3 bg-white text-gray-800 text-base font-medium rounded-lg   transition-all border-2 border-gray-200  flex items-center justify-center font-['Inter',_sans-serif]">
@@ -578,11 +578,11 @@
         </div>
     </section>
 
-    <!-- About Section - Simplified minimal design -->
+
     <section class="bg-[#F8F9FA] py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row ml-0 md:ml-12 lg:ml-16">
-                <!-- Left Column - Minimal About Text -->
+               
                 <div class="w-full lg:w-1/2 pr-0 lg:pr-16 mb-12 lg:mb-0">
                     <div class="relative mb-8">
                         <h2 class="text-[36px] font-bold text-[#1A1A1A] mb-2 font-['Inter',_sans-serif] leading-tight">
@@ -598,12 +598,12 @@
                     </p>
                 </div>
 
-                <!-- Right Column - Success Stories Only -->
+                
                 <div class="w-full lg:w-1/2">
                     <h3 class="text-lg font-semibold text-[#1A1A1A] mb-5 font-['Inter',_sans-serif]">Success Stories
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <!-- Success Story 1 - Simplified -->
+                        
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Founder"
@@ -619,7 +619,7 @@
                             </p>
                         </div>
 
-                        <!-- Success Story 2 - Simplified -->
+                        
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Founder"
@@ -635,7 +635,7 @@
                             </p>
                         </div>
 
-                        <!-- Success Story 3 - Simplified -->
+                        
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Founder"
@@ -651,7 +651,7 @@
                             </p>
                         </div>
 
-                        <!-- Key Metrics - Simplified -->
+                        
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex flex-col justify-between h-full">
                                 <div class="flex items-center mb-2">
@@ -687,11 +687,11 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
+    
     <footer class="bg-[#1A1A1A] text-white pt-16 pb-8 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap ml-0 md:ml-12 lg:ml-16">
-                <!-- Logo and Description -->
+                
                 <div class="w-full md:w-1/3 mb-10 md:mb-0 pr-0 md:pr-10">
                     <div class="flex items-center mb-6">
                         <h3 class="text-xl font-bold font-['Inter',_sans-serif]">SparkBox</h3>
@@ -733,7 +733,7 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
+                
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Platform</h4>
                     <ul class="space-y-3">
@@ -755,7 +755,7 @@
                     </ul>
                 </div>
 
-                <!-- Resources -->
+                
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Resources
                     </h4>
@@ -778,7 +778,7 @@
                     </ul>
                 </div>
 
-                <!-- Company -->
+                
                 <div class="w-full md:w-1/6 mb-8 md:mb-0">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Company</h4>
                     <ul class="space-y-3">
@@ -797,7 +797,7 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter -->
+                
                 <div class="w-full md:w-1/6">
                     <h4 class="text-sm font-bold uppercase tracking-wider mb-5 font-['Inter',_sans-serif]">Stay Updated
                     </h4>
@@ -815,7 +815,7 @@
                 </div>
             </div>
 
-            <!-- Bottom bar -->
+            
             <div
                 class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between ml-0 md:ml-12 lg:ml-16">
                 <p class="text-gray-500 text-xs mb-4 md:mb-0 font-['Inter',_sans-serif]">
@@ -836,7 +836,7 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu - Added for better mobile responsiveness -->
+    
     <div
         class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 px-6 flex justify-around items-center md:hidden z-50">
         <a href="#" class="flex flex-col items-center text-blue-600">
