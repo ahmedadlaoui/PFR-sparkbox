@@ -213,21 +213,25 @@
         <h2 class="title">Create your account</h2>
         <p class="subtitle">Start your investment journey with SparkBox</p>
 
-        <form id="signupForm">
+        <form id="signupForm" method="POST" action="{{route('register.submit')}}">
+            @csrf
             <div class="form-group">
                 <label class="form-label">Full Name</label>
-                <input type="text" class="form-input" placeholder="Enter your full name" required>
+                <input type="text" class="form-input" name="full_name" placeholder="Enter your full name" required>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Email address</label>
-                <input type="email" class="form-input" placeholder="Enter your email" required>
+                <input type="email" class="form-input" name="email" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-input" placeholder="Create a password" required>
+                <input type="password" class="form-input" name="password" placeholder="Create a password" required>
             </div>
+
+        
+            <input type="hidden" id="selected-role" name="role" value="">
 
             <label class="form-label">Choose your role</label>
             <div class="role-selector">
@@ -263,17 +267,14 @@
 
     <script>
         function selectRole(role) {
+            
+            document.getElementById('selected-role').value = role;
+
             document.querySelectorAll('.role-option').forEach(option => {
                 option.classList.remove('selected');
             });
             event.currentTarget.classList.add('selected');
         }
-
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            console.log('Form submitted');
-        });
     </script>
 </body>
 

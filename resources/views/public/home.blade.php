@@ -188,37 +188,8 @@
 
 <body class="font-inter bg-whitetext-gray-800 text-sm antialiased">
     
-    <header class="bg-white backdrop-blur-sm shadow-soft fixed w-full z-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between h-20 items-center px-6">
-                
-                <div class="pl-8 sm:pl-12 md:pl-16  pr-8">
-                    <span class="text-xl font-bold text-dark">SparkBox</span>
-                </div>
+<x-header />
 
-                
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-dark text-base font-medium font-['Inter',_sans-serif]">Home</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Startups</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Investors</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">About</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Blog</a>
-                </nav>
-
-                
-                <div>
-                    <a href="#"
-                        class="px-6 py-2.5 bg-white text-gray-800 text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all border-2 border-gray-800 hover:bg-gray-100 font-['Inter',_sans-serif]">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
 
     
     <section class="pt-14 bg-[#F2F2F2] relative" style="height: 550px;">

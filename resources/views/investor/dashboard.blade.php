@@ -77,9 +77,28 @@
 
         /* Main content area styling */
         .main-content {
-            padding-top: 80px;
+            padding-top: 30px;
             min-height: 100vh;
-            margin-left: 260px;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+        }
+
+        /* Content container for proper width - match with home page */
+        .content-container {
+            width: 100%;
+            max-width: 1280px;
+            /* Changed from 1400px to match home page max-w-7xl */
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Responsive padding for inner content */
+        .inner-content {
+            padding: 0 24px;
+            width: 100%;
         }
 
         /* Card design improvements */
@@ -435,329 +454,335 @@
         }
     </style>
 </head>
+
 <body>
-
     <x-header />
-    <x-asidebar />
-<!-- Main Content Area -->
-<div class="main-content bg-[#FAFBFC]">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-10">
-          
 
-            <!-- Current Offers Section with horizontal cards -->
-            <div class="mb-16">
-                <!-- Section header -->
-                <div class="flex justify-between items-end mb-6">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-black font-['Inter',_sans-serif] mb-2">Current
-                            Offers</h2>
-                        <p class="text-gray-600 font-['Inter',_sans-serif]">
-                            Exclusive investment opportunities available for your consideration
-                        </p>
-                    </div>
-                </div>
+    <div class="main-content bg-white">
+        <div class="content-container">
+            <div class="ml-0 md:ml-12 lg:ml-16">
+                <div class="max-w-7xl mx-auto px-6 py-10">
+                    <div class="max-w-full mx-auto py-10">
 
-                <!-- Search and Filter Bar -->
-                <div class="mb-8 border-b border-gray-200 pb-5">
-                    <div class="flex flex-wrap items-center gap-3">
-                        <!-- Search with icon -->
-                        <div class="flex items-center bg-gray-50 rounded-lg px-4 py-2.5 shadow-sm flex-grow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-3" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                            <input type="text" placeholder="Search investment opportunities"
-                                class="clean-search w-full font-['Inter',_sans-serif] text-gray-700 bg-transparent text-base">
-                        </div>
+                        <div class="mb-16">
 
-                        <!-- Updated Filters for offers -->
-                        <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-nowrap">
-                            <button
-                                class="filter-btn active whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                All Offers
-                            </button>
-                            <button
-                                class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                Exclusive
-                            </button>
-                            <button
-                                class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                Featured
-                            </button>
-                            <button
-                                class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                Trending
-                            </button>
-                            <button
-                                class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                Ending Soon
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Horizontal Offer Cards with improved layout -->
-                <div class="grid grid-cols-1 gap-5 mb-8">
-                    <!-- Offer Card 1 -->
-                    <div class="offer-card">
-                        <!-- Top right action buttons -->
-                        <div class="card-actions">
-                            <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                </svg>
-                            </button>
-                            <button class="card-btn tooltip" data-tooltip="View details">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="offer-image">
-                            <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                                alt="Sustainable energy storage solutions">
-                            <div class="company-logo">
-                                <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                                    alt="EcoFlow logo">
-                            </div>
-                        </div>
-
-                        <div class="offer-content">
-                            <div class="offer-header">
-                                <div class="offer-info">
-                                    <h3>EcoFlow Energy Storage</h3>
-                                    <div class="tags-container">
-                                        <span class="category-tag">CleanTech</span>
-                                        <span class="category-tag">Series B</span>
-                                    </div>
-                                </div>
-                                <div class="offer-owner">
-                                    <div class="owner-avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Chen">
-                                    </div>
-                                    <span class="owner-name">Presented by Sarah Chen</span>
+                            <div class="flex justify-between items-end mb-6">
+                                <div>
+                                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Current Offers</h2>
+                                    <p class="text-gray-600 font-['Inter',_sans-serif]">
+                                        Exclusive investment opportunities available for your consideration
+                                    </p>
                                 </div>
                             </div>
 
-                            <p class="offer-description">Sustainable energy storage solutions with proprietary battery
-                                technology and AI-powered management systems for residential and commercial
-                                applications.</p>
 
-                            <div class="action-buttons">
-                                <button class="chat-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    Contact Owner
-                                </button>
-                                <button class="view-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                    View Details
-                                </button>
-                            </div>
-                            <p class="investment-amount-text">Invested Amount: $500,000</p>
-                        </div>
-                    </div>
+                            <div class="mb-8 border-b border-gray-200 pb-5">
+                                <div class="flex flex-wrap items-center gap-3">
 
-                    <!-- Offer Card 2 -->
-                    <div class="offer-card">
-                        <!-- Top right action buttons -->
-                        <div class="card-actions">
-                            <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                </svg>
-                            </button>
-                            <button class="card-btn tooltip" data-tooltip="View details">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
-                        </div>
+                                    <div class="flex items-center bg-gray-50 rounded-lg px-4 py-2.5 shadow-sm flex-grow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-3" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        <input type="text" placeholder="Search investment opportunities"
+                                            class="clean-search w-full font-['Inter',_sans-serif] text-gray-700 bg-transparent text-base">
+                                    </div>
 
-                        <div class="offer-image">
-                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80"
-                                alt="AI-powered food analytics platform">
-                            <div class="company-logo">
-                                <img src="https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
-                                    alt="NutriTech logo">
-                            </div>
-                        </div>
 
-                        <div class="offer-content">
-                            <div class="offer-header">
-                                <div class="offer-info">
-                                    <h3>NutriTech AI Analytics</h3>
-                                    <div class="tags-container">
-                                        <span class="category-tag">FoodTech</span>
-                                        <span class="category-tag">Series A</span>
+                                    <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-nowrap">
+                                        <button
+                                            class="filter-btn active whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
+                                            All Offers
+                                        </button>
+                                        <button
+                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
+                                            Exclusive
+                                        </button>
+                                        <button
+                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
+                                            Featured
+                                        </button>
+                                        <button
+                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
+                                            Trending
+                                        </button>
+                                        <button
+                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
+                                            Ending Soon
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="offer-owner">
-                                    <div class="owner-avatar">
-                                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Park">
+                            </div>
+
+
+
+
+                            <div class="grid grid-cols-1 gap-5 mb-8">
+
+                                <div class="offer-card">
+
+                                    <div class="card-actions">
+                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="card-btn tooltip" data-tooltip="View details">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <span class="owner-name">Presented by David Park</span>
+
+                                    <div class="offer-image">
+                                        <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+                                            alt="Sustainable energy storage solutions">
+                                        <div class="company-logo">
+                                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
+                                                alt="EcoFlow logo">
+                                        </div>
+                                    </div>
+
+                                    <div class="offer-content">
+                                        <div class="offer-header">
+                                            <div class="offer-info">
+                                                <h3>EcoFlow Energy Storage</h3>
+                                                <div class="tags-container">
+                                                    <span class="category-tag">CleanTech</span>
+                                                    <span class="category-tag">Series B</span>
+                                                </div>
+                                            </div>
+                                            <div class="offer-owner">
+                                                <div class="owner-avatar">
+                                                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Chen">
+                                                </div>
+                                                <span class="owner-name">Presented by Sarah Chen</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="offer-description">Sustainable energy storage solutions with proprietary battery
+                                            technology and AI-powered management systems for residential and commercial
+                                            applications.</p>
+
+                                        <div class="action-buttons">
+                                            <button class="chat-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                Contact Owner
+                                            </button>
+                                            <button class="view-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                                View Details
+                                            </button>
+                                        </div>
+                                        <p class="investment-amount-text">Invested Amount: $500,000</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="offer-card">
+
+                                    <div class="card-actions">
+                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="card-btn tooltip" data-tooltip="View details">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="offer-image">
+                                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80"
+                                            alt="AI-powered food analytics platform">
+                                        <div class="company-logo">
+                                            <img src="https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+                                                alt="NutriTech logo">
+                                        </div>
+                                    </div>
+
+                                    <div class="offer-content">
+                                        <div class="offer-header">
+                                            <div class="offer-info">
+                                                <h3>NutriTech AI Analytics</h3>
+                                                <div class="tags-container">
+                                                    <span class="category-tag">FoodTech</span>
+                                                    <span class="category-tag">Series A</span>
+                                                </div>
+                                            </div>
+                                            <div class="offer-owner">
+                                                <div class="owner-avatar">
+                                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Park">
+                                                </div>
+                                                <span class="owner-name">Presented by David Park</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="offer-description">AI-powered food analytics platform offering personalized
+                                            nutrition insights and dietary recommendations based on machine learning algorithms.</p>
+
+                                        <div class="action-buttons">
+                                            <button class="chat-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                Contact Owner
+                                            </button>
+                                            <button class="view-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                                View Details
+                                            </button>
+                                        </div>
+                                        <p class="investment-amount-text">Invested Amount: $250,000</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="offer-card">
+
+                                    <div class="card-actions">
+                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="card-btn tooltip" data-tooltip="View details">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="offer-image">
+                                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80"
+                                            alt="Telemedicine platform">
+                                        <div class="company-logo">
+                                            <img src="https://img.freepik.com/free-vector/abstract-logo-with-colorful-shapes_1017-30230.jpg"
+                                                alt="MobileMed logo">
+                                        </div>
+                                    </div>
+
+                                    <div class="offer-content">
+                                        <div class="offer-header">
+                                            <div class="offer-info">
+                                                <h3>MobileMed Telemedicine</h3>
+                                                <div class="tags-container">
+                                                    <span class="category-tag">HealthTech</span>
+                                                    <span class="category-tag">Seed</span>
+                                                </div>
+                                            </div>
+                                            <div class="offer-owner">
+                                                <div class="owner-avatar">
+                                                    <img src="https://randomuser.me/api/portraits/women/68.jpg"
+                                                        alt="Maria Rodriguez">
+                                                </div>
+                                                <span class="owner-name">Presented by Maria Rodriguez</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="offer-description">Telemedicine platform focused on rural healthcare access with
+                                            proprietary diagnostic tools and seamless patient-doctor communications.</p>
+
+                                        <div class="action-buttons">
+                                            <button class="chat-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                Contact Owner
+                                            </button>
+                                            <button class="view-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                                View Details
+                                                View Details
+                                            </button>
+                                        </div>
+                                        <p class="investment-amount-text">Invested Amount: $100,000</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <p class="offer-description">AI-powered food analytics platform offering personalized
-                                nutrition insights and dietary recommendations based on machine learning algorithms.</p>
 
-                            <div class="action-buttons">
-                                <button class="chat-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    Contact Owner
-                                </button>
-                                <button class="view-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                    View Details
-                                </button>
-                            </div>
-                            <p class="investment-amount-text">Invested Amount: $250,000</p>
-                        </div>
-                    </div>
-
-                    <!-- Offer Card 3 -->
-                    <div class="offer-card">
-                        <!-- Top right action buttons -->
-                        <div class="card-actions">
-                            <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                </svg>
-                            </button>
-                            <button class="card-btn tooltip" data-tooltip="View details">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="offer-image">
-                            <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80"
-                                alt="Telemedicine platform">
-                            <div class="company-logo">
-                                <img src="https://img.freepik.com/free-vector/abstract-logo-with-colorful-shapes_1017-30230.jpg"
-                                    alt="MobileMed logo">
-                            </div>
-                        </div>
-
-                        <div class="offer-content">
-                            <div class="offer-header">
-                                <div class="offer-info">
-                                    <h3>MobileMed Telemedicine</h3>
-                                    <div class="tags-container">
-                                        <span class="category-tag">HealthTech</span>
-                                        <span class="category-tag">Seed</span>
-                                    </div>
-                                </div>
-                                <div class="offer-owner">
-                                    <div class="owner-avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/68.jpg"
-                                            alt="Maria Rodriguez">
-                                    </div>
-                                    <span class="owner-name">Presented by Maria Rodriguez</span>
+                            <div class="flex justify-center mt-10">
+                                <div class="flex items-center space-x-1">
+                                    <button class="px-3 py-2 rounded-md text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd" <path fill-rule="evenodd"
+                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-
-                            <p class="offer-description">Telemedicine platform focused on rural healthcare access with
-                                proprietary diagnostic tools and seamless patient-doctor communications.</p>
-
-                            <div class="action-buttons">
-                                <button class="chat-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    Contact Owner
-                                </button>
-                                <button class="view-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                    View Details
-                                </button>
-                            </div>
-                            <p class="investment-amount-text">Invested Amount: $100,000</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="flex justify-center mt-10">
-                    <div class="flex items-center space-x-1">
-                        <button class="px-3 py-2 rounded-md text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd" <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <x-footer />
     </div>
 
-    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Feather icons
-            feather.replace({ stroke: 1.5 });
+            feather.replace({
+                stroke: 1.5
+            });
 
             // Mobile aside toggle
             const mobileAsideToggle = document.querySelector('.mobile-aside-toggle');
             const asideBar = document.querySelector('.aside-bar');
 
-            mobileAsideToggle?.addEventListener('click', function () {
+            mobileAsideToggle?.addEventListener('click', function() {
                 asideBar.classList.toggle('show');
             });
 
             // Filter buttons
             const filterBtns = document.querySelectorAll('.filter-btn');
             filterBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
+                btn.addEventListener('click', function() {
                     filterBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                 });

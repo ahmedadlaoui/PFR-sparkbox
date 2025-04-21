@@ -69,9 +69,28 @@
 
         /* Main content area styling */
         .main-content {
-            padding-top: 80px;
+            padding-top: 30px;
             min-height: 100vh;
-            margin-left: 260px;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+        }
+
+        /* Content container for proper width - match with home page */
+        .content-container {
+            width: 100%;
+            max-width: 1280px;
+            /* Changed from 1400px to match home page max-w-7xl */
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Responsive padding for inner content */
+        .inner-content {
+            padding: 0 24px;
+            width: 100%;
         }
 
         /* Mobile styling */
@@ -131,102 +150,107 @@
 <body>
 
     <x-header />
-    <x-asidebar />
 
-     <!-- Main Content Area - Portfolio -->
-     <div class="main-content bg-[#FAFBFC]">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-10">
-            <!-- Portfolio Header -->
-            <div class="mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-black font-['Inter',_sans-serif] mb-2">Portfolio Overview
-                </h2>
-                <p class="text-gray-600 font-['Inter',_sans-serif]">Track your investments and performance metrics</p>
-            </div>
+    <div class="main-content bg-white">
+        <div class="content-container">
+            <div class="ml-0 md:ml-12 lg:ml-16">
+                <div class="max-w-7xl mx-auto px-6 py-10">
 
-            <!-- Statistics Cards -->
-            <div class="mb-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div class="stat-card">
-                        <p
-                            class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
-                            Total Invested</p>
-                        <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">$842,500</p>
+                    <div class="mb-10">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Portfolio Overview</h2>
+                        <p class="text-gray-600 font-['Inter',_sans-serif]">Track your investments and performance metrics</p>
                     </div>
 
-                    <div class="stat-card">
-                        <p
-                            class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
-                            Portfolio Value</p>
-                        <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">$1,124,600</p>
-                    </div>
 
-                    <div class="stat-card">
-                        <p
-                            class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
-                            ROI</p>
-                        <p class="text-2xl font-bold text-green-600 font-['Inter',_sans-serif]">+33.5%</p>
-                    </div>
+                    <div class="mb-10">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            <div class="stat-card">
+                                <p
+                                    class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
+                                    Total Invested</p>
+                                <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">$842,500</p>
+                            </div>
 
-                    <div class="stat-card">
-                        <p
-                            class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
-                            Active Investments</p>
-                        <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">14</p>
-                    </div>
-                </div>
-            </div>
+                            <div class="stat-card">
+                                <p
+                                    class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
+                                    Portfolio Value</p>
+                                <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">$1,124,600</p>
+                            </div>
 
-            <!-- Charts Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-                <!-- Investment & Revenue Chart -->
-                <div class="chart-card">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold text-[#1A1A1A]">Investment & Revenue</h3>
-                        <div class="flex space-x-2">
-                            <button
-                                class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md">1Y</button>
-                            <button class="px-3 py-1 text-xs font-medium bg-[#0049FF] text-white rounded-md">2Y</button>
-                            <button
-                                class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md">5Y</button>
+                            <div class="stat-card">
+                                <p
+                                    class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
+                                    ROI</p>
+                                <p class="text-2xl font-bold text-green-600 font-['Inter',_sans-serif]">+33.5%</p>
+                            </div>
+
+                            <div class="stat-card">
+                                <p
+                                    class="text-[#666666] text-xs font-medium tracking-wide uppercase font-['Inter',_sans-serif] mb-1">
+                                    Active Investments</p>
+                                <p class="text-2xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif]">14</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-container">
-                        <canvas id="investmentChart"></canvas>
-                    </div>
-                </div>
 
-                <!-- Investment Categories Chart -->
-                <div class="chart-card">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold text-[#1A1A1A]">Investment Categories</h3>
-                        <div>
-                            <button
-                                class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md flex items-center">
-                                <i data-feather="filter" class="h-3 w-3 mr-1"></i> Filter
-                            </button>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+
+                        <div class="chart-card">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-[#1A1A1A]">Investment & Revenue</h3>
+                                <div class="flex space-x-2">
+                                    <button
+                                        class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md">1Y</button>
+                                    <button class="px-3 py-1 text-xs font-medium bg-[#0049FF] text-white rounded-md">2Y</button>
+                                    <button
+                                        class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md">5Y</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="investmentChart"></canvas>
+                            </div>
+                        </div>
+
+
+                        <div class="chart-card">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-[#1A1A1A]">Investment Categories</h3>
+                                <div>
+                                    <button
+                                        class="px-3 py-1 text-xs font-medium bg-white border border-gray-200 rounded-md flex items-center">
+                                        <i data-feather="filter" class="h-3 w-3 mr-1"></i> Filter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-container">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
+
+
                 </div>
             </div>
-
-         
         </div>
+
+        <x-footer />
     </div>
 
-    <!-- JavaScript -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Feather icons
-            feather.replace({ stroke: 1.5 });
+            feather.replace({
+                stroke: 1.5
+            });
 
             // Mobile aside toggle
             const mobileAsideToggle = document.querySelector('.mobile-aside-toggle');
             const asideBar = document.querySelector('.aside-bar');
 
-            mobileAsideToggle?.addEventListener('click', function () {
+            mobileAsideToggle?.addEventListener('click', function() {
                 asideBar.classList.toggle('show');
             });
 
@@ -249,8 +273,7 @@
                         'Jan 2022', 'Mar 2022', 'May 2022', 'Jul 2022', 'Sep 2022', 'Nov 2022',
                         'Jan 2023', 'Mar 2023', 'May 2023', 'Jul 2023', 'Sep 2023', 'Nov 2023'
                     ],
-                    datasets: [
-                        {
+                    datasets: [{
                             label: 'Investments',
                             data: [200000, 200000, 350000, 350000, 350000, 500000, 500000, 650000, 650000, 750000, 750000, 750000, 842500, 842500, 842500, 842500, 842500, 842500],
                             borderColor: '#4B5563',
@@ -281,7 +304,7 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                callback: function (value) {
+                                callback: function(value) {
                                     return '$' + value.toLocaleString();
                                 }
                             }
@@ -302,7 +325,7 @@
                         },
                         tooltip: {
                             callbacks: {
-                                label: function (context) {
+                                label: function(context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -319,11 +342,11 @@
             // Create gradient colors for bar chart
             const ctxCategory = document.getElementById('categoryChart').getContext('2d');
             const grayGradients = [
-                createGradient(ctxCategory, '75, 85, 99'),     // Dark gray
-                createGradient(ctxCategory, '107, 114, 128'),  // Medium-dark gray
-                createGradient(ctxCategory, '156, 163, 175'),  // Medium gray
-                createGradient(ctxCategory, '209, 213, 219'),  // Light gray
-                createGradient(ctxCategory, '229, 231, 235')   // Very light gray
+                createGradient(ctxCategory, '75, 85, 99'), // Dark gray
+                createGradient(ctxCategory, '107, 114, 128'), // Medium-dark gray
+                createGradient(ctxCategory, '156, 163, 175'), // Medium gray
+                createGradient(ctxCategory, '209, 213, 219'), // Light gray
+                createGradient(ctxCategory, '229, 231, 235') // Very light gray
             ];
 
             function createGradient(context, colorValues) {
@@ -362,7 +385,7 @@
                         },
                         tooltip: {
                             callbacks: {
-                                label: function (context) {
+                                label: function(context) {
                                     return `${context.label}: ${context.raw}%`;
                                 }
                             }
@@ -372,7 +395,7 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                callback: function (value) {
+                                callback: function(value) {
                                     return value + '%';
                                 }
                             }

@@ -351,16 +351,16 @@
 </head>
 
 <body class="font-inter text-sm antialiased">
-    <!-- Header - Same as other pages -->
+    
     <header class="bg-white backdrop-blur-sm fixed w-full z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between h-20 items-center px-6">
-                <!-- Brand Name -->
+                
                 <div class="pl-8 sm:pl-12 md:pl-16 pr-8">
                     <span class="text-xl font-bold text-dark">SparkBox</span>
                 </div>
 
-                <!-- Navigation -->
+                
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="index.html"
                         class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Home</a>
@@ -373,7 +373,7 @@
                         class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Blog</a>
                 </nav>
 
-                <!-- Account Button -->
+                
                 <div>
                     <a href="#"
                         class="px-6 py-2.5 bg-white text-gray-800 text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all border-2 border-gray-800 hover:bg-gray-100 font-['Inter',_sans-serif]">
@@ -384,7 +384,7 @@
         </div>
     </header>
 
-    <!-- Hero Section with Reduced Width -->
+    
     <section class="pt-20">
         <div class="container-centered">
             <div class="hero-container">
@@ -396,7 +396,7 @@
                             proprietary battery technology and AI-powered management systems.</p>
                     </div>
                 </div>
-                <!-- Company Logo -->
+                
                 <div class="company-logo bg-white">
                     <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
                         alt="EcoFlow logo" class="w-full h-full object-contain rounded-[4px]">
@@ -405,11 +405,11 @@
         </div>
     </section>
 
-    <!-- Main Content Section - Restructured without tabs -->
+    
     <div class="container-centered">
         <div class="two-column">
             <div>
-                <!-- Company Information -->
+                
                 <div class="content-card">
                     <div class="flex items-center space-x-2 mb-4">
                         <span class="tag">CleanTech</span>
@@ -444,7 +444,7 @@
                     </div>
                 </div>
 
-                <!-- The Problem & Solution Section -->
+                
                 <div class="content-section">
                     <h3 class="section-title">The Challenge & Our Solution</h3>
                     <div class="content-card">
@@ -517,7 +517,7 @@
                     </div>
                 </div>
 
-                <!-- Product Images Section -->
+                
                 <div class="content-section">
                     <h3 class="section-title">Product Gallery</h3>
                     <div class="gallery-grid">
@@ -532,11 +532,11 @@
                     </div>
                 </div>
 
-                <!-- Team Section - Redesigned -->
+                
                 <div class="content-section">
                     <h3 class="section-title">Leadership Team</h3>
                     <div class="team-grid">
-                        <!-- Team Member 1 -->
+                        
                         <div class="team-member">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen"
                                 class="team-avatar">
@@ -546,7 +546,7 @@
                                 from Stanford University.</p>
                         </div>
 
-                        <!-- Team Member 2 -->
+                        
                         <div class="team-member">
                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
                                 class="team-avatar">
@@ -556,7 +556,7 @@
                                 Materials Science.</p>
                         </div>
 
-                        <!-- Team Member 3 -->
+                        
                         <div class="team-member">
                             <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="David Rodriguez"
                                 class="team-avatar">
@@ -569,9 +569,9 @@
                 </div>
             </div>
 
-            <!-- Right Sidebar with Statistics - Now fixed on scroll -->
+            
             <div class="stats-sidebar">
-                <!-- Funding Progress -->
+                
                 <div class="stat-block">
                     <h3 class="text-lg font-bold mb-3">Funding Progress</h3>
                     <div class="flex justify-between mb-1">
@@ -587,7 +587,7 @@
                     </div>
                 </div>
 
-                <!-- Key Metrics - Simplified Design -->
+                
                 <div class="metrics-grid mb-6">
                     <div class="metric-item">
                         <div class="stat-number">78</div>
@@ -607,7 +607,7 @@
                     </div>
                 </div>
 
-                <!-- Additional Statistics - New -->
+                
                 <div class="stat-block mb-6">
                     <h3 class="text-lg font-bold mb-3">Key Performance</h3>
                     <table class="details-table">
@@ -634,7 +634,7 @@
                     </table>
                 </div>
 
-                <!-- Investment Opportunity - Simplified -->
+                
                 <div class="stat-block mb-6">
                     <h3 class="text-lg font-bold mb-4">Investment Details</h3>
                     <table class="details-table">
@@ -659,7 +659,7 @@
                         Now</button>
                 </div>
 
-                <!-- Market Size - New Statistics -->
+                
                 <div class="stat-block mb-6">
                     <h3 class="text-lg font-bold mb-3">Market Opportunity</h3>
                     <div class="space-y-4">
@@ -676,7 +676,7 @@
                     </div>
                 </div>
 
-                <!-- Use of Funds - Simplified design -->
+                
                 <div class="stat-block">
                     <h3 class="text-lg font-bold mb-4">Use of Funds</h3>
                     <div class="space-y-4 mb-4">
@@ -725,7 +725,7 @@
         </div>
     </div>
 
-    <!-- Call to Action Section - Simplified -->
+    
     <section class="py-16 px-6 bg-[#FAFAFA]">
         <div class="container-centered">
             <div class="p-8 bg-white border border-gray-100 rounded-md shadow-sm">
@@ -748,14 +748,14 @@
         </div>
     </section>
 
-    <!-- Footer - Same as other pages -->
+    
     <footer class="bg-gray-100 py-6">
         <div class="container-centered text-center">
             <p class="text-gray-600 text-sm">© 2023 SparkBox. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript - Only need to initialize Feather icons -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize Feather icons

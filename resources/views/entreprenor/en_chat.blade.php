@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investor Chat - SparkBox</title>
+    <title>Entrepreneur Chat - SparkBox</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
@@ -304,22 +304,59 @@
             text-transform: uppercase;
             font-weight: 500;
         }
+
+        /* Side navigation styling */
+        .side-nav {
+            width: 260px;
+            height: calc(100vh - 80px);
+            position: fixed;
+            top: 80px;
+            left: 0;
+            background-color: white;
+            border-right: 1px solid #F0F0F0;
+            z-index: 30;
+            overflow-y: auto;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background-color: #F9FAFB;
+            color: #1A1A1A;
+        }
+
+        .nav-link.active {
+            color: #0049FF;
+            background-color: #F0F4FF;
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            margin-right: 12px;
+            stroke-width: 1.8px;
+        }
     </style>
 </head>
 
-<body>
-
+<body class="font-inter bg-white text-[#1A1A1A] text-sm antialiased">
     <x-header />
 
     <div class="main-content bg-white">
+        
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="max-w-7xl mx-auto px-6 py-6">
-                    <!-- Chat Interface - Unified design with updated styling -->
+
                     <div class="chat-container shadow-sm border border-gray-200 rounded-lg overflow-hidden bg-white">
-                        <!-- Left Side: Contacts List -->
+
                         <div class="contacts-list">
-                            <!-- Search Input -->
+
                             <div class="p-4 border-b border-gray-100">
                                 <div class="flex items-center bg-gray-50 rounded-full px-4 py-2.5">
                                     <i data-feather="search" class="h-4 w-4 text-gray-400 mr-2"></i>
@@ -328,7 +365,7 @@
                                 </div>
                             </div>
 
-                            <!-- Contact Items - No status indicators -->
+
                             <div class="contact-item active">
                                 <div class="flex justify-between mb-2">
                                     <div class="flex items-center">
@@ -345,8 +382,6 @@
                                 <p class="text-gray-500 text-xs truncate">EcoFlow Energy Storage: Looking forward to discussing
                                     the term sheet in more detail...</p>
                             </div>
-
-
 
                             <div class="contact-item">
                                 <div class="flex justify-between mb-2">
@@ -366,9 +401,9 @@
                             </div>
                         </div>
 
-                        <!-- Right Side: Chat Window -->
+
                         <div class="chat-window">
-                            <!-- Chat Header - Modernized -->
+
                             <div class="chat-header">
                                 <div class="flex items-center">
                                     <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
@@ -396,14 +431,14 @@
                                 </div>
                             </div>
 
-                            <!-- Chat Messages - Enhanced styling -->
+
                             <div class="chat-messages">
-                                <!-- Date Divider -->
+
                                 <div class="flex items-center justify-center my-6">
                                     <div class="bg-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full">Today</div>
                                 </div>
 
-                                <!-- Sent Message -->
+
                                 <div class="message-bubble message-sent">
                                     <p>Thanks for sharing, Sarah. I've reviewed your pitch deck and I'm impressed with your
                                         technology and market approach.</p>
@@ -411,7 +446,6 @@
                                 </div>
 
 
-                                <!-- Received Message -->
                                 <div class="message-bubble message-received">
                                     <p>Of course. Our valuation is based on our proprietary technology (patents pending), the
                                         team's expertise, and our initial traction. We already have LOIs from 3 major utility
@@ -420,8 +454,6 @@
                                 </div>
 
 
-
-                                <!-- Sent Message -->
                                 <div class="message-bubble message-sent">
                                     <p>Thanks for the quick response. I'll review this and get back to you with any other
                                         questions. In the meantime, what are the main milestones you plan to achieve with this
@@ -429,7 +461,7 @@
                                     <div class="message-time">10:30 AM</div>
                                 </div>
 
-                                <!-- Received Message -->
+
                                 <div class="message-bubble message-received">
                                     <p>Great question. With this funding, we plan to:</p>
                                     <p>1. Scale production to meet our existing orders</p>
@@ -438,11 +470,9 @@
                                     <p>4. File 5 additional patents for our core technology</p>
                                     <div class="message-time">10:36 AM</div>
                                 </div>
-
-
                             </div>
 
-                            <!-- Chat Input Area - Modern rounded style -->
+
                             <div class="chat-input">
                                 <div class="chat-input-box">
                                     <button class="text-gray-400 hover:text-gray-600 p-1">
@@ -469,20 +499,18 @@
         <x-footer />
     </div>
 
-    <!-- JavaScript -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather icons
-            feather.replace({
-                stroke: 1.5
-            });
+            // Initialize Feather Icons
+            feather.replace();
 
-            // Mobile aside toggle
-            const mobileAsideToggle = document.querySelector('.mobile-aside-toggle');
-            const asideBar = document.querySelector('.aside-bar');
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const sideNav = document.querySelector('.side-nav');
 
-            mobileAsideToggle?.addEventListener('click', function() {
-                asideBar.classList.toggle('show');
+            mobileMenuToggle.addEventListener('click', function() {
+                sideNav.classList.toggle('show');
             });
 
             // Auto-expanding textarea

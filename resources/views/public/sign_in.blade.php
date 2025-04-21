@@ -169,15 +169,16 @@
         <h1 class="title">Welcome back</h1>
         <p class="subtitle">Sign in to continue your journey</p>
 
-        <form>
+        <form action="{{ route('login.submit') }}" method="POST">
+            @csrf
             <div class="form-group">
                 <label class="form-label">Email address</label>
-                <input type="email" class="form-input" placeholder="Enter your email" required>
+                <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-input" placeholder="Enter your password" required>
+                <input type="password" class="form-input" name="password" placeholder="Enter your password" required>
             </div>
 
             <a href="#" class="forgot-password">Forgot password?</a>

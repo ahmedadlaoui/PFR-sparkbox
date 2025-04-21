@@ -66,7 +66,7 @@
             stroke-width: 1.8px;
         }
 
-        /* Main content area styling - updated for proper width */
+        /* Main content area styling */
         .main-content {
             padding-top: 30px;
             min-height: 100vh;
@@ -116,6 +116,43 @@
             .mobile-aside-toggle {
                 display: none;
             }
+        }
+
+        /* Side navigation styling - for entrepreneur sidebar */
+        .side-nav {
+            width: 260px;
+            height: calc(100vh - 80px);
+            position: fixed;
+            top: 80px;
+            left: 0;
+            background-color: white;
+            border-right: 1px solid #F0F0F0;
+            z-index: 30;
+            overflow-y: auto;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background-color: #F9FAFB;
+            color: #1A1A1A;
+        }
+
+        .nav-link.active {
+            color: #0049FF;
+            background-color: #F0F4FF;
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            margin-right: 12px;
+            stroke-width: 1.8px;
         }
 
         /* Settings-specific styling */
@@ -241,20 +278,18 @@
 </head>
 
 <body>
-
     <x-header />
 
     <div class="main-content bg-white">
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
+
                 <div class="max-w-7xl mx-auto px-6 py-10">
 
-                    <div class="mb-8">
+                    <div class="mb-8 mt-8">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Account Settings</h1>
-                        <p class="text-gray-600 font-['Inter',_sans-serif]">Manage your personal information and account
-                            preferences</p>
+                        <p class="text-gray-600 font-['Inter',_sans-serif]">Manage your account preferences and profile information</p>
                     </div>
-
 
                     <div class="settings-section">
 
@@ -269,7 +304,7 @@
                                         <input type="file" id="profile-picture-upload" style="display: none;">
                                     </div>
                                     <div class="avatar-preview">
-                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Current Profile Picture">
+                                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Current Profile Picture">
                                     </div>
                                 </div>
 
@@ -301,29 +336,75 @@
                                     <div class="form-group">
                                         <label class="form-label" for="first-name">First Name</label>
                                         <input type="text" id="first-name" class="form-input"
-                                            placeholder="Enter your first name" value="Alex">
+                                            placeholder="Enter your first name" value="Sarah">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="last-name">Last Name</label>
                                         <input type="text" id="last-name" class="form-input" placeholder="Enter your last name"
-                                            value="Morgan">
+                                            value="Chen">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="email">Email Address</label>
                                         <input type="email" id="email" class="form-input" placeholder="Enter your email address"
-                                            value="alex.morgan@example.com">
+                                            value="sarah.chen@ecoflow.com">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="phone">Phone Number</label>
                                         <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number"
-                                            value="+1 (555) 123-4567">
+                                            value="+1 (555) 987-6543">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="bio">Bio</label>
                                     <textarea id="bio" class="form-input" rows="4"
-                                        placeholder="Tell us about yourself">Angel investor with 10+ years of experience in technology startups. Focus areas include fintech, cleantech, and AI solutions.</textarea>
+                                        placeholder="Tell us about yourself">CEO of EcoFlow Energy Storage. Previously Senior Engineer at Tesla Energy. MS in Electrical Engineering from Stanford University. Passionate about sustainable energy solutions and innovative technology.</textarea>
+                                </div>
+
+                                <div class="flex justify-end mt-8">
+                                    <button type="button" class="cancel-button">Cancel</button>
+                                    <button type="submit" class="save-button">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div class="settings-card">
+                            <h3 class="settings-section-title">Startup Information</h3>
+                            <form>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="company-name">Company Name</label>
+                                        <input type="text" id="company-name" class="form-input"
+                                            placeholder="Enter your company name" value="EcoFlow Energy Storage">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="founded-year">Founded Year</label>
+                                        <input type="text" id="founded-year" class="form-input" placeholder="Year founded"
+                                            value="2020">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="company-website">Company Website</label>
+                                        <input type="url" id="company-website" class="form-input" placeholder="https://example.com"
+                                            value="https://ecoflowenergy.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="company-stage">Company Stage</label>
+                                        <select id="company-stage" class="form-input">
+                                            <option>Pre-seed</option>
+                                            <option>Seed</option>
+                                            <option>Series A</option>
+                                            <option selected>Series B</option>
+                                            <option>Series C</option>
+                                            <option>Series D+</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="company-description">Company Description</label>
+                                    <textarea id="company-description" class="form-input" rows="4"
+                                        placeholder="Describe your company">EcoFlow develops sustainable energy storage solutions with proprietary battery technology and AI-powered energy management systems for residential and commercial applications. Our mission is to accelerate the world's transition to sustainable energy through accessible and efficient storage solutions.</textarea>
                                 </div>
 
                                 <div class="flex justify-end mt-8">
@@ -343,18 +424,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather icons
-            feather.replace({
-                stroke: 1.5
-            });
+            // Initialize Feather icons with proper timing and parameters
+            feather.replace();
 
-            // Mobile aside toggle
-            const mobileAsideToggle = document.querySelector('.mobile-aside-toggle');
-            const asideBar = document.querySelector('.aside-bar');
+            // Add mobile menu toggle button if it doesn't exist
+            if (!document.getElementById('mobile-menu-toggle')) {
+                const mobileToggle = document.createElement('button');
+                mobileToggle.id = 'mobile-menu-toggle';
+                mobileToggle.className = 'md:hidden fixed bottom-6 right-6 bg-[#0049FF] text-white p-3 rounded-full shadow-lg z-50';
+                mobileToggle.innerHTML = '<i data-feather="menu" class="h-6 w-6"></i>';
+                document.body.appendChild(mobileToggle);
 
-            mobileAsideToggle?.addEventListener('click', function() {
-                asideBar.classList.toggle('show');
-            });
+                // Re-initialize feather icons for the newly added button
+                feather.replace();
+            }
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const sideNav = document.querySelector('.side-nav');
+
+            if (mobileMenuToggle && sideNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sideNav.classList.toggle('open');
+                });
+            }
 
             // Profile picture functionality
             const uploadInput = document.getElementById('profile-picture-upload');
