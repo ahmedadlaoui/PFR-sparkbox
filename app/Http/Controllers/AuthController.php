@@ -46,6 +46,14 @@ class AuthController extends Controller
         $New_user->role = request('role');
 
         $New_user->save();
+
+        Auth::login($New_user); 
         return redirect()->route('home');
+    }
+
+    public function Sign_Out()
+    {
+        Auth::logout();
+        return redirect()->route('home')->with('success', 'You have been signed out.');
     }
 }

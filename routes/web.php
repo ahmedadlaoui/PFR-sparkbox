@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StartupController;
 
 // Public routes
 Route::get('/', function () {
@@ -11,31 +13,26 @@ Route::get('/', function () {
 Route::get('/deals', function () {
     return view('public/deals');
 })->name('deals');
+Route::get('/deal_details', function () {
+    return view('public/deal_details');
+});
 
 
 
 
 
 
+//entrepreneur
 
-Route::get('/mystartup', function () {
-    return view('entreprenor/mystartup');
-})->name('entreprenor.mystartup');
+
+route::get('/mystartup',[StartupController::class,'GetStartupInfos'])->name('entreprenor.mystartup');
 
 Route::get('/investors', function () {
     return view('entreprenor/investors');
 })->name('entreprenor.investors');
 
-Route::get('/en_chat', function () {
-    return view('entreprenor/en_chat');
-})->name('entreprenor.chat');
 
-Route::get('/en_settings', function () {
-    return view('entreprenor/en_settings');
-})->name('entreprenor.en_settings');
-
-
-
+//investor
 Route::get('/dashboard', function () {
     return view('investor/dashboard');
 })->name('investor.dashboard');
@@ -44,13 +41,21 @@ Route::get('/portfolio', function () {
     return view('investor.portfolio');
 })->name('investor.portfolio');
 
+
+//common
 Route::get('/chat', function () {
-    return view('investor.chat');
-})->name('investor.chat');
+    return view('common/chat');
+})->name('chat');
 
 Route::get('/settings', function () {
-    return view('investor.settings');
-})->name('investor.settings');
+    return view('common/settings');
+})->name('settings');
+
+
+
+
+
+
 
 
 
@@ -62,10 +67,12 @@ Route::get('/login', function () {
 })->name('login');
 
 
-Route::get('/register', function (){return view('public.sign_up');});
+Route::get('/register', function (){return view('public.sign_up');})->name('show.register');
 Route::post('/register', [Authcontroller::class, 'Sign_Up'])->name('register.submit');
 Route::post('/login', [Authcontroller::class, 'Sign_In'])->name('login.submit');
+Route::post('/logout', [Authcontroller::class, 'Sign_Out'])->name('logout.submit');
 
-Route::post('/logout', function () {
-    return redirect('/');
-})->name('logout');
+
+
+Route::POST('/settings',[ProfileController::class,'EditProfile'])->name('edit.profile');
+

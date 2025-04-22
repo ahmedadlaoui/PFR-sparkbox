@@ -69,7 +69,7 @@
                             Messages
 
                         </a>
-                        <a href="{{ route('investor.settings') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.settings') ? 'bg-gray-50 text-blue-600' : '' }}">
+                        <a href="{{ route('settings') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.settings') ? 'bg-gray-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -85,12 +85,12 @@
                             <i data-feather="users" class="h-5 w-5 mr-3 text-gray-400"></i>
                             Investors
                         </a>
-                        <a href="{{ route('entreprenor.chat') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('entreprenor.chat') ? 'bg-gray-50 text-blue-600' : '' }}">
+                        <a href="{{ route('chat') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('entreprenor.chat') ? 'bg-gray-50 text-blue-600' : '' }}">
                             <i data-feather="message-square" class="h-5 w-5 mr-3 text-gray-400"></i>
                             Messages
 
                         </a>
-                        <a href="{{ route('entreprenor.en_settings') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('entreprenor.en_settings') ? 'bg-gray-50 text-blue-600' : '' }}">
+                        <a href="{{ route('settings') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('entreprenor.en_settings') ? 'bg-gray-50 text-blue-600' : '' }}">
                             <i data-feather="settings" class="h-5 w-5 mr-3 text-gray-400"></i>
                             Settings
                         </a>
@@ -106,12 +106,29 @@
                             </svg>
                             Logout
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" class="hidden">
                             @csrf
                         </form>
                     </div>
                 </div>
             </div>
+            @else
+            <a href="{{route('show.register')}}" class="
+        px-6 py-2 
+        bg-white 
+        border border-gray-300 
+        rounded-md 
+        text-gray-800 
+        font-medium
+        transition-all 
+        duration-300 
+        hover:border-blue-500 
+        hover:text-blue-600
+        hover:shadow-sm
+        focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50
+    ">
+                Get Started
+            </a>
             @endif
         </div>
     </div>

@@ -260,7 +260,7 @@
             <button type="submit" class="btn btn-primary">Sign Up</button>
 
             <div class="login-prompt">
-                Already have an account? <a href="sign_in.html">Sign in</a>
+                Already have an account? <a href="{{route('login')}}">Sign in</a>
             </div>
         </form>
     </div>

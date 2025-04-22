@@ -61,7 +61,6 @@
         .content-container {
             width: 100%;
             max-width: 1280px;
-            /* Changed from 1400px to match home page max-w-7xl */
             margin: 0 auto;
             padding: 0;
         }
@@ -78,7 +77,6 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 1280px;
-            /* Match max-width with content container */
         }
 
         /* Startup banner styling - updated */
@@ -183,6 +181,38 @@
             font-weight: 400;
         }
 
+        /* Empty state styling */
+        .empty-state-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 12px;
+            border: 1px dashed #E5E7EB;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .empty-state-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #F3F4F6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .empty-state-icon svg {
+            width: 60px;
+            height: 60px;
+            color: #9CA3AF;
+        }
+
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
             .side-nav {
@@ -212,27 +242,24 @@
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="w-full px-6 py-10">
+
+                    <?php
+                    $myStartup = []; // Empty array to simulate no startup
+                    ?>
+
+                    @if(!empty($myStartup))
                     <div class="startup-banner-wrapper">
                         <div class="startup-banner">
 
                             <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
                                 alt="EcoFlow Energy" class="cover-image">
 
-
                             <div class="banner-overlay"></div>
 
-
-                            <div class="startup-logo">
+                            <div class="startup-logo" style="scale:0.7;border-radius:4px;">
                                 <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
                                     alt="EcoFlow Logo">
                             </div>
-
-
-                            <button class="edit-button">
-                                <i data-feather="edit-2"></i>
-                                Edit Startup
-                            </button>
-
 
                             <div class="startup-info">
                                 <h1 class="text-2xl md:text-3xl font-extrabold mb-2 text-white">EcoFlow Energy Storage</h1>
@@ -258,7 +285,6 @@
                         </div>
                     </div>
 
-
                     <section class="stats-section">
                         <div class="container mx-auto px-6">
                             <div class="flex flex-wrap justify-between">
@@ -268,24 +294,20 @@
                                     <p class="stat-label">Total Funding</p>
                                 </div>
 
-
                                 <div class="w-1/5 stat-item">
                                     <p class="stat-number">12</p>
                                     <p class="stat-label">Investors</p>
                                 </div>
-
 
                                 <div class="w-1/5 stat-item">
                                     <p class="stat-number">86%</p>
                                     <p class="stat-label">Growth Rate</p>
                                 </div>
 
-
                                 <div class="w-1/5 stat-item">
                                     <p class="stat-number">4,500+</p>
                                     <p class="stat-label">Customers</p>
                                 </div>
-
 
                                 <div class="w-1/5 stat-item">
                                     <p class="stat-number">18mo</p>
@@ -294,7 +316,6 @@
                             </div>
                         </div>
                     </section>
-
 
                     <section class="bg-white py-8">
                         <div class="container mx-auto px-6">
@@ -338,7 +359,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center mb-5">
                                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Lee"
@@ -369,7 +389,6 @@
                                         </button>
                                     </div>
                                 </div>
-
 
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center mb-5">
@@ -405,10 +424,168 @@
                         </div>
                     </section>
 
-
-                    <div class="container mx-auto px-6 py-8">
-
+                    @else
+                    <div class="empty-state-container">
+                        <div class="empty-state-icon">
+                            <i data-feather="briefcase" class="h-16 w-16 text-gray-400"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">Register Your First Startup</h2>
+                        <p class="text-gray-600 max-w-lg mb-8">
+                            You haven't registered a startup yet. Create your startup profile to connect with potential investors
+                            and showcase your business to the SparkBox community.
+                        </p>
+                        <button id="create-startup-btn" class="px-6 py-3 bg-[#0049FF] text-white font-semibold rounded-lg shadow-sm hover:bg-[#003CD9] transition-colors">
+                            <i data-feather="plus" class="h-4 w-4 inline-block mr-2"></i>
+                            Create Your Startup
+                        </button>
                     </div>
+
+                    <!-- Startup Creation Modal - Hidden by default -->
+                    <div id="startup-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+                                <h3 class="text-xl font-bold text-gray-900">Create Your Startup</h3>
+                                <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600">
+                                    <i data-feather="x" class="h-5 w-5"></i>
+                                </button>
+                            </div>
+
+                            <div class="p-6">
+                                <form id="create-startup-form" action="/create-startup" method="POST" class="space-y-6">
+                                    @csrf
+
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label for="startup-name" class="block text-sm font-medium text-gray-700 mb-1">Startup Name</label>
+                                            <input type="text" id="startup-name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+
+                                        <div>
+                                            <label for="startup-description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                            <textarea id="startup-description" name="description" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                            <p class="text-xs text-gray-500 mt-1">Describe your startup's mission, products/services, and unique value proposition.</p>
+                                        </div>
+
+                                        <div>
+                                            <label for="startup-category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                            <select id="startup-category" name="category" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                <option value="" disabled selected>Select a category</option>
+                                                <option value="Technology & Innovation">Technology & Innovation</option>
+                                                <option value="Health & Wellness">Health & Wellness</option>
+                                                <option value="Sustainability & GreenTech">Sustainability & GreenTech</option>
+                                                <option value="Education & Learning">Education & Learning</option>
+                                                <option value="Finance & Fintech">Finance & Fintech</option>
+                                                <option value="Lifestyle & Consumer Goods">Lifestyle & Consumer Goods</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label for="startup-valuation" class="block text-sm font-medium text-gray-700 mb-1">Valuation (USD)</label>
+                                            <div class="relative">
+                                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                    <span class="text-gray-500">$</span>
+                                                </div>
+                                                <input type="number" id="startup-valuation" name="valuation" min="0" step="0.01" required class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-1">Estimated current valuation of your startup.</p>
+                                        </div>
+
+                                        <div>
+                                            <label for="startup-website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
+                                            <input type="url" id="startup-website" name="website" required placeholder="https://" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+
+                                        <div>
+                                            <label for="funding-goal" class="block text-sm font-medium text-gray-700 mb-1">Funding Goal (USD)</label>
+                                            <div class="relative">
+                                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                    <span class="text-gray-500">$</span>
+                                                </div>
+                                                <input type="number" id="funding-goal" name="funding_goal" min="0" required class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-1">Amount of funding you're seeking to raise.</p>
+                                        </div>
+
+                                        <div>
+                                            <label for="startup-logo" class="block text-sm font-medium text-gray-700 mb-1">Logo URL</label>
+                                            <input type="url" id="startup-logo" name="logo_url" placeholder="https://example.com/logo.png" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            <p class="text-xs text-gray-500 mt-1">Link to your startup logo (square format recommended).</p>
+                                        </div>
+
+                                        <div>
+                                            <label for="cover-image" class="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+                                            <input type="url" id="cover-image" name="cover_image_url" placeholder="https://example.com/cover.jpg" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            <p class="text-xs text-gray-500 mt-1">Link to a banner image for your startup profile (1400x400 recommended).</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                                        <button type="button" id="cancel-btn" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="px-4 py-2 bg-[#0049FF] text-white rounded-md hover:bg-[#003CD9] font-medium">
+                                            Create Startup
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 max-w-4xl mx-auto">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Tips for Creating a Compelling Startup Profile</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-4">
+                                    <div class="bg-blue-50 p-2 rounded-lg mr-4">
+                                        <i data-feather="file-text" class="h-6 w-6 text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-2">Clear Value Proposition</h4>
+                                        <p class="text-gray-600 text-sm">Clearly articulate what your startup does, the problem it solves, and why your solution is unique.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-4">
+                                    <div class="bg-blue-50 p-2 rounded-lg mr-4">
+                                        <i data-feather="users" class="h-6 w-6 text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-2">Highlight Your Team</h4>
+                                        <p class="text-gray-600 text-sm">Showcase the expertise and experience of key team members that make your startup credible.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-4">
+                                    <div class="bg-blue-50 p-2 rounded-lg mr-4">
+                                        <i data-feather="trending-up" class="h-6 w-6 text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-2">Traction & Metrics</h4>
+                                        <p class="text-gray-600 text-sm">Include key performance indicators, milestones achieved, and evidence of market validation.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-4">
+                                    <div class="bg-blue-50 p-2 rounded-lg mr-4">
+                                        <i data-feather="pie-chart" class="h-6 w-6 text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-2">Market Opportunity</h4>
+                                        <p class="text-gray-600 text-sm">Define your target market size, competitive landscape, and your growth strategy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -425,9 +602,56 @@
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const sideNav = document.querySelector('.side-nav');
 
-            mobileMenuToggle.addEventListener('click', function() {
-                sideNav.classList.toggle('open');
-            });
+            if (mobileMenuToggle && sideNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sideNav.classList.toggle('open');
+                });
+            }
+
+            // Startup modal functionality
+            const createStartupBtn = document.getElementById('create-startup-btn');
+            const startupModal = document.getElementById('startup-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+
+            // Open modal function
+            function openModal() {
+                if (startupModal) {
+                    startupModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                }
+            }
+
+            // Close modal function
+            function closeModal() {
+                if (startupModal) {
+                    startupModal.classList.add('hidden');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            }
+
+            // Event listeners for modal buttons
+            if (createStartupBtn) {
+                createStartupBtn.addEventListener('click', openModal);
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', closeModal);
+            }
+
+            // Close modal when clicking outside the modal content
+            if (startupModal) {
+                startupModal.addEventListener('click', function(e) {
+                    // Only close if the click is on the overlay (the modal itself), not on its contents
+                    if (e.target === startupModal) {
+                        closeModal();
+                    }
+                });
+            }
         });
     </script>
 </body>

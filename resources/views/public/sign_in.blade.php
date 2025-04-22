@@ -186,7 +186,7 @@
             <button type="submit" class="btn btn-primary">Sign In</button>
 
             <div class="signup-prompt">
-                Don't have an account? <a href="#">Create an account</a>
+                Don't have an account? <a href="{{route('show.register')}}">Create an account</a>
             </div>
         </form>
     </div>
