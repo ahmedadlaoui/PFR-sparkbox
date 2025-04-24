@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->text('details');
             $table->enum('category', [
                 'Technology & Innovation',
                 'Health & Wellness',
@@ -23,13 +24,18 @@ return new class extends Migration
                 'Finance & Fintech',
                 'Lifestyle & Consumer Goods',
             ]);
-            $table->float('valuation');
             $table->string('website');
+            $table->string('logo');
+            $table->string('cover');
             $table->integer('funding_goal');
+            $table->float('valuation');
+            $table->float('monthly_revenue');
+            $table->integer('gross_margin');
+            $table->integer('burn_rate');
+            $table->integer('runway');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
-        
     }
 
     /**

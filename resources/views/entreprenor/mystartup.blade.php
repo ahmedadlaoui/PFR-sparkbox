@@ -238,48 +238,57 @@
 <body class="font-inter bg-white text-[#1A1A1A] text-sm antialiased">
     <x-header />
 
+
     <main class="main-content">
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="w-full px-6 py-10">
 
-                    <?php
-                    $myStartup = []; // Empty array to simulate no startup
-                    ?>
-
                     @if(!empty($myStartup))
                     <div class="startup-banner-wrapper">
                         <div class="startup-banner">
-
-                            <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                                alt="EcoFlow Energy" class="cover-image">
-
+                            <img src="{{$myStartup->cover}}" alt="startup cover" class="cover-image">
                             <div class="banner-overlay"></div>
-
                             <div class="startup-logo" style="scale:0.7;border-radius:4px;">
-                                <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                                    alt="EcoFlow Logo">
+                                <img src="{{$myStartup->logo}}" alt="startup Logo">
+                            </div>
+
+                            <!-- Replace standalone delete button with 3-dots menu -->
+                            <div class="absolute top-5 right-5">
+                                <div class="relative">
+                                    <button id="menu-button" class="flex items-center justify-center w-10 h-10 bg-black bg-opacity-40 hover:bg-opacity-60 text-white rounded-md transition-all duration-200 backdrop-blur-sm">
+                                        <i data-feather="more-vertical" class="h-5 w-5 stroke-2"></i>
+                                    </button>
+                                    <!-- Dropdown menu with dark background matching the button -->
+                                    <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-black bg-opacity-40 backdrop-blur-sm rounded-md shadow-lg py-1 z-10">
+                                        <button id="edit-startup-btn" class="w-full flex items-center px-4 py-2.5 text-sm text-white hover:bg-black hover:bg-opacity-20">
+                                            <i data-feather="edit-2" class="h-4 w-4 mr-2 stroke-2"></i>
+                                            <span>Edit Startup</span>
+                                        </button>
+                                        <button id="delete-startup-btn" class="w-full flex items-center px-4 py-2.5 text-sm text-white hover:bg-black hover:bg-opacity-20">
+                                            <i data-feather="trash-2" class="h-4 w-4 mr-2 stroke-2"></i>
+                                            <span>Delete Startup</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="startup-info">
-                                <h1 class="text-2xl md:text-3xl font-extrabold mb-2 text-white">EcoFlow Energy Storage</h1>
-                                <p class="text-lg mb-4 max-w-3xl opacity-90">Sustainable energy storage solutions with proprietary
-                                    battery technology and AI-powered energy management systems for residential and commercial
-                                    applications.</p>
+                                <h1 class="text-2xl md:text-3xl font-extrabold mb-2 text-white">{{$myStartup->name}}</h1>
+                                <p class="text-lg mb-4 max-w-3xl opacity-90">
+                                    {{$myStartup->description}}
+                                </p>
 
                                 <div class="mb-4">
-                                    <span class="tag">CleanTech</span>
-                                    <span class="tag">Energy</span>
-                                    <span class="tag">Series B</span>
-                                    <span class="tag">$42M Valuation</span>
+                                    <span class="tag">{{ $myStartup->category }}</span>
+                                    <span class="tag">{{$myStartup->valuation}} $</span>
                                 </div>
 
                                 <div class="flex items-center text-sm opacity-80">
-                                    <span class="mr-4"><i data-feather="map-pin" class="h-4 w-4 inline mr-1"></i> San Francisco,
-                                        CA</span>
-                                    <span class="mr-4"><i data-feather="calendar" class="h-4 w-4 inline mr-1"></i> Founded
-                                        2020</span>
-                                    <span><i data-feather="globe" class="h-4 w-4 inline mr-1"></i> ecoflowenergy.com</span>
+
+                                    <span class="mr-4"><i data-feather="calendar" class="h-4 w-4 inline mr-1"></i>
+                                        {{$myStartup->created_at->format('F d, Y')}}</span>
+                                    <span><i data-feather="globe" class="h-4 w-4 inline mr-1"></i> {{$myStartup->website}}</span>
                                 </div>
                             </div>
                         </div>
@@ -295,23 +304,17 @@
                                 </div>
 
                                 <div class="w-1/5 stat-item">
-                                    <p class="stat-number">12</p>
-                                    <p class="stat-label">Investors</p>
+                                    <p class="stat-number">{{$myStartup->funding_goal}} $</p>
+                                    <p class="stat-label">funding goal</p>
                                 </div>
 
                                 <div class="w-1/5 stat-item">
-                                    <p class="stat-number">86%</p>
-                                    <p class="stat-label">Growth Rate</p>
+                                    <p class="stat-number">{{$myStartup->monthly_revenue}} $</p>
+                                    <p class="stat-label">monthly revenue</p>
                                 </div>
-
                                 <div class="w-1/5 stat-item">
-                                    <p class="stat-number">4,500+</p>
-                                    <p class="stat-label">Customers</p>
-                                </div>
-
-                                <div class="w-1/5 stat-item">
-                                    <p class="stat-number">18mo</p>
-                                    <p class="stat-label">Runway</p>
+                                    <p class="stat-number">{{$myStartup->gross_margin}} %</p>
+                                    <p class="stat-label">Gross margin</p>
                                 </div>
                             </div>
                         </div>
@@ -327,8 +330,11 @@
                                 </a>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @php $hasInvestors = !empty($investors) && count($investors) > 0; @endphp
 
+                            @if($hasInvestors)
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Existing investor cards -->
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center mb-5">
                                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Morgan"
@@ -421,8 +427,297 @@
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <div class="flex flex-col items-center justify-center py-12 px-4 bg-gray-50 rounded-xl border border-gray-100">
+                                <div class="bg-white p-4 rounded-full mb-4">
+                                    <i data-feather="users" class="h-10 w-10 text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">No Investors Yet</h3>
+                                <p class="text-gray-600 text-center max-w-md mb-6">Your startup hasn't received any investment interest yet. Complete your profile and keep building traction to attract potential investors.</p>
+
+                            </div>
+                            @endif
                         </div>
                     </section>
+
+                    <!-- Delete Confirmation Modal - Hidden by default -->
+                    <div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8">
+                            <div class="text-center mb-6">
+                                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gray-100 mb-4">
+                                    <i data-feather="alert-triangle" class="h-8 w-8 text-gray-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Delete Startup</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Are you sure you want to delete "{{$myStartup->name}}"? This action cannot be undone.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col items-center space-y-3">
+                                <form action="{{ route('entreprenor.deletestartup') }}" method="POST" class="w-full flex justify-center">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="startup_id" value="{{$myStartup->id}}">
+                                    <button type="submit" class="w-40 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md text-sm transition-colors">
+                                        Delete
+                                    </button>
+                                </form>
+                                <button id="cancel-delete-btn" class="w-40 px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-md text-sm transition-colors">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Startup Modal - Hidden by default -->
+                    <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                            <div class="px-8 py-5 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+                                <h3 class="text-xl font-bold text-gray-800">Edit Your Startup</h3>
+                                <button id="close-edit-modal-btn" class="text-gray-400 hover:text-gray-600 transition-colors">
+                                    <i data-feather="x" class="h-5 w-5"></i>
+                                </button>
+                            </div>
+
+                            <div class="p-8">
+                                <form id="edit-startup-form" action="{{ route('entreprenor.updatestartup') }}" method="POST" class="space-y-6">
+                                    @csrf
+                                    <input type="hidden" name="startup_id" value="{{$myStartup->id}}">
+
+                                    <!-- Modern Step Indicator -->
+                                    <div class="relative mb-12">
+                                        <!-- Progress bar -->
+                                        <div class="w-full h-1 bg-gray-200 absolute top-4 left-0 z-0"></div>
+                                        <div id="edit-progress-bar" class="h-1 bg-blue-500 absolute top-4 left-0 z-0 transition-all duration-300" style="width: 25%"></div>
+
+                                        <!-- Steps -->
+                                        <div class="flex justify-between relative z-10">
+                                            <div class="edit-step-indicator active flex flex-col items-center" data-step="1">
+                                                <div class="w-8 h-8 rounded-full border-2 border-blue-500 bg-blue-500 text-white flex items-center justify-center font-semibold shadow-md transition-all duration-300">
+                                                    <i data-feather="info" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-blue-500">Basic Info</p>
+                                            </div>
+                                            <div class="edit-step-indicator flex flex-col items-center" data-step="2">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="file-text" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Details</p>
+                                            </div>
+                                            <div class="edit-step-indicator flex flex-col items-center" data-step="3">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="dollar-sign" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Financials</p>
+                                            </div>
+                                            <div class="edit-step-indicator flex flex-col items-center" data-step="4">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="image" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Media</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 1: Basic Information -->
+                                    <div class="edit-step-content" id="edit-step-1">
+                                        <div class="space-y-6">
+                                            <div class="form-group">
+                                                <label for="edit-startup-name" class="block text-sm font-medium text-gray-700 mb-2">Startup Name</label>
+                                                <input type="text" id="edit-startup-name" name="name" value="{{$myStartup->name}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-startup-description" class="block text-sm font-medium text-gray-700 mb-2">Short Description</label>
+                                                <textarea id="edit-startup-description" name="description" rows="2" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" maxlength="255">{{$myStartup->description}}</textarea>
+                                                <p class="text-xs text-gray-500 mt-2">Brief tagline or elevator pitch (max 255 characters)</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-startup-category" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                                                <div class="relative">
+                                                    <select id="edit-startup-category" name="category" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none transition-all">
+                                                        <option value="Technology & Innovation" {{ $myStartup->category == 'Technology & Innovation' ? 'selected' : '' }}>Technology & Innovation</option>
+                                                        <option value="Health & Wellness" {{ $myStartup->category == 'Health & Wellness' ? 'selected' : '' }}>Health & Wellness</option>
+                                                        <option value="Sustainability & GreenTech" {{ $myStartup->category == 'Sustainability & GreenTech' ? 'selected' : '' }}>Sustainability & GreenTech</option>
+                                                        <option value="Education & Learning" {{ $myStartup->category == 'Education & Learning' ? 'selected' : '' }}>Education & Learning</option>
+                                                        <option value="Finance & Fintech" {{ $myStartup->category == 'Finance & Fintech' ? 'selected' : '' }}>Finance & Fintech</option>
+                                                        <option value="Lifestyle & Consumer Goods" {{ $myStartup->category == 'Lifestyle & Consumer Goods' ? 'selected' : '' }}>Lifestyle & Consumer Goods</option>
+                                                    </select>
+                                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                        <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-startup-website" class="block text-sm font-medium text-gray-700 mb-2">Website</label>
+                                                <div class="relative">
+                                                    <input type="url" id="edit-startup-website" name="website" value="{{$myStartup->website}}" required placeholder="https://" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="globe" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-end">
+                                            <button type="button" class="edit-next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 2: Details -->
+                                    <div class="edit-step-content hidden" id="edit-step-2">
+                                        <div class="space-y-6">
+                                            <div class="form-group">
+                                                <label for="edit-startup-details" class="block text-sm font-medium text-gray-700 mb-2">Detailed Description</label>
+                                                <textarea id="edit-startup-details" name="details" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none">{{$myStartup->details}}</textarea>
+                                                <p class="text-xs text-gray-500 mt-2">Provide a comprehensive description of your startup's mission, value proposition, and unique selling points.</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-funding-goal" class="block text-sm font-medium text-gray-700 mb-2">Funding Goal (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-funding-goal" name="funding_goal" min="0" value="{{$myStartup->funding_goal}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Amount of funding you're seeking to raise.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="edit-prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="button" class="edit-next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Financial Metrics -->
+                                    <div class="edit-step-content hidden" id="edit-step-3">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="form-group md:col-span-2">
+                                                <label for="edit-startup-valuation" class="block text-sm font-medium text-gray-700 mb-2">Current Valuation (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-startup-valuation" name="valuation" min="0" step="0.01" value="{{$myStartup->valuation}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Estimated current valuation of your startup.</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-monthly-revenue" class="block text-sm font-medium text-gray-700 mb-2">Monthly Revenue (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-monthly-revenue" name="monthly_revenue" min="0" step="0.01" value="{{$myStartup->monthly_revenue}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-gross-margin" class="block text-sm font-medium text-gray-700 mb-2">Gross Margin (%)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-gross-margin" name="gross_margin" min="0" max="100" value="{{$myStartup->gross_margin}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10 transition-all">
+                                                    <div class="absolute right-0 top-0 h-full flex items-center pr-4">
+                                                        <span class="text-gray-500">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-burn-rate" class="block text-sm font-medium text-gray-700 mb-2">Monthly Burn Rate (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-burn-rate" name="burn_rate" min="0" value="{{$myStartup->burn_rate}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-runway" class="block text-sm font-medium text-gray-700 mb-2">Runway (months)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="edit-runway" name="runway" min="0" value="{{$myStartup->runway}}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="calendar" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="edit-prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="button" class="edit-next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 4: Media -->
+                                    <div class="edit-step-content hidden" id="edit-step-4">
+                                        <div class="space-y-8">
+                                            <div class="form-group">
+                                                <label for="edit-startup-logo" class="block text-sm font-medium text-gray-700 mb-2">Logo URL</label>
+                                                <div class="relative">
+                                                    <input type="url" id="edit-startup-logo" name="logo" value="{{$myStartup->logo}}" required placeholder="https://example.com/logo.png" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Link to your startup logo (square format recommended, minimum 400x400px)</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="edit-cover-image" class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
+                                                <div class="relative">
+                                                    <input type="url" id="edit-cover-image" name="cover" value="{{$myStartup->cover}}" required placeholder="https://example.com/cover.jpg" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Link to a banner image for your startup profile (recommended size: 1400x400px)</p>
+                                            </div>
+
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                                <div class="border rounded-lg p-4">
+                                                    <p class="text-sm font-medium text-gray-700 mb-2">Current Logo</p>
+                                                    <div class="w-32 h-32 bg-gray-100 rounded-md flex items-center justify-center mx-auto mb-2">
+                                                        <img src="{{$myStartup->logo}}" alt="Current logo" class="max-w-full max-h-full object-contain rounded-md">
+                                                    </div>
+                                                </div>
+                                                <div class="border rounded-lg p-4">
+                                                    <p class="text-sm font-medium text-gray-700 mb-2">Current Cover</p>
+                                                    <div class="w-full h-32 bg-gray-100 rounded-md flex items-center justify-center mb-2">
+                                                        <img src="{{$myStartup->cover}}" alt="Current cover" class="max-w-full max-h-full object-contain rounded-md">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="edit-prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="submit" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium shadow-md transition-all duration-300">
+                                                Update Startup
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     @else
                     <div class="empty-state-container">
@@ -434,98 +729,241 @@
                             You haven't registered a startup yet. Create your startup profile to connect with potential investors
                             and showcase your business to the SparkBox community.
                         </p>
-                        <button id="create-startup-btn" class="px-6 py-3 bg-[#0049FF] text-white font-semibold rounded-lg shadow-sm hover:bg-[#003CD9] transition-colors">
+                        <button id="create-startup-btn" class="px-6 py-3 bg-[#0049FF] text-white text-[18px] font-bold rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center font-['Inter',_sans-serif]" hover:bg-[#003CD9] transition-colors">
                             <i data-feather="plus" class="h-4 w-4 inline-block mr-2"></i>
-                            Create Your Startup
+                            Add Your Startup
                         </button>
                     </div>
 
                     <!-- Startup Creation Modal - Hidden by default -->
                     <div id="startup-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
-                        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
-                                <h3 class="text-xl font-bold text-gray-900">Create Your Startup</h3>
-                                <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600">
+                        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                            <div class="px-8 py-5 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+                                <h3 class="text-xl font-bold text-gray-800">Create Your Startup</h3>
+                                <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600 transition-colors">
                                     <i data-feather="x" class="h-5 w-5"></i>
                                 </button>
                             </div>
 
-                            <div class="p-6">
-                                <form id="create-startup-form" action="/create-startup" method="POST" class="space-y-6">
+                            <div class="p-8">
+                                <form id="create-startup-form" action="{{ route('entreprenor.registerstartup')}}" method="POST" class="space-y-6">
                                     @csrf
 
-                                    <div class="space-y-4">
-                                        <div>
-                                            <label for="startup-name" class="block text-sm font-medium text-gray-700 mb-1">Startup Name</label>
-                                            <input type="text" id="startup-name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                        </div>
+                                    <!-- Modern Step Indicator -->
+                                    <div class="relative mb-12">
+                                        <!-- Progress bar -->
+                                        <div class="w-full h-1 bg-gray-200 absolute top-4 left-0 z-0"></div>
+                                        <div id="progress-bar" class="h-1 bg-blue-500 absolute top-4 left-0 z-0 transition-all duration-300" style="width: 25%"></div>
 
-                                        <div>
-                                            <label for="startup-description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                            <textarea id="startup-description" name="description" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
-                                            <p class="text-xs text-gray-500 mt-1">Describe your startup's mission, products/services, and unique value proposition.</p>
-                                        </div>
-
-                                        <div>
-                                            <label for="startup-category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                                            <select id="startup-category" name="category" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                                <option value="" disabled selected>Select a category</option>
-                                                <option value="Technology & Innovation">Technology & Innovation</option>
-                                                <option value="Health & Wellness">Health & Wellness</option>
-                                                <option value="Sustainability & GreenTech">Sustainability & GreenTech</option>
-                                                <option value="Education & Learning">Education & Learning</option>
-                                                <option value="Finance & Fintech">Finance & Fintech</option>
-                                                <option value="Lifestyle & Consumer Goods">Lifestyle & Consumer Goods</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="startup-valuation" class="block text-sm font-medium text-gray-700 mb-1">Valuation (USD)</label>
-                                            <div class="relative">
-                                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                    <span class="text-gray-500">$</span>
+                                        <!-- Steps -->
+                                        <div class="flex justify-between relative z-10">
+                                            <div class="step-indicator active flex flex-col items-center" data-step="1">
+                                                <div class="w-8 h-8 rounded-full border-2 border-blue-500 bg-blue-500 text-white flex items-center justify-center font-semibold shadow-md transition-all duration-300">
+                                                    <i data-feather="info" class="h-4 w-4"></i>
                                                 </div>
-                                                <input type="number" id="startup-valuation" name="valuation" min="0" step="0.01" required class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                <p class="text-xs font-medium mt-2 text-blue-500">Basic Info</p>
                                             </div>
-                                            <p class="text-xs text-gray-500 mt-1">Estimated current valuation of your startup.</p>
-                                        </div>
-
-                                        <div>
-                                            <label for="startup-website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
-                                            <input type="url" id="startup-website" name="website" required placeholder="https://" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                        </div>
-
-                                        <div>
-                                            <label for="funding-goal" class="block text-sm font-medium text-gray-700 mb-1">Funding Goal (USD)</label>
-                                            <div class="relative">
-                                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                    <span class="text-gray-500">$</span>
+                                            <div class="step-indicator flex flex-col items-center" data-step="2">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="file-text" class="h-4 w-4"></i>
                                                 </div>
-                                                <input type="number" id="funding-goal" name="funding_goal" min="0" required class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Details</p>
                                             </div>
-                                            <p class="text-xs text-gray-500 mt-1">Amount of funding you're seeking to raise.</p>
-                                        </div>
-
-                                        <div>
-                                            <label for="startup-logo" class="block text-sm font-medium text-gray-700 mb-1">Logo URL</label>
-                                            <input type="url" id="startup-logo" name="logo_url" placeholder="https://example.com/logo.png" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                            <p class="text-xs text-gray-500 mt-1">Link to your startup logo (square format recommended).</p>
-                                        </div>
-
-                                        <div>
-                                            <label for="cover-image" class="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
-                                            <input type="url" id="cover-image" name="cover_image_url" placeholder="https://example.com/cover.jpg" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                            <p class="text-xs text-gray-500 mt-1">Link to a banner image for your startup profile (1400x400 recommended).</p>
+                                            <div class="step-indicator flex flex-col items-center" data-step="3">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="dollar-sign" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Financials</p>
+                                            </div>
+                                            <div class="step-indicator flex flex-col items-center" data-step="4">
+                                                <div class="w-8 h-8 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold bg-white shadow-sm transition-all duration-300">
+                                                    <i data-feather="image" class="h-4 w-4"></i>
+                                                </div>
+                                                <p class="text-xs font-medium mt-2 text-gray-400">Media</p>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
-                                        <button type="button" id="cancel-btn" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium">
-                                            Cancel
-                                        </button>
-                                        <button type="submit" class="px-4 py-2 bg-[#0049FF] text-white rounded-md hover:bg-[#003CD9] font-medium">
-                                            Create Startup
-                                        </button>
+                                    <!-- Step 1: Basic Information -->
+                                    <div class="step-content" id="step-1">
+                                        <div class="space-y-6">
+                                            <div class="form-group">
+                                                <label for="startup-name" class="block text-sm font-medium text-gray-700 mb-2">Startup Name</label>
+                                                <input type="text" id="startup-name" name="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="startup-description" class="block text-sm font-medium text-gray-700 mb-2">Short Description</label>
+                                                <textarea id="startup-description" name="description" rows="2" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" maxlength="255"></textarea>
+                                                <p class="text-xs text-gray-500 mt-2">Brief tagline or elevator pitch (max 255 characters)</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="startup-category" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                                                <div class="relative">
+                                                    <select id="startup-category" name="category" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none transition-all">
+                                                        <option value="" disabled selected>Select a category</option>
+                                                        <option value="Technology & Innovation">Technology & Innovation</option>
+                                                        <option value="Health & Wellness">Health & Wellness</option>
+                                                        <option value="Sustainability & GreenTech">Sustainability & GreenTech</option>
+                                                        <option value="Education & Learning">Education & Learning</option>
+                                                        <option value="Finance & Fintech">Finance & Fintech</option>
+                                                        <option value="Lifestyle & Consumer Goods">Lifestyle & Consumer Goods</option>
+                                                    </select>
+                                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                        <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="startup-website" class="block text-sm font-medium text-gray-700 mb-2">Website</label>
+                                                <div class="relative">
+                                                    <input type="url" id="startup-website" name="website" required placeholder="https://" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="globe" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-end">
+                                            <button type="button" class="next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 2: Details -->
+                                    <div class="step-content hidden" id="step-2">
+                                        <div class="space-y-6">
+                                            <div class="form-group">
+                                                <label for="startup-details" class="block text-sm font-medium text-gray-700 mb-2">Detailed Description</label>
+                                                <textarea id="startup-details" name="details" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"></textarea>
+                                                <p class="text-xs text-gray-500 mt-2">Provide a comprehensive description of your startup's mission, value proposition, and unique selling points.</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="funding-goal" class="block text-sm font-medium text-gray-700 mb-2">Funding Goal (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="funding-goal" name="funding_goal" min="0" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Amount of funding you're seeking to raise.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="button" class="next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Financial Metrics -->
+                                    <div class="step-content hidden" id="step-3">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="form-group md:col-span-2">
+                                                <label for="startup-valuation" class="block text-sm font-medium text-gray-700 mb-2">Current Valuation (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="startup-valuation" name="valuation" min="0" step="0.01" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Estimated current valuation of your startup.</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="monthly-revenue" class="block text-sm font-medium text-gray-700 mb-2">Monthly Revenue (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="monthly-revenue" name="monthly_revenue" min="0" step="0.01" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="gross-margin" class="block text-sm font-medium text-gray-700 mb-2">Gross Margin (%)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="gross-margin" name="gross_margin" min="0" max="100" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10 transition-all">
+                                                    <div class="absolute right-0 top-0 h-full flex items-center pr-4">
+                                                        <span class="text-gray-500">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="burn-rate" class="block text-sm font-medium text-gray-700 mb-2">Monthly Burn Rate (USD)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="burn-rate" name="burn_rate" min="0" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <span class="text-gray-500">$</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="runway" class="block text-sm font-medium text-gray-700 mb-2">Runway (months)</label>
+                                                <div class="relative">
+                                                    <input type="number" id="runway" name="runway" min="0" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="calendar" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="button" class="next-step px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center shadow-md transition-all duration-300">
+                                                Continue <i data-feather="arrow-right" class="h-4 w-4 ml-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 4: Media -->
+                                    <div class="step-content hidden" id="step-4">
+                                        <div class="space-y-8">
+                                            <div class="form-group">
+                                                <label for="startup-logo" class="block text-sm font-medium text-gray-700 mb-2">Logo URL</label>
+                                                <div class="relative">
+                                                    <input type="url" id="startup-logo" name="logo" required placeholder="https://example.com/logo.png" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Link to your startup logo (square format recommended, minimum 400x400px)</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="cover-image" class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
+                                                <div class="relative">
+                                                    <input type="url" id="cover-image" name="cover" required placeholder="https://example.com/cover.jpg" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
+                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
+                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-gray-500 mt-2">Link to a banner image for your startup profile (recommended size: 1400x400px)</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 flex justify-between">
+                                            <button type="button" class="prev-step px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center transition-all duration-300">
+                                                <i data-feather="arrow-left" class="h-4 w-4 mr-2"></i> Back
+                                            </button>
+                                            <button type="submit" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium shadow-md transition-all duration-300">
+                                                Create Startup
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -608,17 +1046,35 @@
                 });
             }
 
+            // 3-dots menu toggle
+            const menuButton = document.getElementById('menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            if (menuButton && dropdownMenu) {
+                menuButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownMenu.classList.toggle('hidden');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function() {
+                    if (!dropdownMenu.classList.contains('hidden')) {
+                        dropdownMenu.classList.add('hidden');
+                    }
+                });
+            }
+
             // Startup modal functionality
             const createStartupBtn = document.getElementById('create-startup-btn');
             const startupModal = document.getElementById('startup-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
-            const cancelBtn = document.getElementById('cancel-btn');
 
             // Open modal function
             function openModal() {
                 if (startupModal) {
                     startupModal.classList.remove('hidden');
                     document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                    feather.replace(); // Re-initialize feather icons in modal
                 }
             }
 
@@ -627,7 +1083,32 @@
                 if (startupModal) {
                     startupModal.classList.add('hidden');
                     document.body.style.overflow = ''; // Re-enable scrolling
+                    resetForm();
                 }
+            }
+
+            // Reset form to first step
+            function resetForm() {
+                const stepContents = document.querySelectorAll('.step-content');
+                const stepIndicators = document.querySelectorAll('.step-indicator');
+
+                // Show only first step
+                stepContents.forEach((step, index) => {
+                    if (index === 0) {
+                        step.classList.remove('hidden');
+                    } else {
+                        step.classList.add('hidden');
+                    }
+                });
+
+                // Reset indicators
+                updateStepIndicators(1);
+
+                // Clear form fields
+                document.getElementById('create-startup-form').reset();
+
+                // Reset progress bar
+                document.getElementById('progress-bar').style.width = '25%';
             }
 
             // Event listeners for modal buttons
@@ -639,10 +1120,6 @@
                 closeModalBtn.addEventListener('click', closeModal);
             }
 
-            if (cancelBtn) {
-                cancelBtn.addEventListener('click', closeModal);
-            }
-
             // Close modal when clicking outside the modal content
             if (startupModal) {
                 startupModal.addEventListener('click', function(e) {
@@ -651,6 +1128,377 @@
                         closeModal();
                     }
                 });
+            }
+
+            // Delete startup functionality
+            const deleteStartupBtn = document.getElementById('delete-startup-btn');
+            const deleteModal = document.getElementById('delete-modal');
+            const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+
+            // Open delete confirmation modal
+            if (deleteStartupBtn) {
+                deleteStartupBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    deleteModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                });
+            }
+
+            // Close delete confirmation modal
+            if (cancelDeleteBtn) {
+                cancelDeleteBtn.addEventListener('click', function() {
+                    deleteModal.classList.add('hidden');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                });
+            }
+
+            // Close when clicking outside the modal
+            if (deleteModal) {
+                deleteModal.addEventListener('click', function(e) {
+                    // Only close if the click is on the overlay, not on its contents
+                    if (e.target === deleteModal) {
+                        deleteModal.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // Multi-step form navigation
+            const nextButtons = document.querySelectorAll('.next-step');
+            const prevButtons = document.querySelectorAll('.prev-step');
+            const progressBar = document.getElementById('progress-bar');
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.step-content');
+                    const currentStepNumber = parseInt(currentStep.id.split('-')[1]);
+                    const nextStepNumber = currentStepNumber + 1;
+                    const nextStep = document.getElementById(`step-${nextStepNumber}`);
+
+                    // Validate current step before proceeding
+                    if (!validateStep(currentStepNumber)) {
+                        return;
+                    }
+
+                    // Animation - fade out current step
+                    currentStep.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Hide current, show next
+                        currentStep.classList.add('hidden');
+                        nextStep.classList.remove('hidden');
+
+                        // Animation - fade in next step
+                        setTimeout(() => {
+                            nextStep.style.opacity = 1;
+                        }, 50);
+
+                        // Update indicators
+                        updateStepIndicators(nextStepNumber);
+
+                        // Update progress bar
+                        progressBar.style.width = `${nextStepNumber * 25}%`;
+
+                        // Re-initialize feather icons for the next step
+                        feather.replace();
+                    }, 200);
+                });
+            });
+
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.step-content');
+                    const currentStepNumber = parseInt(currentStep.id.split('-')[1]);
+                    const prevStepNumber = currentStepNumber - 1;
+                    const prevStep = document.getElementById(`step-${prevStepNumber}`);
+
+                    // Animation - fade out current step
+                    currentStep.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Hide current, show previous
+                        currentStep.classList.add('hidden');
+                        prevStep.classList.remove('hidden');
+
+                        // Animation - fade in previous step
+                        setTimeout(() => {
+                            prevStep.style.opacity = 1;
+                        }, 50);
+
+                        // Update indicators
+                        updateStepIndicators(prevStepNumber);
+
+                        // Update progress bar
+                        progressBar.style.width = `${prevStepNumber * 25}%`;
+                    }, 200);
+                });
+            });
+
+            function updateStepIndicators(activeStep) {
+                const stepIndicators = document.querySelectorAll('.step-indicator');
+
+                stepIndicators.forEach((indicator, index) => {
+                    const stepNumber = index + 1;
+                    const indicatorCircle = indicator.querySelector('div');
+                    const indicatorText = indicator.querySelector('p');
+
+                    if (stepNumber === activeStep) {
+                        // Current step
+                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorText.classList.remove('text-gray-400');
+                        indicatorText.classList.add('text-blue-500');
+                    } else if (stepNumber < activeStep) {
+                        // Completed step
+                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorText.classList.remove('text-gray-400');
+                        indicatorText.classList.add('text-blue-500');
+                    } else {
+                        // Upcoming step
+                        indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorText.classList.remove('text-blue-500');
+                        indicatorText.classList.add('text-gray-400');
+                    }
+                });
+            }
+
+            function validateStep(stepNumber) {
+                const step = document.getElementById(`step-${stepNumber}`);
+                const requiredFields = step.querySelectorAll('[required]');
+                let valid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500', 'bg-red-50');
+                        field.classList.remove('border-gray-300', 'bg-gray-50');
+
+                        // Add shake animation for better feedback
+                        field.classList.add('animate-shake');
+                        setTimeout(() => {
+                            field.classList.remove('animate-shake');
+                        }, 500);
+
+                        valid = false;
+                    } else {
+                        field.classList.remove('border-red-500', 'bg-red-50');
+                        field.classList.add('border-gray-300', 'bg-gray-50');
+                    }
+                });
+
+                return valid;
+            }
+
+            // Add animation class
+            const style = document.createElement('style');
+            style.textContent = `
+                .step-content {
+                    transition: opacity 0.2s ease-in-out;
+                    opacity: 1;
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-8px); }
+                    75% { transform: translateX(8px); }
+                }
+                .animate-shake {
+                    animation: shake 0.3s ease-in-out;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Edit startup functionality
+            const editStartupBtn = document.getElementById('edit-startup-btn');
+            const editModal = document.getElementById('edit-modal');
+            const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
+
+            // Open edit modal function
+            function openEditModal() {
+                if (editModal) {
+                    editModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                    feather.replace(); // Re-initialize feather icons in modal
+                }
+            }
+
+            // Close edit modal function
+            function closeEditModal() {
+                if (editModal) {
+                    editModal.classList.add('hidden');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                    resetEditForm();
+                }
+            }
+
+            // Reset edit form to first step
+            function resetEditForm() {
+                const stepContents = document.querySelectorAll('.edit-step-content');
+
+                // Show only first step
+                stepContents.forEach((step, index) => {
+                    if (index === 0) {
+                        step.classList.remove('hidden');
+                    } else {
+                        step.classList.add('hidden');
+                    }
+                });
+
+                // Reset indicators
+                updateEditStepIndicators(1);
+
+                // Reset progress bar
+                document.getElementById('edit-progress-bar').style.width = '25%';
+            }
+
+            // Event listeners for edit modal buttons
+            if (editStartupBtn) {
+                editStartupBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openEditModal();
+                    dropdownMenu.classList.add('hidden'); // Hide dropdown when modal opens
+                });
+            }
+
+            if (closeEditModalBtn) {
+                closeEditModalBtn.addEventListener('click', closeEditModal);
+            }
+
+            // Close modal when clicking outside the modal content
+            if (editModal) {
+                editModal.addEventListener('click', function(e) {
+                    // Only close if the click is on the overlay (the modal itself), not on its contents
+                    if (e.target === editModal) {
+                        closeEditModal();
+                    }
+                });
+            }
+
+            // Multi-step form navigation for edit form
+            const editNextButtons = document.querySelectorAll('.edit-next-step');
+            const editPrevButtons = document.querySelectorAll('.edit-prev-step');
+            const editProgressBar = document.getElementById('edit-progress-bar');
+
+            editNextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.edit-step-content');
+                    const currentStepNumber = parseInt(currentStep.id.split('-')[2]);
+                    const nextStepNumber = currentStepNumber + 1;
+                    const nextStep = document.getElementById(`edit-step-${nextStepNumber}`);
+
+                    // Validate current step before proceeding
+                    if (!validateEditStep(currentStepNumber)) {
+                        return;
+                    }
+
+                    // Animation - fade out current step
+                    currentStep.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Hide current, show next
+                        currentStep.classList.add('hidden');
+                        nextStep.classList.remove('hidden');
+
+                        // Animation - fade in next step
+                        setTimeout(() => {
+                            nextStep.style.opacity = 1;
+                        }, 50);
+
+                        // Update indicators
+                        updateEditStepIndicators(nextStepNumber);
+
+                        // Update progress bar
+                        editProgressBar.style.width = `${nextStepNumber * 25}%`;
+
+                        // Re-initialize feather icons for the next step
+                        feather.replace();
+                    }, 200);
+                });
+            });
+
+            editPrevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.edit-step-content');
+                    const currentStepNumber = parseInt(currentStep.id.split('-')[2]);
+                    const prevStepNumber = currentStepNumber - 1;
+                    const prevStep = document.getElementById(`edit-step-${prevStepNumber}`);
+
+                    // Animation - fade out current step
+                    currentStep.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Hide current, show previous
+                        currentStep.classList.add('hidden');
+                        prevStep.classList.remove('hidden');
+
+                        // Animation - fade in previous step
+                        setTimeout(() => {
+                            prevStep.style.opacity = 1;
+                        }, 50);
+
+                        // Update indicators
+                        updateEditStepIndicators(prevStepNumber);
+
+                        // Update progress bar
+                        editProgressBar.style.width = `${prevStepNumber * 25}%`;
+                    }, 200);
+                });
+            });
+
+            function updateEditStepIndicators(activeStep) {
+                const stepIndicators = document.querySelectorAll('.edit-step-indicator');
+
+                stepIndicators.forEach((indicator, index) => {
+                    const stepNumber = index + 1;
+                    const indicatorCircle = indicator.querySelector('div');
+                    const indicatorText = indicator.querySelector('p');
+
+                    if (stepNumber === activeStep) {
+                        // Current step
+                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorText.classList.remove('text-gray-400');
+                        indicatorText.classList.add('text-blue-500');
+                    } else if (stepNumber < activeStep) {
+                        // Completed step
+                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorText.classList.remove('text-gray-400');
+                        indicatorText.classList.add('text-blue-500');
+                    } else {
+                        // Upcoming step
+                        indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
+                        indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
+                        indicatorText.classList.remove('text-blue-500');
+                        indicatorText.classList.add('text-gray-400');
+                    }
+                });
+            }
+
+            function validateEditStep(stepNumber) {
+                const step = document.getElementById(`edit-step-${stepNumber}`);
+                const requiredFields = step.querySelectorAll('[required]');
+                let valid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500', 'bg-red-50');
+                        field.classList.remove('border-gray-300', 'bg-gray-50');
+
+                        // Add shake animation for better feedback
+                        field.classList.add('animate-shake');
+                        setTimeout(() => {
+                            field.classList.remove('animate-shake');
+                        }, 500);
+
+                        valid = false;
+                    } else {
+                        field.classList.remove('border-red-500', 'bg-red-50');
+                        field.classList.add('border-gray-300', 'bg-gray-50');
+                    }
+                });
+
+                return valid;
             }
         });
     </script>

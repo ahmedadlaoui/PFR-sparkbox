@@ -13,12 +13,20 @@ class Startup extends Model
     protected $fillable = [
         'name',
         'description',
+        'details',
         'category',
-        'valuation',
         'website',
+        'logo',
+        'cover',
         'funding_goal',
+        'valuation',
+        'monthly_revenue',
+        'gross_margin',
+        'burn_rate',
+        'runway',
         'user_id',
     ];
+    
 
     /**
      * One-to-one relationship with User.
@@ -27,4 +35,9 @@ class Startup extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function offers()
+{
+    return $this->hasMany(Offer::class);
+}
+
 }

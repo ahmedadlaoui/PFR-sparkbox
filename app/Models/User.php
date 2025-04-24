@@ -55,5 +55,10 @@ public function startup()
 {
     return $this->hasOne(Startup::class);
 }
+public function offers()
+{
+    return $this->hasMany(Offer::class);
+}
+
 
 }

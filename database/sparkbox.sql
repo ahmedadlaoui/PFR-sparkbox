@@ -1,2 +1,73 @@
-select *
-from users
+
+INSERT INTO startups (
+    name,
+    description,
+    details,
+    category, 
+    website,
+    logo,
+    cover,
+    funding_goal,
+    valuation,
+    monthly_revenue,
+    gross_margin,
+    burn_rate,
+    runway,
+    user_id,
+    created_at,
+    updated_at
+) VALUES (
+    'NeuralVision',
+    'AI-powered analytics platform for retail businesses to optimize inventory and predict consumer behavior.',
+    'NeuralVision uses cutting-edge machine learning algorithms to analyze retail data and provide actionable insights. Our platform integrates with existing POS systems and e-commerce platforms to track inventory levels, analyze sales patterns, and predict future demand with 94% accuracy. Founded in 2021 by a team of data scientists and retail experts, NeuralVision has already helped over 50 medium-sized retailers increase their profit margins by an average of 23% while reducing inventory costs by 17%. We are seeking investment to scale our technology and expand our sales team to reach enterprise clients across North America and Europe.',
+    'Health & Wellness',
+    'https://neuralvision.example.com',
+    'https://ui-avatars.com/api/?name=Neural+Vision&background=0062E6&color=fff&size=200',
+    'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&h=800&auto=format&fit=crop',
+    2500000,
+    12000000,
+    85000,
+    72,
+    120000,
+    18,
+    1,
+    NOW(),
+    NOW()
+);
+
+-- Second startup - Sustainable packaging solution
+INSERT INTO startups (
+    name,
+    description,
+    details,
+    category, 
+    website,
+    logo,
+    cover,
+    funding_goal,
+    valuation,
+    monthly_revenue,
+    gross_margin,
+    burn_rate,
+    runway,
+    user_id,
+    created_at,
+    updated_at
+) VALUES (
+    'EcoWrap',
+    'Biodegradable packaging solutions made from agricultural waste for eco-conscious brands and consumers.',
+    'EcoWrap has developed a patent-pending process to transform agricultural waste into durable, water-resistant, and fully biodegradable packaging materials. Our innovative packaging solutions break down completely within 180 days in home composting conditions, compared to hundreds of years for traditional plastics. We work with food delivery services, cosmetics brands, and e-commerce companies looking to reduce their environmental footprint without compromising on quality or significantly increasing costs. Since launching our pilot program in 2022, we have prevented over 50 tons of plastic from entering landfills and oceans. We are now ready to scale production to meet the growing demand from businesses committed to sustainability.',
+    'Health & Wellness',
+    'https://ecowrap.example.com',
+    'https://ui-avatars.com/api/?name=Eco+Wrap&background=2ECC71&color=fff&size=200',
+    'https://images.unsplash.com/photo-1605600659873-d808a13e4d2a?q=80&w=2000&h=800&auto=format&fit=crop',
+    1800000,
+    7500000,
+    42000,
+    61,
+    95000,
+    12,
+    2,
+    NOW(),
+    NOW()
+);

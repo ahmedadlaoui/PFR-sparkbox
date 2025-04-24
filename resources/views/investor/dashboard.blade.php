@@ -520,31 +520,25 @@
 
                             <div class="grid grid-cols-1 gap-5 mb-8">
 
+                                @foreach($MyOffers as $MyOffer)
                                 <div class="offer-card">
 
                                     <div class="card-actions">
-                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="card-btn tooltip" data-tooltip="View details">
+                                        <a href="{{ route('details', ['id' => $MyOffer->startup->id]) }}" class="card-btn tooltip" data-tooltip="View details">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                 <circle cx="12" cy="12" r="3"></circle>
                                             </svg>
-                                        </button>
+                                        </a>
                                     </div>
 
                                     <div class="offer-image">
-                                        <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+                                        <img src="{{$MyOffer->startup->cover}}"
                                             alt="Sustainable energy storage solutions">
                                         <div class="company-logo">
-                                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
+                                            <img src="{{$MyOffer->startup->logo}}"
                                                 alt="EcoFlow logo">
                                         </div>
                                     </div>
@@ -552,33 +546,25 @@
                                     <div class="offer-content">
                                         <div class="offer-header">
                                             <div class="offer-info">
-                                                <h3>EcoFlow Energy Storage</h3>
+                                                <h3>{{$MyOffer->startup->name}}</h3>
                                                 <div class="tags-container">
-                                                    <span class="category-tag">CleanTech</span>
-                                                    <span class="category-tag">Series B</span>
+                                                    <span class="category-tag">{{$MyOffer->amount}}$ on table</span>
+
                                                 </div>
                                             </div>
                                             <div class="offer-owner">
                                                 <div class="owner-avatar">
-                                                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Chen">
+                                                    <img src="{{$MyOffer->startup->user->profile_picture_url}}" alt="Sarah Chen">
                                                 </div>
-                                                <span class="owner-name">Presented by Sarah Chen</span>
+                                                <span class="owner-name">Presented by {{$MyOffer->startup->user->name}}</span>
                                             </div>
                                         </div>
 
-                                        <p class="offer-description">Sustainable energy storage solutions with proprietary battery
-                                            technology and AI-powered management systems for residential and commercial
-                                            applications.</p>
+                                        <p class="offer-description">{{$MyOffer->startup->description}}</p>
+
+
 
                                         <div class="action-buttons">
-                                            <button class="chat-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                                </svg>
-                                                Contact Owner
-                                            </button>
                                             <button class="view-btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -589,172 +575,19 @@
                                                 View Details
                                             </button>
                                         </div>
-                                        <p class="investment-amount-text">Invested Amount: $500,000</p>
+
                                     </div>
                                 </div>
+                                @endforeach
 
 
-                                <div class="offer-card">
-
-                                    <div class="card-actions">
-                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="card-btn tooltip" data-tooltip="View details">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <div class="offer-image">
-                                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80"
-                                            alt="AI-powered food analytics platform">
-                                        <div class="company-logo">
-                                            <img src="https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
-                                                alt="NutriTech logo">
-                                        </div>
-                                    </div>
-
-                                    <div class="offer-content">
-                                        <div class="offer-header">
-                                            <div class="offer-info">
-                                                <h3>NutriTech AI Analytics</h3>
-                                                <div class="tags-container">
-                                                    <span class="category-tag">FoodTech</span>
-                                                    <span class="category-tag">Series A</span>
-                                                </div>
-                                            </div>
-                                            <div class="offer-owner">
-                                                <div class="owner-avatar">
-                                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Park">
-                                                </div>
-                                                <span class="owner-name">Presented by David Park</span>
-                                            </div>
-                                        </div>
-
-                                        <p class="offer-description">AI-powered food analytics platform offering personalized
-                                            nutrition insights and dietary recommendations based on machine learning algorithms.</p>
-
-                                        <div class="action-buttons">
-                                            <button class="chat-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                                </svg>
-                                                Contact Owner
-                                            </button>
-                                            <button class="view-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                    <circle cx="12" cy="12" r="3"></circle>
-                                                </svg>
-                                                View Details
-                                            </button>
-                                        </div>
-                                        <p class="investment-amount-text">Invested Amount: $250,000</p>
-                                    </div>
-                                </div>
 
 
-                                <div class="offer-card">
 
-                                    <div class="card-actions">
-                                        <button class="card-btn chat-icon tooltip" data-tooltip="Chat with owner">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="card-btn tooltip" data-tooltip="View details">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <div class="offer-image">
-                                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80"
-                                            alt="Telemedicine platform">
-                                        <div class="company-logo">
-                                            <img src="https://img.freepik.com/free-vector/abstract-logo-with-colorful-shapes_1017-30230.jpg"
-                                                alt="MobileMed logo">
-                                        </div>
-                                    </div>
-
-                                    <div class="offer-content">
-                                        <div class="offer-header">
-                                            <div class="offer-info">
-                                                <h3>MobileMed Telemedicine</h3>
-                                                <div class="tags-container">
-                                                    <span class="category-tag">HealthTech</span>
-                                                    <span class="category-tag">Seed</span>
-                                                </div>
-                                            </div>
-                                            <div class="offer-owner">
-                                                <div class="owner-avatar">
-                                                    <img src="https://randomuser.me/api/portraits/women/68.jpg"
-                                                        alt="Maria Rodriguez">
-                                                </div>
-                                                <span class="owner-name">Presented by Maria Rodriguez</span>
-                                            </div>
-                                        </div>
-
-                                        <p class="offer-description">Telemedicine platform focused on rural healthcare access with
-                                            proprietary diagnostic tools and seamless patient-doctor communications.</p>
-
-                                        <div class="action-buttons">
-                                            <button class="chat-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                                </svg>
-                                                Contact Owner
-                                            </button>
-                                            <button class="view-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                    <circle cx="12" cy="12" r="3"></circle>
-                                                </svg>
-                                                View Details
-                                                View Details
-                                            </button>
-                                        </div>
-                                        <p class="investment-amount-text">Invested Amount: $100,000</p>
-                                    </div>
-                                </div>
                             </div>
 
 
-                            <div class="flex justify-center mt-10">
-                                <div class="flex items-center space-x-1">
-                                    <button class="px-3 py-2 rounded-md text-gray-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd" <path fill-rule="evenodd"
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

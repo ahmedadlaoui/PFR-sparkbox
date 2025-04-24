@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoFlow Energy Storage - Deal Details | SparkBox</title>
+    <title>{{ $Startup->name }} - Deal Details | SparkBox</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -30,10 +30,10 @@
         }
     </script>
     <style>
-        /* General styles - Simplified modern design */
+        /* General styles - Professional design */
         body {
-            background-color: #FFFFFF;
-            color: #1A1A1A;
+            background-color: #FAFAFA;
+            color: #333333;
             font-family: 'Inter', sans-serif;
         }
 
@@ -44,10 +44,10 @@
             padding: 0 24px;
         }
 
-        /* Reduced width hero image with simpler styling */
+        /* Hero image with professional styling */
         .hero-container {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
             position: relative;
         }
 
@@ -58,79 +58,99 @@
             background-position: center;
             border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
+        /* Hero overlay adjustments - position content properly */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: space-between;
+            /* Changed from center to space-between */
             padding: 2.5rem;
             color: white;
         }
 
-        /* Modern company logo styling - reduced padding */
+        /* Hero content sections */
+        .hero-content-top {
+            margin-top: 3rem;
+            /* Add margin at top to push content down slightly */
+        }
+
+        .hero-content-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* Tag styling for hero section */
+        .hero-tag {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Clean company logo styling - no white background */
         .company-logo {
             position: absolute;
-            bottom: -32px;
-            left: 2.5rem;
-            width: 72px;
-            height: 72px;
-            background: white;
-            border-radius: 4px;
-            padding: 0.4rem;
+            top: 1.5rem;
+            left: 2.7rem;
+            /* Changed from left to right */
+            width: 60px;
+            /* Reduced from 80px */
+            height: 60px;
+            /* Reduced from 80px */
+            background: transparent;
+            border-radius: 2px;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #f5f5f5;
             z-index: 10;
+            overflow: hidden;
         }
 
-        /* Content section styling */
-        .content-section {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            color: #111111;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Card styling - more minimal */
-        .content-card {
+        /* Unified content styling */
+        .content-panel {
             background: white;
             border-radius: 4px;
-            border: 1px solid #F0F0F0;
-            padding: 1.75rem;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             margin-bottom: 1.5rem;
+            overflow: hidden;
         }
 
-        /* Stats card - simplified */
-        .stat-card {
-            background: white;
-            border-radius: 4px;
-            border: 1px solid #F0F0F0;
+        .panel-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .panel-body {
             padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            height: auto;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
-            margin-bottom: 1.5rem;
         }
 
-        /* Fixed statistics sidebar */
+        /* Stats sidebar */
         .stats-sidebar {
             position: sticky;
             top: 100px;
@@ -138,97 +158,43 @@
             overflow-y: auto;
         }
 
-        /* Hide scrollbar for clean look */
-        .stats-sidebar::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        /* Image gallery - simplified */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Table styles - cleaner */
+        /* Table styles - clean and readable */
         .details-table {
             width: 100%;
-            font-family: 'Inter', sans-serif;
+            border-collapse: collapse;
         }
 
         .details-table td {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #F0F0F0;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .details-table tr:last-child td {
             border-bottom: none;
         }
 
-        /* Redesigned team layout */
-        .team-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 240px;
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .team-name {
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .team-role {
-            color: #666666;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .team-bio {
-            font-size: 0.85rem;
+        .details-table td:first-child {
             color: #555;
-            line-height: 1.5;
+            font-weight: 500;
         }
 
-        /* Tags for categories - simpler */
+        .details-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Minimal tag design */
         .tag {
             display: inline-block;
-            background-color: #F8F9FA;
-            color: #333;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.65rem;
-            border-radius: 4px;
+            background-color: #f0f2f5;
+            color: #444;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            font-family: 'Inter', sans-serif;
         }
 
         /* Two-column layout */
@@ -248,518 +214,425 @@
             }
         }
 
-        /* Simple statistics design with dark text */
-        .stat-block {
-            margin-bottom: 1.75rem;
-            padding: 1.25rem;
-            border-radius: 4px;
-            border: 1px solid #f0f0f0;
-            background-color: white;
-        }
-
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #111;
-            margin-bottom: 0.25rem;
-            line-height: 1;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #555;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Progress bar - simpler */
+        /* Progress bar styling */
         .progress-container {
             width: 100%;
-            background-color: #F5F5F5;
-            border-radius: 4px;
             height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            overflow: hidden;
             margin: 0.75rem 0;
         }
 
         .progress-bar {
-            height: 6px;
-            border-radius: 4px;
-            background-color: #333;
+            height: 100%;
+            background: #222;
+            border-radius: 0;
         }
 
-        /* Key metrics grid */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-
-        .metric-item {
-            padding: 1rem;
-            background-color: #FAFAFA;
-            border-radius: 4px;
-        }
-
-        /* Enhanced headings - darker, simpler */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: #111;
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1 {
-            font-weight: 800;
-        }
-
-        h2 {
-            font-weight: 700;
-        }
-
-        h3 {
-            font-weight: 700;
-        }
-
-        h4 {
+        /* Section heading styling */
+        .section-heading {
             font-weight: 600;
+            font-size: 1.1rem;
+            color: #222;
+            margin-bottom: 1rem;
         }
 
-        /* Transparent buttons with no border */
-        .transparent-btn {
-            background-color: transparent;
+        /* Hero CTA button styling */
+        .hero-cta {
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: 10;
+        }
+
+        .hero-button {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 3px;
             border: none;
-            color: #666;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
 
-        .transparent-btn:hover {
-            color: #111;
+        /* Entrepreneur profile styling */
+        .entrepreneur-section {
+            display: flex;
+            align-items: center;
         }
 
-        .transparent-btn i {
-            margin-right: 0.5rem;
+        .profile-image {
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .profile-info p:first-child {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-info p:nth-child(2) {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            color: #222;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contact-link i {
+            margin-right: 0.35rem;
+        }
+
+        /* Modal styling */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 4px;
+            max-width: 500px;
+            width: 90%;
+            padding: 1.75rem;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 3px;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #222;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-cancel {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 3px;
+            background-color: white;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .btn-submit {
+            padding: 0.75rem 1.5rem;
+            border-radius: 3px;
+            background-color: #222222;
+            color: white;
+            font-weight: 500;
+            border: none;
+        }
+
+        /* Metric and financial data display */
+        .financial-metrics {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metrics-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .metrics-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #333;
         }
     </style>
 </head>
 
 <body class="font-inter text-sm antialiased">
-    
-    <header class="bg-white backdrop-blur-sm fixed w-full z-50 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between h-20 items-center px-6">
-                
-                <div class="pl-8 sm:pl-12 md:pl-16 pr-8">
-                    <span class="text-xl font-bold text-dark">SparkBox</span>
-                </div>
 
-                
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="index.html"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Home</a>
-                    <a href="deals.html" class="text-dark text-base font-medium font-['Inter',_sans-serif]">Startups</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Investors</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">About</a>
-                    <a href="#"
-                        class="text-gray-600 text-base hover:text-blue-600 transition-colors font-['Inter',_sans-serif]">Blog</a>
-                </nav>
+    <x-header />
 
-                
-                <div>
-                    <a href="#"
-                        class="px-6 py-2.5 bg-white text-gray-800 text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all border-2 border-gray-800 hover:bg-gray-100 font-['Inter',_sans-serif]">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    
     <section class="pt-20">
         <div class="container-centered">
             <div class="hero-container">
                 <div class="hero-image"
-                    style="background-image: url('https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')">
+                    style="background-image: url('{{ $Startup->cover }}')">
                     <div class="hero-overlay">
-                        <h1 class="text-4xl md:text-5xl font-bold mt-3 text-white">EcoFlow Energy Storage</h1>
-                        <p class="text-lg text-white mt-2 max-w-2xl">Sustainable energy storage solutions with
-                            proprietary battery technology and AI-powered management systems.</p>
+                        <!-- Top section with title and description -->
+                        <div class="hero-content-top">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white">{{ $Startup->name }}</h1>
+                            <p class="text-lg text-white mt-2 max-w-2xl">{{ $Startup->description }}</p>
+                        </div>
+
+                        <!-- Bottom section with category and website -->
+                        <div class="hero-content-bottom">
+                            <div class="hero-tags">
+                                <span class="hero-tag">{{ $Startup->category }}</span>
+                                @if($Startup->website)
+                                <a href="{{ $Startup->website }}" target="_blank" class="hero-tag">
+                                    <i data-feather="external-link" class="h-3 w-3 mr-1.5"></i>
+                                    Website
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Create offer button -->
+                    <div class="hero-cta">
+                        <button id="create-offer-btn" class="hero-button">
+                            <i data-feather="plus-circle" class="h-4 w-4 mr-2 inline-block"></i> Create offer
+                        </button>
                     </div>
                 </div>
-                
-                <div class="company-logo bg-white">
-                    <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                        alt="EcoFlow logo" class="w-full h-full object-contain rounded-[4px]">
+
+                <div class="company-logo">
+                    <img src="{{ $Startup->logo }}"
+                        alt="{{ $Startup->name }} logo" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    
     <div class="container-centered">
         <div class="two-column">
+            <!-- Main content -->
             <div>
-                
-                <div class="content-card">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <span class="tag">CleanTech</span>
-                        <span class="tag">Energy</span>
-                        <span class="tag">Hardware</span>
+                <!-- About the startup - removing category and website -->
+                <div class="content-panel">
+                    <div class="panel-header">
+                        <h3 class="section-heading">About {{ $Startup->name }}</h3>
                     </div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h2 class="text-2xl font-bold mb-2">EcoFlow Energy Storage</h2>
-                            <p class="text-gray-600">San Francisco, California • Founded 2018</p>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button class="transparent-btn">
-                                <i data-feather="mail" class="h-4 w-4"></i> Contact
-                            </button>
-                            <button class="transparent-btn">
-                                <i data-feather="bookmark" class="h-4 w-4"></i> Save
-                            </button>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-4">About EcoFlow</h3>
-                    <div class="prose max-w-none text-gray-700">
-                        <p class="mb-4">EcoFlow is a cutting-edge clean energy company focused on developing
-                            innovative energy storage solutions for residential and commercial applications.
-                            Our proprietary battery technology and AI-powered management systems provide
-                            reliable, sustainable energy alternatives.</p>
-
-                        <p class="mb-4">Founded in 2018 by a team of former Tesla engineers, EcoFlow has
-                            quickly established itself as a leader in the renewable energy market. Our
-                            mission is to accelerate the world's transition to sustainable energy through
-                            accessible and efficient storage solutions.</p>
-                    </div>
-                </div>
-
-                
-                <div class="content-section">
-                    <h3 class="section-title">The Challenge & Our Solution</h3>
-                    <div class="content-card">
-                        <div class="mb-6">
-                            <h4 class="text-lg font-semibold mb-3">The Problem We're Solving</h4>
-                            <p class="text-gray-700 mb-4">The intermittent nature of renewable energy sources like solar
-                                and
-                                wind creates significant challenges for grid stability and reliable power
-                                supply. Traditional energy storage solutions are expensive, have limited
-                                capacity, and often utilize environmentally harmful materials.</p>
-
-                            <p class="text-gray-700">Additionally, as extreme weather events increase in frequency and
-                                severity, the need for reliable backup power systems becomes more critical for
-                                homes and businesses.</p>
-                        </div>
-
-                        <div>
-                            <h4 class="text-lg font-semibold mb-3">Our Solution</h4>
-                            <p class="text-gray-700 mb-4">EcoFlow's energy storage systems utilize our patented
-                                lithium-iron
-                                phosphate battery technology, which offers superior longevity, safety, and
-                                environmental benefits compared to conventional lithium-ion batteries. Our
-                                systems integrate seamlessly with existing solar installations and the power
-                                grid.</p>
-
-                            <h5 class="font-medium mb-3">Key features:</h5>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                                <li class="flex items-start">
-                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>Advanced AI-powered energy management system</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>Modular design for easy capacity expansion</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>10-year warranty, longer than industry standards</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>Smartphone app for real-time monitoring & control</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>Weather prediction integration for outage preparation</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="content-section">
-                    <h3 class="section-title">Product Gallery</h3>
-                    <div class="gallery-grid">
-                        <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                            alt="Product Image" class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Product Image" class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1636393705098-21da0219624a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Product Image" class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1623126908029-58cb08a66d86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Product Image" class="gallery-image">
-                    </div>
-                </div>
-
-                
-                <div class="content-section">
-                    <h3 class="section-title">Leadership Team</h3>
-                    <div class="team-grid">
-                        
-                        <div class="team-member">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen"
-                                class="team-avatar">
-                            <h4 class="team-name">Michael Chen</h4>
-                            <p class="team-role">CEO & Co-Founder</p>
-                            <p class="team-bio">Former Senior Engineer at Tesla Energy. MS in Electrical Engineering
-                                from Stanford University.</p>
-                        </div>
-
-                        
-                        <div class="team-member">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
-                                class="team-avatar">
-                            <h4 class="team-name">Sarah Johnson</h4>
-                            <p class="team-role">CTO & Co-Founder</p>
-                            <p class="team-bio">Previously led battery research at MIT Energy Initiative. PhD in
-                                Materials Science.</p>
-                        </div>
-
-                        
-                        <div class="team-member">
-                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="David Rodriguez"
-                                class="team-avatar">
-                            <h4 class="team-name">David Rodriguez</h4>
-                            <p class="team-role">COO</p>
-                            <p class="team-bio">20+ years in clean energy manufacturing. Former VP of Operations at
-                                SunPower.</p>
+                    <div class="panel-body">
+                        <div class="prose max-w-none text-gray-700 leading-relaxed">
+                            <p>{{$Startup->details}}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+            <!-- Sidebar with consolidated startup data -->
             <div class="stats-sidebar">
-                
-                <div class="stat-block">
-                    <h3 class="text-lg font-bold mb-3">Funding Progress</h3>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-sm font-semibold">$8,450,000 raised</span>
-                        <span class="text-sm font-semibold">70%</span>
+                <!-- Combined financial details in one panel -->
+                <div class="content-panel">
+                    <div class="panel-header">
+                        <h3 class="section-heading">Company Information</h3>
                     </div>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 70%"></div>
-                    </div>
-                    <div class="flex justify-between mt-1 text-xs text-gray-500">
-                        <span>Target: $12,000,000</span>
-                        <span>Closes Aug 30, 2023</span>
-                    </div>
-                </div>
-
-                
-                <div class="metrics-grid mb-6">
-                    <div class="metric-item">
-                        <div class="stat-number">78</div>
-                        <div class="stat-label">Team Size</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Patents</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="stat-number">128%</div>
-                        <div class="stat-label">YoY Growth</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="stat-number">$8.5M</div>
-                        <div class="stat-label">2022 Revenue</div>
-                    </div>
-                </div>
-
-                
-                <div class="stat-block mb-6">
-                    <h3 class="text-lg font-bold mb-3">Key Performance</h3>
-                    <table class="details-table">
-                        <tr>
-                            <td class="text-gray-600">CAC</td>
-                            <td class="text-right font-medium">$12,400</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">LTV</td>
-                            <td class="text-right font-medium">$156,000</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Gross Margin</td>
-                            <td class="text-right font-medium">68%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Burn Rate</td>
-                            <td class="text-right font-medium">$420K/mo</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Runway</td>
-                            <td class="text-right font-medium">16 months</td>
-                        </tr>
-                    </table>
-                </div>
-
-                
-                <div class="stat-block mb-6">
-                    <h3 class="text-lg font-bold mb-4">Investment Details</h3>
-                    <table class="details-table">
-                        <tr>
-                            <td class="text-gray-600">Round</td>
-                            <td class="text-right font-medium">Series B</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Min. Investment</td>
-                            <td class="text-right font-medium">$25,000</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Pre-Money</td>
-                            <td class="text-right font-medium">$85,000,000</td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-600">Closing Date</td>
-                            <td class="text-right font-medium">Aug 30, 2023</td>
-                        </tr>
-                    </table>
-                    <button class="w-full bg-transparent text-gray-700 font-bold py-2.5 border-0 mt-4">Invest
-                        Now</button>
-                </div>
-
-                
-                <div class="stat-block mb-6">
-                    <h3 class="text-lg font-bold mb-3">Market Opportunity</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm font-medium mb-1">Global Energy Storage Market</p>
-                            <p class="text-xl font-bold">$123B by 2027</p>
-                            <p class="text-xs text-gray-500">CAGR of 32.8% (2022-2027)</p>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium mb-1">Target Market Share</p>
-                            <p class="text-xl font-bold">5.4%</p>
-                            <p class="text-xs text-gray-500">$6.6B potential revenue</p>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="stat-block">
-                    <h3 class="text-lg font-bold mb-4">Use of Funds</h3>
-                    <div class="space-y-4 mb-4">
-                        <div class="space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-sm font-medium">R&D and Product</span>
-                                <span class="text-sm font-semibold">45%</span>
+                    <div class="panel-body">
+                        <!-- Funding Goal -->
+                        @if($Startup->funding_goal)
+                        <div class="mb-4 pb-4 border-b border-gray-100">
+                            <div class="flex justify-between mb-1">
+                                <div class="text-sm font-medium">Funding Progress</div>
+                                <div class="text-sm font-medium">70%</div>
                             </div>
                             <div class="progress-container">
-                                <div class="progress-bar" style="width: 45%"></div>
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                            <div class="flex justify-between mt-1">
+                                <span class="text-xs text-gray-500">$8,450,000 raised</span>
+                                <span class="text-xs text-gray-500">Target: ${{ number_format($Startup->funding_goal) }}</span>
                             </div>
                         </div>
+                        @endif
 
-                        <div class="space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-sm font-medium">Sales and Marketing</span>
-                                <span class="text-sm font-semibold">30%</span>
+                        <!-- Consolidated Key Metrics -->
+                        <div class="financial-metrics">
+                            @if($Startup->valuation)
+                            <div class="metrics-row">
+                                <span class="metric-label">Valuation</span>
+                                <span class="metric-value">${{ number_format($Startup->valuation) }}</span>
                             </div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 30%"></div>
+                            @endif
+                            @if($Startup->monthly_revenue)
+                            <div class="metrics-row">
+                                <span class="metric-label">Monthly Revenue</span>
+                                <span class="metric-value">${{ number_format($Startup->monthly_revenue) }}</span>
                             </div>
+                            @endif
+                            @if($Startup->gross_margin)
+                            <div class="metrics-row">
+                                <span class="metric-label">Gross Margin</span>
+                                <span class="metric-value">{{ $Startup->gross_margin }}%</span>
+                            </div>
+                            @endif
+                            @if($Startup->burn_rate)
+                            <div class="metrics-row">
+                                <span class="metric-label">Burn Rate</span>
+                                <span class="metric-value">${{ number_format($Startup->burn_rate) }}/mo</span>
+                            </div>
+                            @endif
+                            @if($Startup->runway)
+                            <div class="metrics-row">
+                                <span class="metric-label">Runway</span>
+                                <span class="metric-value">{{ $Startup->runway }} months</span>
+                            </div>
+                            @endif
                         </div>
+                    </div>
+                </div>
 
-                        <div class="space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-sm font-medium">Operations</span>
-                                <span class="text-sm font-semibold">15%</span>
+                <!-- Entrepreneur info -->
+                @if($Startup->user)
+                <div class="content-panel">
+                    <div class="panel-header">
+                        <h3 class="section-heading">Entrepreneur</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="entrepreneur-section">
+                            @if($Startup->user->profile_picture_url)
+                            <img src="{{ $Startup->user->profile_picture_url }}" alt="{{ $Startup->user->name }}" class="profile-image">
+                            @else
+                            <div class="profile-image bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-500 font-medium">{{ substr($Startup->user->name, 0, 1) }}</span>
                             </div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 15%"></div>
-                            </div>
-                        </div>
+                            @endif
 
-                        <div class="space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-sm font-medium">Working Capital</span>
-                                <span class="text-sm font-semibold">10%</span>
-                            </div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 10%"></div>
+                            <div class="profile-info">
+                                <p>{{ $Startup->user->name }}</p>
+                                <p>Founder & CEO</p>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
 
-    
-    <section class="py-16 px-6 bg-[#FAFAFA]">
-        <div class="container-centered">
-            <div class="p-8 bg-white border border-gray-100 rounded-md shadow-sm">
-                <div class="flex flex-col lg:flex-row items-center justify-between">
-                    <div class="mb-8 lg:mb-0 lg:pr-8">
-                        <h2 class="text-2xl font-bold mb-4">Ready to invest in the future of energy?</h2>
-                        <p class="text-gray-600 max-w-xl">Join other forward-thinking investors backing EcoFlow's
-                            mission to revolutionize energy storage.</p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button class="px-8 py-3 bg-transparent text-gray-700 font-semibold">
-                            Contact Company
-                        </button>
-                        <button class="px-8 py-3 bg-transparent text-gray-700 font-semibold">
-                            Download Pitch Deck
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Create Offer Modal - removed equity field -->
+    <div id="offer-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Create an Offer for {{ $Startup->name }}</h2>
 
-    
-    <footer class="bg-gray-100 py-6">
+            <form id="offer-form" action="{{route('add.offer',['id' => $Startup->id])}}" method="POST">
+                @csrf
+                <input type="hidden" name="startup_id" value="{{ $Startup->id }}">
+                <input type="hidden" name="EquityOffered" value="0">
+
+                <div class="form-group">
+                    <label for="amount" class="form-label">Investment Amount ($)</label>
+                    <input type="number" id="amount" name="amount" class="form-input" placeholder="Enter investment amount" min="500" step="1" required>
+                    <p class="text-xs text-gray-500 mt-1">Minimum investment: $500</p>
+                </div>
+
+                <div class="form-group">
+                    <p class="text-sm text-gray-600">
+                        By submitting this offer, you agree to enter into negotiations with {{ $Startup->name }}. Your offer will be visible to the founder and can be accepted or declined.
+                    </p>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" id="cancel-offer-btn" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Submit Offer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-100 py-6 mt-8">
         <div class="container-centered text-center">
             <p class="text-gray-600 text-sm">© 2023 SparkBox. All rights reserved.</p>
         </div>
     </footer>
 
-    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Feather icons
             feather.replace();
+
+            // Modal functionality
+            const modal = document.getElementById('offer-modal');
+            const createOfferBtn = document.getElementById('create-offer-btn');
+            const cancelOfferBtn = document.getElementById('cancel-offer-btn');
+
+            // Show modal when create offer button is clicked
+            createOfferBtn.addEventListener('click', function() {
+                modal.classList.add('show');
+            });
+
+            // Hide modal when cancel button is clicked
+            cancelOfferBtn.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+
+            // Hide modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            // Form validation
+            const offerForm = document.getElementById('offer-form');
+            offerForm.addEventListener('submit', function(e) {
+                const amount = document.getElementById('amount').value;
+
+                if (amount < 500) {
+                    e.preventDefault();
+                    alert('Minimum investment amount is $500');
+                    return;
+                }
+            });
         });
     </script>
 </body>

@@ -348,7 +348,7 @@
     <x-header />
 
     <div class="main-content bg-white">
-        
+
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="max-w-7xl mx-auto px-6 py-6">
@@ -365,16 +365,17 @@
                                 </div>
                             </div>
 
-
+                            @foreach($MyConversations as $MyConversation)
+                                @if($MyConversation->userOne->id != Auth::id())
                             <div class="contact-item active">
                                 <div class="flex justify-between mb-2">
                                     <div class="flex items-center">
                                         <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-                                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Chen"
+                                            <img src="{{$MyConversation->userOne->profile_picture_url}}" alt="Sarah Chen"
                                                 class="w-full h-full object-cover">
                                         </div>
                                         <div>
-                                            <h4 class="font-medium text-[#1A1A1A]">Sarah Chen</h4>
+                                            <h4 class="font-medium text-[#1A1A1A]">{{$MyConversation->userOne->name}}</h4>
                                         </div>
                                     </div>
                                     <div class="text-xs text-gray-500">12:42 PM</div>
@@ -382,23 +383,25 @@
                                 <p class="text-gray-500 text-xs truncate">EcoFlow Energy Storage: Looking forward to discussing
                                     the term sheet in more detail...</p>
                             </div>
-
-                            <div class="contact-item">
+                            @else
+                            <div class="contact-item active">
                                 <div class="flex justify-between mb-2">
                                     <div class="flex items-center">
                                         <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anjali Patel"
+                                            <img src="{{$MyConversation->userTwo->profile_picture_url}}" alt="Sarah Chen"
                                                 class="w-full h-full object-cover">
                                         </div>
                                         <div>
-                                            <h4 class="font-medium text-[#1A1A1A]">Anjali Patel</h4>
+                                            <h4 class="font-medium text-[#1A1A1A]">{{$MyConve   rsation->userTwo->name}}</h4>
                                         </div>
                                     </div>
-                                    <div class="text-xs text-gray-500">Mon</div>
+                                    <div class="text-xs text-gray-500">12:42 PM</div>
                                 </div>
-                                <p class="text-gray-500 text-xs truncate">We've secured the patent for our core technology. This
-                                    significantly strengthens our...</p>
+                                <p class="text-gray-500 text-xs truncate">EcoFlow Energy Storage: Looking forward to discussing
+                                    the term sheet in more detail...</p>
                             </div>
+                            @endif
+                            @endforeach
                         </div>
 
 

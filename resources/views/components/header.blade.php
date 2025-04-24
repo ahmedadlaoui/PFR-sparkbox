@@ -45,7 +45,7 @@
                 <div id="profileDropdown" class="absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-md shadow-lg border border-gray-100 hidden">
                     <div class="py-1">
                         @if(Auth()->user()->role === 'investor')
-                        <a href="{{ route('entreprenor.mystartup') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.dashboard') ? 'bg-gray-50 text-blue-600' : '' }}">
+                        <a href="{{ route('investor.dashboard') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.dashboard') ? 'bg-gray-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                 <rect x="3" y="3" width="7" height="7"></rect>
                                 <rect x="14" y="3" width="7" height="7"></rect>
@@ -62,7 +62,7 @@
                             </svg>
                             Portfolio
                         </a>
-                        <a href="{{ route('investor.chat') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.chat') ? 'bg-gray-50 text-blue-600' : '' }}">
+                        <a href="{{ route('chat') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.chat') ? 'bg-gray-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>

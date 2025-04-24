@@ -125,7 +125,7 @@
 <body class="font-inter bg-white text-sm antialiased">
 
 
-<x-header />
+    <x-header />
     <main class="pt-32 pb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -180,111 +180,51 @@
 
 
             <div class="flex justify-between items-center mb-6">
-                <p class="text-gray-600 font-medium font-['Inter',_sans-serif]">127 results found</p>
+                <p class="text-gray-600 font-medium font-['Inter',_sans-serif]">{{count($AllStartups)}} results found</p>
             </div>
 
 
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+                @foreach($AllStartups as $Startup)
 
-                <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
+                <a  href="{{ route('details', ['id' => $Startup->id]) }}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                     <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                        <img src="{{$Startup->cover}}"
                             alt="EcoFlow energy storage" class="w-full h-full object-cover">
                         <div
                             class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
+                            <img src="{{$Startup->logo}}"
                                 alt="EcoFlow logo" class="w-full h-full object-cover rounded-[4px]">
                         </div>
                     </div>
                     <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">EcoFlow
+                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">{{$Startup->name}}
                         </h3>
                         <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Sustainable energy storage solutions for homes and businesses with innovative battery
-                            technology.
+                            {{$Startup->description}}
                         </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">San Francisco,
-                            CA</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">CleanTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Energy</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Hardware</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="NutriTech food analytics" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
-                                alt="NutriTech logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">NutriTech
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            AI-powered food analytics platform helping consumers make healthier choices with
-                            personalized nutrition insights.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Boston, MA</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">FoodTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">AI</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Health</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="MobileMed telemedicine" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://img.freepik.com/free-vector/abstract-logo-with-colorful-shapes_1017-30230.jpg"
-                                alt="MobileMed logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">MobileMed
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Transforming healthcare access in rural communities through affordable mobile telemedicine
-                            solutions.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Chicago, IL
+                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">{{$Startup->created_at->format('F d, Y')}}
                         </p>
                         <div class="flex flex-wrap gap-2">
                             <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">HealthTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Mobile</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">SaaS</span>
+                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">{{$Startup->category}}</span>
+
                         </div>
                     </div>
-                </div>
-            </div>
+                </a>
+
+                @endforeach
 
 
 
-            <div class="flex justify-center mt-14">
+
+
+
+
+
+                <!-- <div class="flex justify-center mt-14">
                 <div class="flex items-center space-x-2">
 
 
@@ -311,8 +251,8 @@
                         </svg>
                     </button>
                 </div>
+            </div> -->
             </div>
-        </div>
     </main>
 
 
