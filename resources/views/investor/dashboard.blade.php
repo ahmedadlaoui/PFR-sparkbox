@@ -612,10 +612,10 @@
                                                     View Details
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <form action="" method="post">
+                                                <form action="{{route('add.conv')}}" method="post">
                                                     @csrf
-                                                    <button class="dropdown-item">
-                                                        <input type="hidden" value="{{ $MyOffer->user->id }}">
+                                                    <button type="submit" class="dropdown-item">
+                                                        <input type="hidden" value="{{ $MyOffer->startup->user->id }}" name="investor_id">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                             stroke-linejoin="round">

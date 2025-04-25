@@ -71,3 +71,6 @@ INSERT INTO startups (
     NOW(),
     NOW()
 );
+
+--@block 
+select * from conversations
