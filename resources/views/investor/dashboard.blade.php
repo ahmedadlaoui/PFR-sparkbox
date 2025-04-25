@@ -533,57 +533,87 @@
 
                         <div class="mb-16">
 
+                            <!-- Statistics Heading -->
                             <div class="flex justify-between items-end mb-6">
                                 <div>
-                                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Current Offers</h2>
+                                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Statistics</h2>
                                     <p class="text-gray-600 font-['Inter',_sans-serif]">
-                                        Exclusive investment opportunities available for your consideration
+                                        Overview of your investment activities and portfolio performance
                                     </p>
                                 </div>
                             </div>
 
-
-                            <div class="mb-8 border-b border-gray-200 pb-5">
-                                <div class="flex flex-wrap items-center gap-3">
-
-                                    <div class="flex items-center bg-gray-50 rounded-lg px-4 py-2.5 shadow-sm flex-grow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-3" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
-                                        <input type="text" placeholder="Search investment opportunities"
-                                            class="clean-search w-full font-['Inter',_sans-serif] text-gray-700 bg-transparent text-base">
+                            <!-- Stats Grid - Moved above the heading -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                                <!-- Total Offers Card -->
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-gray-100 rounded-lg mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">Total Offers</p>
+                                            <h3 class="text-2xl font-bold text-gray-800">12</h3>
+                                        </div>
                                     </div>
+                                </div>
 
+                                <!-- Confirmed Investments Card -->
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-gray-100 rounded-lg mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">Confirmed Investments</p>
+                                            <h3 class="text-2xl font-bold text-gray-800">$345,000</h3>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-nowrap">
-                                        <button
-                                            class="filter-btn active whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                            All Offers
-                                        </button>
-                                        <button
-                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                            Exclusive
-                                        </button>
-                                        <button
-                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                            Featured
-                                        </button>
-                                        <button
-                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                            Trending
-                                        </button>
-                                        <button
-                                            class="filter-btn whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                                            Ending Soon
-                                        </button>
+                                <!-- In Negotiation Card -->
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-gray-100 rounded-lg mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">In Negotiation</p>
+                                            <h3 class="text-2xl font-bold text-gray-800">$178,500</h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Startups Invested Card -->
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-gray-100 rounded-lg mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">Startups Invested</p>
+                                            <h3 class="text-2xl font-bold text-gray-800">7</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
+                            <div class="flex justify-between items-end mb-6">
+                                <div>
+                                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Current Offers</h2>
+                                    <p class="text-gray-600 font-['Inter',_sans-serif]">
+                                        Unique investment opportunities you've created.
+                                    </p>
+                                </div>
+                            </div>
 
                             <div class="grid grid-cols-1 gap-5 mb-8">
 
@@ -614,7 +644,7 @@
                                                 <div class="dropdown-divider"></div>
                                                 <form action="{{route('add.conv')}}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item"  style="width:100%;">
+                                                    <button type="submit" class="dropdown-item" style="width:100%;">
                                                         <input type="hidden" value="{{ $MyOffer->startup->user->id }}" name="investor_id">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -630,7 +660,7 @@
                                                 <form action="{{route('delete.offer')}}" method="post">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <input type="hidden" value="{{ $MyOffer->id }}" name="offer_id" >
+                                                    <input type="hidden" value="{{ $MyOffer->id }}" name="offer_id">
                                                     <button type="submit" class="dropdown-item delete" style="width:100%;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -723,15 +753,6 @@
 
             mobileAsideToggle?.addEventListener('click', function() {
                 asideBar.classList.toggle('show');
-            });
-
-            // Filter buttons
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                });
             });
 
             // Dropdown menu toggle
