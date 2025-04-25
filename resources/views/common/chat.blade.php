@@ -54,8 +54,9 @@
         }
 
         .message-sent {
-            background-color: #0049FF;
-            color: white;
+            background-color: #f3f2f3;
+            color: #1A1A1A;
+            border: 1px solid #ededed;
             margin-left: auto;
             border-bottom-right-radius: 4px;
         }
@@ -107,6 +108,36 @@
         textarea {
             overflow-y: hidden;
         }
+
+        /* Improved scrollbar styling */
+        .messages-area::-webkit-scrollbar,
+        .flex-1.overflow-y-auto::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages-area::-webkit-scrollbar-track,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+
+        .messages-area::-webkit-scrollbar-thumb,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 6px;
+        }
+
+        .messages-area::-webkit-scrollbar-thumb:hover,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        /* Ensure scrolling works properly on touch devices */
+        .messages-area,
+        .flex-1.overflow-y-auto {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
     </style>
 </head>
 
@@ -117,13 +148,10 @@
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-                    <h1 class="text-2xl font-bold text-gray-900 mb-6">Messages</h1>
+                   
 
-                    <div class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white">
-                        <!-- Include the conversations component -->
+                    <div class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white" style="height: 100%;">
                         @include('common.conversations')
-
-                        <!-- Include the messages component -->
                         @include('common.messages')
                     </div>
                 </div>
@@ -146,10 +174,20 @@
                 });
             });
 
-            // Auto-scroll to bottom of messages
+            // Improved auto-scroll to bottom of messages
             const messageContainer = document.getElementById('message-container');
             if (messageContainer) {
+                // Scroll to bottom initially
                 messageContainer.scrollTop = messageContainer.scrollHeight;
+
+                // Ensure we scroll to bottom after dynamic content changes
+                const messagesObserver = new MutationObserver(() => {
+                    messageContainer.scrollTop = messageContainer.scrollHeight;
+                });
+
+                messagesObserver.observe(messageContainer, {
+                    childList: true
+                });
             }
         });
     </script>

@@ -9,8 +9,8 @@
         </div>
     </form>
 
-    <!-- Conversations list -->
-    <div class="flex-1 overflow-y-auto">
+    <!-- Conversations list - Add max-height and improved scroll -->
+    <div class="flex-1 overflow-y-auto" style="max-height: calc(100vh - 210px); scrollbar-width: thin;">
         @if(count($MyConversations) > 0)
         @foreach($MyConversations as $conversation)
         @php
