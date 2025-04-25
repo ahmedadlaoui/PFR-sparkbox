@@ -330,31 +330,29 @@
                                 </a>
                             </div>
 
-                            @php $hasInvestors = !empty($investors) && count($investors) > 0; @endphp
 
-                            @if($hasInvestors)
+
+                            @if(!empty($myStartup->offers))
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach($myStartup->offers->sortByDesc('amount')->take(3) as $offer)
                                 <!-- Existing investor cards -->
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center mb-5">
-                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Morgan"
+                                        <img src="{{$offer->user->profile_picture_url}}" alt="{{$offer->user->name}}"
                                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
                                         <div>
-                                            <h3 class="text-lg font-semibold text-gray-800">Alex Morgan</h3>
-                                            <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Angel Investor</p>
+                                            <h3 class="text-lg font-semibold text-gray-800">{{$offer->user->name}}</h3>
+                                            <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">{{$offer->user->bio}}</p>
                                         </div>
                                     </div>
 
-                                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                        <p class="text-gray-600 text-sm">Interested in CleanTech solutions with
-                                            proven scalability and market fit.</p>
-                                    </div>
+
 
                                     <div class="flex items-center justify-between">
                                         <p class="text-sm font-medium text-gray-800 flex items-center">
-                                            <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                            <span>Invested: </span>
-                                            <span class="font-bold ml-1">$250,000</span>
+
+                                            <span>Ready to invest : </span>
+                                            <span class="font-bold ml-1">{{$offer->amount}} $</span>
                                         </p>
 
                                         <button
@@ -364,68 +362,7 @@
                                         </button>
                                     </div>
                                 </div>
-
-                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                    <div class="flex items-center mb-5">
-                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Lee"
-                                            class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                        <div>
-                                            <h3 class="text-lg font-semibold text-gray-800">Jessica Lee</h3>
-                                            <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Venture Capitalist
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                        <p class="text-gray-600 text-sm">Looking for renewable energy startups
-                                            with innovative storage solutions.</p>
-                                    </div>
-
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-gray-800 flex items-center">
-                                            <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                            <span>Invested: </span>
-                                            <span class="font-bold ml-1">$175,000</span>
-                                        </p>
-
-                                        <button
-                                            class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                            <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                            Chat
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                    <div class="flex items-center mb-5">
-                                        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Michael Zhang"
-                                            class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                        <div>
-                                            <h3 class="text-lg font-semibold text-gray-800">Michael Zhang</h3>
-                                            <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Business Executive
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                        <p class="text-gray-600 text-sm">Focused on sustainable energy solutions
-                                            with international market potential.</p>
-                                    </div>
-
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-gray-800 flex items-center">
-                                            <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                            <span>Invested: </span>
-                                            <span class="font-bold ml-1">$320,000</span>
-                                        </p>
-
-                                        <button
-                                            class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                            <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                            Chat
-                                        </button>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             @else
                             <div class="flex flex-col items-center justify-center py-12 px-4 bg-gray-50 rounded-xl border border-gray-100">

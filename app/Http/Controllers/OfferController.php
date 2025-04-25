@@ -27,5 +27,12 @@ class OfferController extends Controller
         $MyOffers = Offer::Where('user_id',Auth::id())->get();
         return view('investor/dashboard',compact('MyOffers'));
     }
+    public function GetStartupInvestors(){
+        $startup = Startup::where('user_id', Auth::id())->firstOrFail();
+        $Investors = Offer::Where('startup_id',$startup->id)
+        ->orderByDesc('amount')
+        ->get();
+        return view('entreprenor/investors',compact('Investors'));
+    }
 
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StartupController;
@@ -11,12 +12,10 @@ use App\Http\Controllers\StartupController;
 Route::get('/', function () {
     return view('public/home');
 })->name('home');
+Route::get('/deals', [StartupController::class, 'GetAllStartups'])->name('deals');
+Route::get('deal_details/{id}', [StartupController::class, 'GetstartupDetails'])->name('details');
+Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');
 
-
-
-Route::get('/deals',[StartupController::class,'GetAllStartups'])->name('deals');
-Route::get('deal_details/{id}',[StartupController::class , 'GetstartupDetails'])->name('details');
-Route::Post('/deal_details/{id}',[OfferController::class,'CreateOffer'])->name('add.offer');
 
 //entrepreneur
 route::get('/mystartup', [StartupController::class, 'GetStartupInfos'])->name('entreprenor.mystartup');
@@ -24,20 +23,24 @@ route::post('/mystartup', [StartupController::class, 'RegsiterStartup'])->name('
 route::delete('/mystartup', [StartupController::class, 'DeleteStartup'])->name('entreprenor.deletestartup');
 route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->name('entreprenor.updatestartup');
 
-Route::get('/investors', function () {
-    return view('entreprenor/investors');
-})->name('entreprenor.investors');
+
+route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
+route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
+
 
 //investor
 
-Route::get('/dashboard',[OfferController::class,'GetMyoffers'])->name('investor.dashboard');
+Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
 
 Route::get('/portfolio', function () {
     return view('investor.portfolio');
 })->name('investor.portfolio');
 
 
-Route::get('/chat',[ConversationController::class,'GetConversations'])->name('chat');
+Route::get('/chat', [ConversationController::class, 'GetConversations'])->name('chat');
+Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
+
+Route::get('/conversations/{id}/messages', [MessageController::class, 'getMessages'])->name('messages.get');
 
 Route::get('/settings', function () {
     return view('common/settings');

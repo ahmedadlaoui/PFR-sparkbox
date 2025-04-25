@@ -155,163 +155,43 @@
                     <div class="container mx-auto px-6 py-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+                            @foreach($Investors as $investor)
+
                             <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                 <div class="flex items-center mb-5">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Morgan"
+                                    <img src="{{$investor->user->profile_picture_url}}" alt="Alex Morgan"
                                         class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
                                     <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">Alex Morgan</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Angel Investor</p>
+                                        <h3 class="text-lg font-semibold text-gray-800">{{$investor->user->name}}</h3>
+                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">{{$investor->user->bio}}</p>
                                     </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                    <p class="text-gray-600 text-sm">Interested in CleanTech solutions with
-                                        proven scalability and market fit.</p>
                                 </div>
 
                                 <div class="flex items-center justify-between">
                                     <p class="text-sm font-medium text-gray-800 flex items-center">
-                                        <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                        <span>ready to invest: </span>
-                                        <span class="font-bold ml-1">$250,000</span>
-                                    </p>
 
-                                    <button
-                                        class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                        <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                        Chat
-                                    </button>
+                                        <span>ready to invest : </span>
+                                        <span class="font-bold ml-1">{{$investor->amount}} $</span>
+                                    </p>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{$investor->user->id}}" name="investor_id">
+                                        <button type="submit"
+                                            class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
+                                            <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
+                                            Chat
+                                        </button>
+                                    </form>
+
                                 </div>
                             </div>
 
-
-                            <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                <div class="flex items-center mb-5">
-                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Lee"
-                                        class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">Jessica Lee</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Venture Capitalist</p>
-                                    </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                    <p class="text-gray-600 text-sm">Looking for renewable energy startups
-                                        with innovative storage solutions.</p>
-                                </div>
-
-                                <div class="flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-800 flex items-center">
-                                        <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                        <span>ready to invest: </span>
-                                        <span class="font-bold ml-1">$175,000</span>
-                                    </p>
-
-                                    <button
-                                        class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                        <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                        Chat
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                <div class="flex items-center mb-5">
-                                    <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Michael Zhang"
-                                        class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">Michael Zhang</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Business Executive</p>
-                                    </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                    <p class="text-gray-600 text-sm">Focused on sustainable energy solutions
-                                        with international market potential.</p>
-                                </div>
-
-                                <div class="flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-800 flex items-center">
-                                        <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                        <span>ready to invest: </span>
-                                        <span class="font-bold ml-1">$320,000</span>
-                                    </p>
-
-                                    <button
-                                        class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                        <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                        Chat
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                <div class="flex items-center mb-5">
-                                    <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Sophia Rodriguez"
-                                        class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">Sophia Rodriguez</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Investment Strategist</p>
-                                    </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                    <p class="text-gray-600 text-sm">Specializes in CleanTech growth opportunities
-                                        with strong ESG metrics.</p>
-                                </div>
-
-                                <div class="flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-800 flex items-center">
-                                        <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                        <span>ready to invest: </span>
-                                        <span class="font-bold ml-1">$330,000</span>
-                                    </p>
-
-                                    <button
-                                        class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                        <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                        Chat
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                <div class="flex items-center mb-5">
-                                    <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="James Wilson"
-                                        class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">James Wilson</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">Tech Entrepreneur</p>
-                                    </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                    <p class="text-gray-600 text-sm">Focuses on hardware and IoT innovations
-                                        with AI integration capabilities.</p>
-                                </div>
-
-                                <div class="flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-800 flex items-center">
-                                        <i data-feather="dollar-sign" class="h-4 w-4 mr-1.5 text-gray-500"></i>
-                                        <span>ready to invest: </span>
-                                        <span class="font-bold ml-1">$125,000</span>
-                                    </p>
-
-                                    <button
-                                        class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                        <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                        Chat
-                                    </button>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <x-footer />
