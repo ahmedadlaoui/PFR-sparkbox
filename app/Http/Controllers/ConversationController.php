@@ -21,6 +21,13 @@ class ConversationController extends Controller
                     $conversation->created_at;
             });
         $MyConversations = $MyConversations->values();
+
+        // Initialize variables to prevent undefined variable errors
+        $activeConversation = null;
+        $messages = collect([]);
+        $otherUser = null;
+
+        // Check if a conversation_id is provided or if we should use the first one
         $conversationId = $request->input('conversation_id');
 
         if (!$conversationId && $MyConversations->count() > 0) {
@@ -31,7 +38,6 @@ class ConversationController extends Controller
             $activeConversation = $MyConversations->firstWhere('id', $conversationId);
 
             if ($activeConversation) {
-               
                 $messages = Message::where('conversation_id', $conversationId)
                     ->with(['sender', 'receiver'])
                     ->orderBy('created_at')
@@ -43,7 +49,6 @@ class ConversationController extends Controller
                     $message->is_sender = $message->sender_id == Auth::id();
                 });
 
-               
                 $otherUser = $activeConversation->getOtherUser(Auth::id());
             }
         }

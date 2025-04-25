@@ -8,12 +8,12 @@
                     alt="{{ $otherUser->name }}"
                     class="w-10 h-10 rounded-full object-cover bg-gray-200 mr-3"
                     onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($otherUser->name) }}&color=7F9CF5&background=EBF4FF'">
-                <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
+
             </div>
             <div>
                 <h4 class="font-medium text-gray-800">{{ $otherUser->name }}</h4>
                 <div class="flex items-center">
-                    <span class="text-xs text-gray-500">{{ $otherUser->bio ?? 'Active now' }}</span>
+                    <span class="text-xs text-gray-500">{{ $otherUser->bio}}</span>
                 </div>
             </div>
             @else
@@ -34,8 +34,8 @@
         @endif
     </div>
 
-    <!-- Messages area -->
-    <div class="messages-area flex-1 overflow-y-auto p-5 bg-white" id="message-container" style="max-height: calc(100vh - 180px);">
+    <!-- Messages area - Adjusted max-height -->
+    <div class="messages-area flex-1 overflow-y-auto p-5 bg-white" id="message-container" style="max-height: calc(100vh - 230px);">
         @if(isset($messages) && count($messages) > 0)
         @php
         $lastDate = null;
@@ -106,12 +106,12 @@
         @endif
     </div>
 
-    <!-- Message input -->
-    @if(isset($activeConversation))
+    <!-- Message input - Always show when there's a selected conversation -->
+    @if(isset($otherUser))
     <div class="p-4 border-t border-gray-100 bg-white">
         <form method="POST" action="{{ route('messages.send') }}" class="relative">
             @csrf
-            <input type="hidden" name="conversation_id" value="{{ $activeConversation->id }}">
+            <input type="hidden" name="conversation_id" value="{{ $activeConversation->id ?? '' }}">
             <div class="flex items-center rounded-full border border-gray-200 py-2 pl-4 pr-2 focus-within:border-gray-300 focus-within:ring-1 focus-within:ring-gray-200">
                 <textarea
                     name="message"

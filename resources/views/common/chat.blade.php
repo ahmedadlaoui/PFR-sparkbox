@@ -31,15 +31,44 @@
             background-color: #ffffff;
             color: #333333;
             font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content - set to height that leaves room for footer */
+        .main-content {
+            flex: 1 0 auto;
+            padding-top: 64.8px;
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0;
+            height: calc(100vh - 65px);
+            /* Adjust for header and footer */
+            display: flex;
+            flex-direction: column;
         }
 
         .chat-container {
             display: grid;
             grid-template-columns: 320px 1fr;
-            height: calc(100vh - 130px);
+            height: 100%;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
+            margin-bottom: 20px;
         }
 
         /* Message styling */
@@ -73,23 +102,6 @@
             opacity: 0.7;
             margin-top: 6px;
             text-align: right;
-        }
-
-        /* Main content and responsive styling */
-        .main-content {
-            padding-top: 30px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            width: 100%;
-        }
-
-        .content-container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0;
         }
 
         /* Media queries for responsiveness */
@@ -138,6 +150,12 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
         }
+
+        /* Footer styling */
+        footer {
+            flex-shrink: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -146,19 +164,18 @@
 
     <div class="main-content bg-white">
         <div class="content-container">
-            <div class="ml-0 md:ml-12 lg:ml-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-                   
-
-                    <div class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white" style="height: 100%;">
+            <div class="h-full w-full px-4 sm:px-6">
+                <div class="h-full">
+                    <div class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white h-full">
                         @include('common.conversations')
                         @include('common.messages')
                     </div>
                 </div>
             </div>
         </div>
-        <x-footer />
     </div>
+
+    <x-footer />
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
