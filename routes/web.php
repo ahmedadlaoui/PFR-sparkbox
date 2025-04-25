@@ -26,11 +26,12 @@ route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->n
 
 route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
 route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
-route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
 
 //investor
 
 Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
+route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
+route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
 
 Route::get('/portfolio', function () {
     return view('investor.portfolio');

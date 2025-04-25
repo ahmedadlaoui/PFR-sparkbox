@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
-    public function CreateOffer($id){
+    public function CreateOffer($id)
+    {
 
         request()->validate([
             'amount' => 'required|integer|min:500'
@@ -21,18 +22,25 @@ class OfferController extends Controller
         $NewOffer->startup_id = $id;
         $NewOffer->save();
 
-        return redirect()->route('details',['id' => $id]);
+        return redirect()->route('details', ['id' => $id]);
     }
-    public function GetMyoffers(){
-        $MyOffers = Offer::Where('user_id',Auth::id())->get();
-        return view('investor/dashboard',compact('MyOffers'));
+    public function GetMyoffers()
+    {
+        $MyOffers = Offer::Where('user_id', Auth::id())->get();
+        return view('investor/dashboard', compact('MyOffers'));
     }
-    public function GetStartupInvestors(){
+    public function GetStartupInvestors()
+    {
         $startup = Startup::where('user_id', Auth::id())->firstOrFail();
-        $Investors = Offer::Where('startup_id',$startup->id)
-        ->orderByDesc('amount')
-        ->get();
-        return view('entreprenor/investors',compact('Investors'));
+        $Investors = Offer::Where('startup_id', $startup->id)
+            ->orderByDesc('amount')
+            ->get();
+        return view('entreprenor/investors', compact('Investors'));
     }
 
+    public function DeleteOffer()
+    {
+        Offer::findOrFail(request('offer_id'))->delete();
+        return redirect()->route('investor.dashboard');
+    }
 }

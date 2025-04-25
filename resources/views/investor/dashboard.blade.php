@@ -614,7 +614,7 @@
                                                 <div class="dropdown-divider"></div>
                                                 <form action="{{route('add.conv')}}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item">
+                                                    <button type="submit" class="dropdown-item"  style="width:100%;">
                                                         <input type="hidden" value="{{ $MyOffer->startup->user->id }}" name="investor_id">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -627,16 +627,21 @@
                                                     </button>
                                                 </form>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M3 6h18"></path>
-                                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                    </svg>
-                                                    Delete
-                                                </a>
+                                                <form action="{{route('delete.offer')}}" method="post">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $MyOffer->id }}" name="offer_id" >
+                                                    <button type="submit" class="dropdown-item delete" style="width:100%;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="M3 6h18"></path>
+                                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                        </svg>
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
