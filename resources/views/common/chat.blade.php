@@ -206,6 +206,24 @@
                     childList: true
                 });
             }
+
+            // Chat options dropdown toggle
+            const chatOptionsBtn = document.getElementById('chat-options-btn');
+            const chatOptionsDropdown = document.getElementById('chat-options-dropdown');
+
+            if (chatOptionsBtn && chatOptionsDropdown) {
+                chatOptionsBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    chatOptionsDropdown.classList.toggle('hidden');
+                });
+
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function() {
+                    if (!chatOptionsDropdown.classList.contains('hidden')) {
+                        chatOptionsDropdown.classList.add('hidden');
+                    }
+                });
+            }
         });
     </script>
 </body>

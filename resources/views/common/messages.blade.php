@@ -24,12 +24,26 @@
         </div>
 
         @if(isset($otherUser))
-        <div class="flex items-center">
-            <button class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
+        <div class="flex items-center relative">
+            <button id="chat-options-btn" class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                 </svg>
             </button>
+
+            <!-- Dropdown menu -->
+            <div id="chat-options-dropdown" class="absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                <form method="POST" action="{{ route('chat.delete', ['conversation_id' => $activeConversation->id ?? '']) }}" onsubmit="return confirm('Are you sure you want to delete this conversation?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        Delete Chat
+                    </button>
+                </form>
+            </div>
         </div>
         @endif
     </div>
@@ -91,7 +105,7 @@
         </div>
         @endforeach
         @else
-        <!-- Empty state -->
+
         <div class="flex items-center justify-center h-full">
             <div class="text-center">
                 <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
@@ -106,7 +120,7 @@
         @endif
     </div>
 
-    <!-- Message input - Always show when there's a selected conversation -->
+
     @if(isset($otherUser))
     <div class="p-4 border-t border-gray-100 bg-white">
         <form method="POST" action="{{ route('messages.send') }}" class="relative">

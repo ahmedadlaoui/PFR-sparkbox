@@ -452,6 +452,73 @@
             white-space: nowrap;
             z-index: 30;
         }
+
+        /* Dropdown menu styling */
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 180px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #F0F0F0;
+            z-index: 50;
+            display: none;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            font-size: 14px;
+            color: #4B5563;
+            transition: background-color 0.15s;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #F9FAFB;
+        }
+
+        .dropdown-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 12px;
+        }
+
+        .dropdown-item.delete {
+            color: #EF4444;
+        }
+
+        .dropdown-item.delete:hover {
+            background-color: #FEF2F2;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background-color: #F3F4F6;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -524,14 +591,54 @@
                                 <div class="offer-card">
 
                                     <div class="card-actions">
-                                        <a href="{{ route('details', ['id' => $MyOffer->startup->id]) }}" class="card-btn tooltip" data-tooltip="View details">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </a>
+                                        <div class="relative">
+                                            <button class="card-btn menu-dots-btn" id="card-menu-btn-{{ $MyOffer->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <circle cx="12" cy="5" r="1" />
+                                                    <circle cx="12" cy="12" r="1" />
+                                                    <circle cx="12" cy="19" r="1" />
+                                                </svg>
+                                            </button>
+                                            <div class="dropdown-menu" id="dropdown-menu-{{ $MyOffer->id }}">
+                                                <a href="{{ route('details', ['id' => $MyOffer->startup->id]) }}" class="dropdown-item">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                        <circle cx="12" cy="12" r="3"></circle>
+                                                    </svg>
+                                                    View Details
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <form action="" method="post">
+                                                    @csrf
+                                                    <button class="dropdown-item">
+                                                        <input type="hidden" value="{{ $MyOffer->user->id }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path
+                                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                                            </path>
+                                                        </svg>
+                                                        Contact
+                                                    </button>
+                                                </form>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item delete">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path d="M3 6h18"></path>
+                                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                    </svg>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="offer-image">
@@ -574,6 +681,9 @@
                                                 </svg>
                                                 View Details
                                             </button>
+
+
+
                                         </div>
 
                                     </div>
@@ -599,12 +709,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather icons
             feather.replace({
                 stroke: 1.5
             });
 
-            // Mobile aside toggle
             const mobileAsideToggle = document.querySelector('.mobile-aside-toggle');
             const asideBar = document.querySelector('.aside-bar');
 
@@ -620,7 +728,39 @@
                     this.classList.add('active');
                 });
             });
+
+            // Dropdown menu toggle
+            document.querySelectorAll('.menu-dots-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const menuId = this.id.replace('card-menu-btn-', 'dropdown-menu-');
+                    const dropdown = document.getElementById(menuId);
+
+                    // Close all other dropdowns first
+                    document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                        if (menu.id !== menuId) menu.classList.remove('show');
+                    });
+
+                    // Toggle this dropdown
+                    dropdown.classList.toggle('show');
+                });
+            });
+
+            // Close dropdowns when clicking elsewhere
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
         });
+    </script>
     </script>
 </body>
 

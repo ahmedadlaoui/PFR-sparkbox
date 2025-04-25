@@ -26,7 +26,7 @@ route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->n
 
 route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
 route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
-
+route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
 
 //investor
 
@@ -39,6 +39,7 @@ Route::get('/portfolio', function () {
 
 Route::get('/chat', [ConversationController::class, 'GetConversations'])->name('chat');
 Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
+Route::delete('/conversations/{conversation_id}', [ConversationController::class, 'deleteConversation'])->name('chat.delete');
 
 Route::get('/conversations/{id}/messages', [MessageController::class, 'getMessages'])->name('messages.get');
 

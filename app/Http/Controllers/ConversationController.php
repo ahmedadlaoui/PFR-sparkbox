@@ -76,4 +76,17 @@ class ConversationController extends Controller
 
         return redirect()->route('chat', ['conversation_id' => $conversation->id]);
     }
+
+    public function deleteConversation($conversationId)
+    {
+        $conversation = Conversation::where('id', $conversationId)
+            ->where(function ($query) {
+                $query->where('user_one_id', Auth::id())
+                    ->orWhere('user_two_id', Auth::id());
+            })->firstOrFail();
+        $conversation->messages()->delete();
+        $conversation->delete();
+
+        return redirect()->route('chat')->with('success', 'Conversation deleted successfully');
+    }
 }
