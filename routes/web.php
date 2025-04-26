@@ -32,7 +32,7 @@ Route::post('/register', [Authcontroller::class, 'Sign_Up'])->name('register.sub
 Route::middleware('auth')->group(function () {
 
     //entrepreneur
-    Route::middleware([RoleMiddleware::class, 'entrepreneur'])->group(function () {
+    Route::middleware([RoleMiddleware::class. ':entrepreneur'])->group(function () {
         route::get('/mystartup', [StartupController::class, 'GetStartupInfos'])->name('entreprenor.mystartup');
         route::post('/mystartup', [StartupController::class, 'RegsiterStartup'])->name('entreprenor.registerstartup');
         route::delete('/mystartup', [StartupController::class, 'DeleteStartup'])->name('entreprenor.deletestartup');
@@ -43,11 +43,11 @@ Route::middleware('auth')->group(function () {
     });
 
     //investor routes
-    Route::middleware([RoleMiddleware::class, 'investor'])->group(function () {
+    Route::middleware([RoleMiddleware::class. ':investor'])->group(function () {
         Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');
         Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
-        route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
-        route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
+        Route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
+        Route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
     });
 
     //common routes
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/conversations/{id}/messages', [MessageController::class, 'getMessages'])->name('messages.get');
     Route::get('/chat', [ConversationController::class, 'GetConversations'])->name('chat');
     Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
-    Route::get('/settings', [ConversationController::class, 'RenderSettingsPage'])->name('settings');
+    Route::get('/settings', [ProfileController  ::class, 'RenderSettingsPage'])->name('settings');
     Route::POST('/settings', [ProfileController::class, 'EditProfile'])->name('edit.profile');
     Route::post('/logout', [Authcontroller::class, 'Sign_Out'])->name('logout.submit');
 });

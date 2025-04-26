@@ -73,4 +73,4 @@ INSERT INTO startups (
 );
 
 --@block 
-select * from conversations
+select * from users

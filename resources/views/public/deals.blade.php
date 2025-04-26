@@ -172,7 +172,7 @@
 
 
             <div class="flex justify-between items-center mb-6">
-                <p class="text-gray-600 font-medium font-['Inter',_sans-serif]">{{count($AllStartups)}} results found</p>
+                <p class="text-gray-600 font-medium font-['Inter',_sans-serif]"><span id="results-found">{{count($AllStartups)}}</span> results found</p>
             </div>
 
 
@@ -221,7 +221,7 @@
     </main>
 
 
-<x-footer />
+    <x-footer />
 
 
     <div
@@ -274,6 +274,7 @@
                     .then(response => response.json())
                     .then(data => {
                         startupContainer.innerHTML = '';
+                        document.getElementById('results-found').textContent = data.length;
                         data.forEach(startup => {
                             const card = `
                                 <a href="/deal_details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
@@ -326,7 +327,6 @@
                         .then(response => response.json())
                         .then(data => {
                             startupContainer.innerHTML = '';
-
                             data.forEach(startup => {
                                 const card = `
                                 <a href="/deal_details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
