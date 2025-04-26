@@ -399,8 +399,47 @@
 
             const searchbar = document.getElementById('search-startups');
 
+            searchbar.addEventListener('input', (e) => {
+                fetch(`/startups/search/${searchbar.value}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        startupContainer.innerHTML = '';
+                        data.forEach(startup => {
+                            const card = `
+                                <a href="/deal_details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
+                                    <div class="relative h-[255px]">
+                                        <img src="${startup.cover}" alt="${startup.name}" class="w-full h-full object-cover">
+                                        <div class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
+                                            <img src="${startup.logo}" alt="${startup.name} logo" class="w-full h-full object-cover rounded-[4px]">
+                                        </div>
+                                    </div>
+                                    <div class="pt-12 px-6 pb-6">
+                                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">${startup.name}</h3>
+                                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
+                                            ${startup.description}
+                                        </p>
+                                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">
+                                            ${new Date(startup.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        </p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">${startup.category}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                            startupContainer.insertAdjacentHTML('beforeend', card);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+
+
+                    });
+            })
+
             categoryFilters.forEach(filter => {
                 filter.addEventListener('click', function() {
+                    searchbar.value = '';
                     categoryFilters.forEach(f => f.classList.remove('active'));
                     this.classList.add('active');
 
@@ -420,7 +459,7 @@
 
                             data.forEach(startup => {
                                 const card = `
-                                <a href="/details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
+                                <a href="/deal_details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                                     <div class="relative h-[255px]">
                                         <img src="${startup.cover}" alt="${startup.name}" class="w-full h-full object-cover">
                                         <div class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">

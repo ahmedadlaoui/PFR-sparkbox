@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::get('/deals', [StartupController::class, 'RenderDealsPage'])->name('deals');
 
 Route::get('/startups/json/{filterParam?}', [StartupController::class, 'GetAllStartupsJson'])->name('startups.json');
-
+Route::get('/startups/search/{SearchValue}', [StartupController::class, 'SearchStartups'])->name('startups.json.search');
 
 Route::get('deal_details/{id}', [StartupController::class, 'GetstartupDetails'])->name('details');
 Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');

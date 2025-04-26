@@ -19,6 +19,11 @@ class StartupController extends Controller
             return startup::All();
         }
     }
+    public function SearchStartups($SearchValue){
+       $SearchedForstartups = startup::Where('description','like',"%$SearchValue%")->orWHere('name', 'like', "%$SearchValue%")->orWhere('details', 'like', "%$SearchValue%")->get();
+       return response()->json($SearchedForstartups);
+    }
+
     public function GetAllStartupsJson($filterParam)
     {
         return response()->json($this->FilterStartups($filterParam));
