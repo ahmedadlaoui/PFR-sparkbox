@@ -7,42 +7,22 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StartupController;
+use App\Http\Middleware\RoleMiddleware;
+
+
 
 // Public routes
 Route::get('/', function () {
     return view('public/home');
 })->name('home');
-
-
 Route::get('/deals', [StartupController::class, 'RenderDealsPage'])->name('deals');
 Route::get('/startups/json/{filterParam?}', [StartupController::class, 'GetAllStartupsJson'])->name('startups.json');
 Route::get('/startups/search/{SearchValue}', [StartupController::class, 'SearchStartups'])->name('startups.json.search');
-
 Route::get('deal_details/{id}', [StartupController::class, 'GetstartupDetails'])->name('details');
-
-
-
-
-
-
-
-
-//investor
-
-
-
-
-
-
-
-
-
-
 Route::get('/login', function () {
     return view('public.sign_in');
 })->name('login');
 Route::post('/login', [Authcontroller::class, 'Sign_In'])->name('login.submit');
-
 Route::get('/register', function () {
     return view('public.sign_up');
 })->name('show.register');
@@ -50,24 +30,26 @@ Route::post('/register', [Authcontroller::class, 'Sign_Up'])->name('register.sub
 
 
 
-
-
 Route::middleware('auth')->group(function () {
 
     //entrepreneur
-    route::get('/mystartup', [StartupController::class, 'GetStartupInfos'])->name('entreprenor.mystartup');
-    route::post('/mystartup', [StartupController::class, 'RegsiterStartup'])->name('entreprenor.registerstartup');
-    route::delete('/mystartup', [StartupController::class, 'DeleteStartup'])->name('entreprenor.deletestartup');
-    route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->name('entreprenor.updatestartup');
-    route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
-    route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
-    route::patch('/investors', [OfferController::class, 'UpdateOfferStatus'])->name('UpdateStatus');
+    Route::middleware([RoleMiddleware::class, 'entrepreneur'])->group(function () {
+        route::get('/mystartup', [StartupController::class, 'GetStartupInfos'])->name('entreprenor.mystartup');
+        route::post('/mystartup', [StartupController::class, 'RegsiterStartup'])->name('entreprenor.registerstartup');
+        route::delete('/mystartup', [StartupController::class, 'DeleteStartup'])->name('entreprenor.deletestartup');
+        route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->name('entreprenor.updatestartup');
+        route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
+        route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
+        route::patch('/investors', [OfferController::class, 'UpdateOfferStatus'])->name('UpdateStatus');
+    });
 
     //investor routes
-    Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');
-    Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
-    route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
-    route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
+    Route::middleware([RoleMiddleware::class, 'investor'])->group(function () {
+        Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');
+        Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
+        route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
+        route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
+    });
 
     //common routes
     Route::delete('/conversations/{conversation_id}', [ConversationController::class, 'deleteConversation'])->name('chat.delete');
@@ -81,4 +63,4 @@ Route::middleware('auth')->group(function () {
 
 Route::fallback(function () {
     abort(404);
-}); 
+});

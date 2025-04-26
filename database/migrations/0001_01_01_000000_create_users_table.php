@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->enum('role', ['admin', 'investor', 'entrepreneur'])->default('investor');
+            $table->enum('role', ['investor', 'entrepreneur'])->default('investor');
             $table->text('bio')->nullable();
             $table->string('profile_picture_url')->default('https://i.pinimg.com/474x/07/c4/72/07c4720d19a9e9edad9d0e939eca304a.jpg')->nullable(); 
             $table->timestamps();
