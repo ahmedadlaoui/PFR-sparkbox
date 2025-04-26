@@ -19,11 +19,16 @@ class StartupController extends Controller
             return startup::All();
         }
     }
-    public function GetAllStartups($filterParam = null)
+    public function GetAllStartupsJson($filterParam)
     {
-        $AllStartups = $this->FilterStartups($filterParam);
-        return view('public/deals', compact('AllStartups'));
+        return response()->json($this->FilterStartups($filterParam));
     }
+    public function RenderDealsPage()
+    {
+        $AllStartups = $this->FilterStartups(null);
+        return view('public/deals',compact('AllStartups'));
+    }
+
     public function GetstartupDetails($id)
     {
         $Startup = Startup::findOrFail($id);

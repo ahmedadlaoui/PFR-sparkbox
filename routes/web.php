@@ -12,7 +12,13 @@ use App\Http\Controllers\StartupController;
 Route::get('/', function () {
     return view('public/home');
 })->name('home');
-Route::get('/deals/{filterParam?}', [StartupController::class, 'GetAllStartups'])->name('deals');
+
+
+Route::get('/deals', [StartupController::class, 'RenderDealsPage'])->name('deals');
+
+Route::get('/startups/json/{filterParam?}', [StartupController::class, 'GetAllStartupsJson'])->name('startups.json');
+
+
 Route::get('deal_details/{id}', [StartupController::class, 'GetstartupDetails'])->name('details');
 Route::Post('/deal_details/{id}', [OfferController::class, 'CreateOffer'])->name('add.offer');
 

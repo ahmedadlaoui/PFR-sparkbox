@@ -146,7 +146,7 @@
 
                     <div class="flex items-center bg-gray-50 rounded-lg px-4 py-2.5 shadow-sm flex-grow">
                         <i data-feather="search" class="h-5 w-5 text-gray-400 mr-3"></i>
-                        <input type="text" placeholder="Search opportunities"
+                        <input type="text" id="search-startups" placeholder="Search opportunities"
                             class="clean-search w-full font-['Inter',_sans-serif] text-gray-700 bg-transparent text-base">
                     </div>
 
@@ -163,7 +163,7 @@
                         </button>
                         <button
                             class="category-filter whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            Number of offers
+                            Sort by Number of offers
                         </button>
                     </div>
                 </div>
@@ -177,11 +177,11 @@
 
 
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="startup-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 @foreach($AllStartups as $Startup)
 
-                <a  href="{{ route('details', ['id' => $Startup->id]) }}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
+                <a href="{{ route('details', ['id' => $Startup->id]) }}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
                     <div class="relative h-[255px]">
                         <img src="{{$Startup->cover}}"
                             alt="EcoFlow energy storage" class="w-full h-full object-cover">
@@ -216,34 +216,7 @@
 
 
 
-                <!-- <div class="flex justify-center mt-14">
-                <div class="flex items-center space-x-2">
 
-
-                    <button
-                        class="w-10 h-10 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-
-
-
-                    <span
-                        class="w-10 h-10 flex items-center justify-center rounded-md bg-[#0049FF] text-white font-medium">1</span>
-
-
-
-                    <button
-                        class="w-10 h-10 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
-                </div>
-            </div> -->
             </div>
     </main>
 
@@ -417,24 +390,68 @@
         </a>
     </div>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            feather.replace({
-                stroke: 1.5
-            });
+
 
             const categoryFilters = document.querySelectorAll('.category-filter');
+            const startupContainer = document.getElementById('startup-container');
+
+            const searchbar = document.getElementById('search-startups');
 
             categoryFilters.forEach(filter => {
                 filter.addEventListener('click', function() {
                     categoryFilters.forEach(f => f.classList.remove('active'));
                     this.classList.add('active');
-                    console.log('Filter selected:', this.textContent.trim());
+
+                    let filterparam;
+                    if (this.innerHTML.trim() === 'All') {
+                        filterparam = 'All';
+                    } else if (this.innerHTML.trim() === 'Sort by date') {
+                        filterparam = 'SortByDate';
+                    } else {
+                        filterparam = 'SortByOffers';
+                    }
+
+                    fetch(`/startups/json/${filterparam}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            startupContainer.innerHTML = '';
+
+                            data.forEach(startup => {
+                                const card = `
+                                <a href="/details/${startup.id}" class="w-full bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-[500px]">
+                                    <div class="relative h-[255px]">
+                                        <img src="${startup.cover}" alt="${startup.name}" class="w-full h-full object-cover">
+                                        <div class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
+                                            <img src="${startup.logo}" alt="${startup.name} logo" class="w-full h-full object-cover rounded-[4px]">
+                                        </div>
+                                    </div>
+                                    <div class="pt-12 px-6 pb-6">
+                                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">${startup.name}</h3>
+                                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
+                                            ${startup.description}
+                                        </p>
+                                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">
+                                            ${new Date(startup.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        </p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">${startup.category}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                                startupContainer.insertAdjacentHTML('beforeend', card);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        });
                 });
             });
         });
     </script>
+
 </body>
 
 </html>
