@@ -440,9 +440,11 @@
 
                     <!-- Create offer button -->
                     <div class="hero-cta">
+                        @if(Auth::id() && Auth::User()->role == 'investor')
                         <button id="create-offer-btn" class="hero-button">
                             <i data-feather="plus-circle" class="h-4 w-4 mr-2 inline-block"></i> Create offer
                         </button>
+                        @endif
                     </div>
                 </div>
 
@@ -471,6 +473,7 @@
                 </div>
 
                 <!-- AI Insights Section -->
+                @if(Auth::id() && Auth::User()->role == 'investor')
                 <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">AI-Powered Insights</h3>
@@ -481,6 +484,7 @@
                         </p>
                     </div>
                 </div>
+                @endif
             </div>
 
             <!-- Sidebar with consolidated startup data -->

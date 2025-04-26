@@ -28,4 +28,7 @@ class ProfileController extends Controller
 
         return redirect()->route('settings');
     }
+    public function RenderSettingsPage(){
+        return view('common/settings');
+    }
 }
