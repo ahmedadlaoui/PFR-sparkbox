@@ -555,7 +555,7 @@
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 mb-1">Total Offers</p>
-                                            <h3 class="text-2xl font-bold text-gray-800">12</h3>
+                                            <h3 class="text-2xl font-bold text-gray-800">{{$MyOffers->count()}}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -570,7 +570,7 @@
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 mb-1">Confirmed Investments</p>
-                                            <h3 class="text-2xl font-bold text-gray-800">$345,000</h3>
+                                            <h3 class="text-2xl font-bold text-gray-800">{{$Sumconfirmed}}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -585,7 +585,7 @@
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 mb-1">In Negotiation</p>
-                                            <h3 class="text-2xl font-bold text-gray-800">$178,500</h3>
+                                            <h3 class="text-2xl font-bold text-gray-800">{{$SumInNegotioation}}</h3>
                                         </div>
                                     </div>
                                 </div>

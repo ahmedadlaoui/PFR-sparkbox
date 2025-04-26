@@ -27,7 +27,8 @@ class OfferController extends Controller
     public function GetMyoffers()
     {
         $MyOffers = Offer::Where('user_id', Auth::id())->get();
-        return view('investor/dashboard', compact('MyOffers'));
+        $Sumconfirmed = Offer::Where('user_id',Auth::id())->where('status', 'confirmed')->sum('amount');
+        return view('investor/dashboard', compact('MyOffers','Sumconfirmed'));
     }
     public function GetStartupInvestors()
     {

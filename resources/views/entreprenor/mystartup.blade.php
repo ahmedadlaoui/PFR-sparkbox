@@ -324,7 +324,7 @@
                         <div class="container mx-auto px-6">
                             <div class="flex justify-between items-center mb-8">
                                 <h2 class="text-xl md:text-2xl font-bold text-gray-900">Investors Interested in Your Startup</h2>
-                                <a href="#"
+                                <a href="{{route('entreprenor.investors')}}"
                                     class="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center group">
                                     View All <i data-feather="chevron-right" class="h-4 w-4 ml-1"></i>
                                 </a>
@@ -355,11 +355,6 @@
                                             <span class="font-bold ml-1">{{$offer->amount}} $</span>
                                         </p>
 
-                                        <button
-                                            class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                            <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                            Chat
-                                        </button>
                                     </div>
                                 </div>
                                 @endforeach

@@ -33,9 +33,6 @@ Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investo
 route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
 route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
 
-Route::get('/portfolio', function () {
-    return view('investor.portfolio');
-})->name('investor.portfolio');
 
 
 Route::get('/chat', [ConversationController::class, 'GetConversations'])->name('chat');
