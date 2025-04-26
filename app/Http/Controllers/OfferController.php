@@ -52,10 +52,10 @@ class OfferController extends Controller
         return redirect()->route('investor.dashboard');
     }
 
-    public function UpdateOfferStatus($id){
-       $OffertoUpdate = Offer::findOrFail($id);
+    public function UpdateOfferStatus(){
+       $OffertoUpdate = Offer::findOrFail(request('offer_toupdate'));
        $OffertoUpdate->status = request('status');
        $OffertoUpdate->save();
-       return redirect()->route('investor.dashboard');
+       return redirect()->route('entreprenor.investors');
     }
 }

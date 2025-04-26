@@ -165,20 +165,21 @@
                                             class="w-12 h-12 rounded-full object-cover border border-gray-200">
                                         <h3 class="text-base font-semibold text-gray-800">{{$investor->user->name}}</h3>
                                     </div>
-                                    <form action="{{route('UpdateStatus')}}" method="POST" class="flex items-center" id="editstatus-form">
+                                    <form action="{{ route('UpdateStatus')}}" method="POST" class="flex items-center" id="editstatus-form-{{ $investor->id }}">
                                         @method('patch')
                                         @csrf
+                                        <input type="hidden" name="offer_toupdate" value="{{ $investor->id }}">
                                         <select name="status"
-                                            class="text-xs border border-gray-300 rounded-md py-1.5 pl-3 pr-7 bg-white text-gray-700 focus:ring-1 focus:ring-blue-500 focus:outline-none appearance-none"
+                                            class="text-xs border border-gray-300 rounded-md py-1.5 pl-3 pr-7 bg-white text-gray-700 focus:ring-1 focus:ring-blue-500 focus:outline-none appearance-none status-select"
                                             style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'/%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1em;">
 
-                                            <option value="in negotiation" {{ $investor->status === 'confirmed'?'in negotiation':''}}>In negotiation</option>
-                                            <option value="confirmed" {{ $investor->status === 'confirmed'?'selected disabled':''}}>Confirm</option>
-                                            <option value="declined" {{ $investor->status === 'declined'?'selected':''}}>Decline</option>
-
+                                            <option value="in negotiation" {{ $investor->status === 'in negotiation' ? 'selected disabled' : '' }}>In negotiation</option>
+                                            <option value="confirmed" {{ $investor->status === 'confirmed' ? 'selected disabled' : '' }}>Confirmed</option>
+                                            <option value="declined" {{ $investor->status === 'declined' ? 'selected disabled' : '' }}>Declined</option>
 
                                         </select>
                                     </form>
+
                                 </div>
 
                                 <!-- Offer Description -->
@@ -265,6 +266,14 @@
                     // Filter functionality would be implemented here
                     console.log('Filter by amount:', value);
                 });
+            });
+
+
+        });
+        var statusSelects = document.querySelectorAll('.status-select');
+        statusSelects.forEach((selectElement) => {
+            selectElement.addEventListener('change', () => {
+                selectElement.closest('form').submit();
             });
         });
     </script>

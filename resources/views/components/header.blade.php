@@ -8,19 +8,11 @@
 
             <!-- Navigation moved toward center with flex-1 -->
             <div class="flex-1 flex justify-center items-center">
-                <!-- Clean modern search bar -->
-                <div class="hidden md:flex items-center max-w-md w-64 bg-gray-50 rounded-lg border border-gray-100 px-3 py-1.5 mr-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <input type="text" placeholder="Search..." class="bg-transparent border-none outline-none w-full text-sm">
-                </div>
 
                 <!-- Navigation with larger font -->
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="text-sm md:text-base font-medium font-['Inter',_sans-serif] {{ request()->routeIs('home') ? 'text-blue-600' : 'text-gray-600' }}">Home</a>
                     <a href="{{ route('deals') }}" class="text-sm md:text-base font-medium hover:text-blue-600 transition-colors font-['Inter',_sans-serif] {{ request()->routeIs('deals') ? 'text-blue-600' : 'text-gray-600' }}">Deals</a>
-                    <a href="#" class="text-sm md:text-base font-medium hover:text-blue-600 transition-colors font-['Inter',_sans-serif] text-gray-600">About</a>
                 </nav>
             </div>
 
