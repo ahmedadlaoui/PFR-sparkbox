@@ -576,6 +576,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="offer_message" class="form-label">Message to Founder</label>
+                    <textarea id="offer_message" name="offer_message" class="form-input" rows="4"
+                        placeholder="Introduce yourself and explain why you're interested in investing in this startup"></textarea>
+                    <p class="text-xs text-gray-500 mt-1">A personal message can increase your chances of connecting with the founder</p>
+                </div>
+
+                <div class="form-group">
                     <p class="text-sm text-gray-600">
                         By submitting this offer, you agree to enter into negotiations with {{ $Startup->name }}. Your offer will be visible to the founder and can be accepted or declined.
                     </p>

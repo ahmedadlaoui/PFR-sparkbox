@@ -13,6 +13,7 @@ class Offer extends Model
         'status',
         'user_id',
         'startup_id',
+        'offer_message'
     ];
 
     public function user(): BelongsTo

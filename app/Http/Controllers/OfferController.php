@@ -13,11 +13,13 @@ class OfferController extends Controller
     {
 
         request()->validate([
-            'amount' => 'required|integer|min:500'
+            'amount' => 'required|integer|min:500',
+            'offer_message' => 'required|string|max:60'
         ]);
 
         $NewOffer = new Offer;
         $NewOffer->amount = request('amount');
+        $NewOffer->offer_message = request('offer_message');
         $NewOffer->user_id = Auth::id();
         $NewOffer->startup_id = $id;
         $NewOffer->save();
@@ -48,5 +50,12 @@ class OfferController extends Controller
     {
         Offer::findOrFail(request('offer_id'))->delete();
         return redirect()->route('investor.dashboard');
+    }
+
+    public function UpdateOfferStatus($id){
+       $OffertoUpdate = Offer::findOrFail($id);
+       $OffertoUpdate->status = request('status');
+       $OffertoUpdate->save();
+       return redirect()->route('investor.dashboard');
     }
 }

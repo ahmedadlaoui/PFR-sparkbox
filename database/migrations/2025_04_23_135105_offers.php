@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->float('amount');
+            $table->string('offer_message');
             $table->enum('status',['confirmed','declined','in negotiation'])->default('in negotiation');
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('startup_id')->onDelete('cascade');

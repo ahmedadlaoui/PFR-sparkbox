@@ -26,6 +26,7 @@ route::post('/mystartup/update', [StartupController::class, 'UpdateStartup'])->n
 
 route::get('/investors', [OfferController::class, 'GetStartupInvestors'])->name('entreprenor.investors');
 route::post('/investors', [ConversationController::class, 'AddConversation'])->name('add.conversation');
+route::patch('/investors',[OfferController::class,'UpdateOfferStatus'])->name('UpdateStatus');
 
 //investor
 

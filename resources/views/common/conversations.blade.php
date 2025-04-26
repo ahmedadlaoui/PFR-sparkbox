@@ -47,11 +47,6 @@
         @else
         <!-- No conversations state -->
         <div class="flex flex-col items-center justify-center h-full text-center p-6">
-            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-            </div>
             <p class="text-gray-600 font-medium text-sm mb-1">No Conversations Yet</p>
             <p class="text-xs text-gray-500">Your conversations will appear here</p>
         </div>

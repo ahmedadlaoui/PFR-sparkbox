@@ -157,34 +157,53 @@
 
                             @foreach($Investors as $investor)
 
-                            <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-                                <div class="flex items-center mb-5">
-                                    <img src="{{$investor->user->profile_picture_url}}" alt="Alex Morgan"
-                                        class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-white shadow-sm">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">{{$investor->user->name}}</h3>
-                                        <p class="text-gray-500 text-xs uppercase tracking-wider mt-1">{{$investor->user->bio}}</p>
+                            <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm relative flex flex-col items-start gap-4">
+                                <!-- Top section: Image + Name + Status -->
+                                <div class="w-full flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <img src="{{$investor->user->profile_picture_url}}" alt="Profile Picture"
+                                            class="w-12 h-12 rounded-full object-cover border border-gray-200">
+                                        <h3 class="text-base font-semibold text-gray-800">{{$investor->user->name}}</h3>
                                     </div>
+                                    <form action="{{route('UpdateStatus')}}" method="POST" class="flex items-center" id="editstatus-form">
+                                        @method('patch')
+                                        @csrf
+                                        <select name="status"
+                                            class="text-xs border border-gray-300 rounded-md py-1.5 pl-3 pr-7 bg-white text-gray-700 focus:ring-1 focus:ring-blue-500 focus:outline-none appearance-none"
+                                            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'/%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1em;">
+
+                                            <option value="in negotiation" {{ $investor->status === 'confirmed'?'in negotiation':''}}>In negotiation</option>
+                                            <option value="confirmed" {{ $investor->status === 'confirmed'?'selected disabled':''}}>Confirm</option>
+                                            <option value="declined" {{ $investor->status === 'declined'?'selected':''}}>Decline</option>
+
+
+                                        </select>
+                                    </form>
                                 </div>
 
-                                <div class="flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-800 flex items-center">
-
-                                        <span>ready to invest : </span>
-                                        <span class="font-bold ml-1">{{$investor->amount}} $</span>
+                                <!-- Offer Description -->
+                                <div class="w-full">
+                                    <p class="text-sm text-gray-600">
+                                        {{$investor->offer_message}}
                                     </p>
-                                    <form action="" method="POST">
+                                </div>
+
+                                <!-- Bottom section: Invest Amount + Chat button -->
+                                <div class="w-full flex items-center justify-between">
+                                    <p class="text-sm text-gray-700">
+                                        Ready to invest: <span class="font-bold">{{$investor->amount}} $</span>
+                                    </p>
+                                    <form action="{{route('add.conversation')}}" method="POST" class="flex items-center">
                                         @csrf
                                         <input type="hidden" value="{{$investor->user->id}}" name="investor_id">
                                         <button type="submit"
-                                            class="px-4 py-1.5 border border-gray-200 text-gray-800 text-sm font-medium rounded-lg flex items-center bg-white">
-                                            <i data-feather="message-circle" class="h-3.5 w-3.5 mr-1.5"></i>
-                                            Chat
+                                            class="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg bg-white hover:bg-gray-50">
+                                            <i data-feather="message-circle" class="w-4 h-4"></i> Chat
                                         </button>
                                     </form>
-
                                 </div>
                             </div>
+
 
                             @endforeach
                         </div>

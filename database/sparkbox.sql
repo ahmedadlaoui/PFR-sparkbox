@@ -67,7 +67,7 @@ INSERT INTO startups (
     61,
     95000,
     12,
-    2,
+    1,
     NOW(),
     NOW()
 );
