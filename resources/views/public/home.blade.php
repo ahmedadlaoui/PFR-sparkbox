@@ -28,13 +28,16 @@
                 },
                 keyframes: {
                     float: {
-                        '0%, 100%': { transform: 'translateY(0)' },
-                        '50%': { transform: 'translateY(-10px)' },
+                        '0%, 100%': {
+                            transform: 'translateY(0)'
+                        },
+                        '50%': {
+                            transform: 'translateY(-10px)'
+                        },
                     }
                 }
             }
         }
-
     </script>
     <style>
         .gradient-text {
@@ -187,16 +190,16 @@
 </head>
 
 <body class="font-inter bg-whitetext-gray-800 text-sm antialiased">
-    
-<x-header />
+
+    <x-header />
 
 
-    
+
     <section class="pt-14 bg-[#F2F2F2] relative" style="height: 550px;">
         <div id="domain-display" class="h-full w-full relative overflow-hidden">
-            
+
             <div class="flex w-full h-full items-center">
-                
+
                 <div id="domain-content"
                     class="w-full md:w-1/2 xl:w-5.5/12 pl-8 sm:pl-12 md:pl-16 lg:pl-28 pr-8 z-10 ml-0 md:ml-12 lg:ml-16">
                     <h2 class="text-[48px] font-bold leading-tight text-[#1A1A1A] mb-4 font-['Inter',_sans-serif]">
@@ -215,12 +218,12 @@
                     </div>
                 </div>
 
-                
+
                 <div
                     class="hidden md:flex md:flex-row md:gap-2 absolute right-28 lg:right-44 top-1/2 transform -translate-y-1/2 z-10">
-                    
+
                     <div class="w-[197px] flex flex-col gap-2">
-                        
+
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="https://in-focusindia.com/wp-content/uploads/2023/12/shutterstock_2263545623.jpg"
@@ -228,32 +231,32 @@
 
                         </div>
 
-                        
+
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/realestate.png" class="w-full rounded-[20px]" alt="Real Estate Industry">
 
                         </div>
 
-                        
+
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/conent.png" class="w-full rounded-[20px]" alt="Content Industry">
-                            
+
                         </div>
                     </div>
 
-                    
+
                     <div class="w-[197px] flex flex-col gap-2 h-full">
-                        
+
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden domain-card">
                             <img src="images/finance.png" class="w-full rounded-[20px]" alt="Finance Industry">
-                            
+
 
                         </div>
 
-                        
+
                         <div
                             class="rounded-[20px] shadow-md hover:shadow-lg transition-all duration-300 flex-grow relative overflow-hidden domain-card">
                             <img src="https://www.ibef.org/assets/images/Renewable-Energy-3.jpg"
@@ -266,41 +269,41 @@
         </div>
     </section>
 
-    
+
     <section class="bg-white py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between pr-8 ml-0 md:ml-12 lg:ml-16">
-                
+
                 <div class="flex flex-wrap w-full md:w-full mb-8 md:mb-0">
-                    
+
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 pr-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">3M+</p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Global investor
                             community</p>
                     </div>
-                    
-                    
+
+
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">2,500+
                         </p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Ventures supported</p>
                     </div>
 
-                    
+
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">31</p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Unicorns in portfolio
                         </p>
                     </div>
 
-                    
+
                     <div class="w-1/5 text-left md:border-r md:border-gray-200 px-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">$2.6B+
                         </p>
                         <p class="text-[#666666] text-sm font-normal font-['Inter',_sans-serif]">Capital raised</p>
                     </div>
 
-                    
+
                     <div class="w-1/5 text-left pl-2">
                         <p class="text-[#1A1A1A] text-2xl md:text-3xl font-bold font-['Inter',_sans-serif] mb-1">Powered
                             by</p>
@@ -315,7 +318,7 @@
         </div>
     </section>
 
-    
+
     <section class="bg-white py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12 pr-8 ml-0 md:ml-12 lg:ml-16">
@@ -324,116 +327,50 @@
                     most interest</p>
             </div>
 
-            
-            <div class="flex flex-nowrap overflow-x-auto pr-8 ml-0 md:ml-12 lg:ml-16 gap-[44px] pb-4">
-                
+
+            <div class="flex flex-nowrap overflow-x-auto pr-8 ml-0 md:ml-12 lg:ml-16 gap-[44px] pb-4" style="grid-template-columns: 1fr 1fr 1fr;">
+
+                @foreach($MosttractionStartups as $startup)
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="EcoFlow energy storage" class="w-full h-full object-cover">
+                        <img src="{{$startup->cover}}"
+                            alt="startup cover" class="w-full h-full object-cover">
                         <div
                             class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                                alt="EcoFlow logo" class="w-full h-full object-cover rounded-[4px]">
+                            <img src="{{$startup->logo}}"
+                                alt="Startup logo" class="w-full h-full object-cover rounded-[4px]">
                         </div>
                     </div>
                     <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">EcoFlow
+                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">{{$startup->name}}
                         </h3>
                         <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Sustainable energy storage solutions for homes and businesses with innovative battery
-                            technology.
+                            {{$startup->description}}
                         </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">San Francisco,
-                            CA</p>
+                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Presented by {{$startup->user->name}}</p>
                         <div class="flex flex-wrap gap-2">
                             <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">CleanTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Energy</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Hardware</span>
+                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">{{$startup->category}}</span>
+
                         </div>
                     </div>
                 </div>
 
-                
-                <div
-                    class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="EcoFlow energy storage" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                                alt="EcoFlow logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">EcoFlow
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Sustainable energy storage solutions for homes and businesses with innovative battery
-                            technology.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">San Francisco,
-                            CA</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">CleanTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Energy</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Hardware</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
-                
-                <div
-                    class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="EcoFlow energy storage" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://marketplace.canva.com/EAF0Hq4UHjM/1/0/1600w/canva-orange-phoenix-animal-gaming-logo-WIPEOAyYPIs.jpg"
-                                alt="EcoFlow logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">EcoFlow
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Sustainable energy storage solutions for homes and businesses with innovative battery
-                            technology.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">San Francisco,
-                            CA</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">CleanTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Energy</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Hardware</span>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
-
-            
             <div class="flex justify-center mt-10 ml-0  ">
-                <a href="#"
+                <a href="{{route('deals')}}"
                     class="w-[350px] py-3 bg-white text-gray-800 text-base font-medium rounded-lg   transition-all border-2 border-gray-200  flex items-center justify-center font-['Inter',_sans-serif]">
                     View all
                 </a>
             </div>
-        </div>
     </section>
 
-    
+
     <section class="bg-white py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12 pr-8 ml-0 md:ml-12 lg:ml-16">
@@ -442,119 +379,55 @@
                     on the platform</p>
             </div>
 
-            
+
             <div class="flex flex-nowrap overflow-x-auto pr-8 ml-0 md:ml-12 lg:ml-16 gap-[44px] pb-4">
-                
+
+                @foreach($JustLunchedStartups as $startup)
                 <div
                     class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                     <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="NutriTech food analytics" class="w-full h-full object-cover">
+                        <img src="{{$startup->cover}}"
+                            alt="startup cover" class="w-full h-full object-cover">
                         <div
                             class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
-                                alt="NutriTech logo" class="w-full h-full object-cover rounded-[4px]">
+                            <img src="{{$startup->logo}}"
+                                alt="Startup logo" class="w-full h-full object-cover rounded-[4px]">
                         </div>
                     </div>
                     <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">NutriTech
+                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">{{$startup->name}}
                         </h3>
                         <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            AI-powered food analytics platform helping consumers make healthier choices with
-                            personalized nutrition insights.
+                            {{$startup->description}}
                         </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Boston, MA</p>
+                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Presented by {{$startup->user->name}}</p>
                         <div class="flex flex-wrap gap-2">
                             <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">FoodTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">AI</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Health</span>
+                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">{{$startup->category}}</span>
+
                         </div>
                     </div>
                 </div>
 
-                
-                <div
-                    class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="MobileMed telemedicine" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://img.freepik.com/free-vector/abstract-logo-with-colorful-shapes_1017-30230.jpg"
-                                alt="MobileMed logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">MobileMed
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Transforming healthcare access in rural communities through affordable mobile telemedicine
-                            solutions.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Chicago, IL
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">HealthTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Mobile</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">SaaS</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
-                
-                <div
-                    class="w-[350px] flex-shrink-0 h-[500px] bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="relative h-[255px]">
-                        <img src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                            alt="EcoCharge solar" class="w-full h-full object-cover">
-                        <div
-                            class="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-md shadow-md overflow-hidden border border-gray-100">
-                            <img src="https://img.freepik.com/premium-vector/leaf-energy-logo_23987-171.jpg"
-                                alt="EcoCharge logo" class="w-full h-full object-cover rounded-[4px]">
-                        </div>
-                    </div>
-                    <div class="pt-12 px-6 pb-6">
-                        <h3 class="text-[24px] font-extrabold text-[#1A202C] mb-2 font-['Inter',_sans-serif]">EcoCharge
-                        </h3>
-                        <p class="text-[#555555] text-[15px] font-normal mb-3 font-['Inter',_sans-serif] line-clamp-2">
-                            Portable solar charging solutions with breakthrough efficiency for outdoor enthusiasts and
-                            emergency preparedness.
-                        </p>
-                        <p class="text-[#999999] text-[16px] font-normal mb-4 font-['Inter',_sans-serif]">Austin, TX</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">CleanTech</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Solar</span>
-                            <span
-                                class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Hardware</span>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
-
-            
             <div class="flex justify-center mt-10 ml-0  ">
-                <a href="#"
+                <a href="{{route('deals')}}"
                     class="w-[350px] py-3 bg-white text-gray-800 text-base font-medium rounded-lg   transition-all border-2 border-gray-200  flex items-center justify-center font-['Inter',_sans-serif]">
                     View all
                 </a>
             </div>
-        </div>
     </section>
 
 
-   
-    
-<x-footer />
 
-    
+
+    <x-footer />
+
+
     <div
         class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 px-6 flex justify-around items-center md:hidden z-50">
         <a href="#" class="flex flex-col items-center text-blue-600">

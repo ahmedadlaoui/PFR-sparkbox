@@ -19,11 +19,11 @@ class StartupController extends Controller
 
     public function GetstartupDetails($id)
     {
-        
+
         $Startup = Startup::findOrFail($id);
         $amountraised = $Sumconfirmed = Offer::where('status', 'confirmed')->sum('amount');
         $insights = nl2br($this->geminiService->getSuggestions($Startup));
-        return view('public/deal_details', compact('Startup', 'amountraised','insights'));
+        return view('public/deal_details', compact('Startup', 'amountraised', 'insights'));
     }
 
 
@@ -155,5 +155,12 @@ class StartupController extends Controller
 
         return redirect()->route('entreprenor.mystartup')
             ->with('success', 'Startup updated successfully.');
+    }
+
+    public function renderHomePage()
+    {
+        $MosttractionStartups = Startup::with('user')->withCount('offers')->orderBy('offers_count', 'desc')->limit(3)->get();
+        $JustLunchedStartups = Startup::orderBy('created_at', 'desc')->limit(3)->get();
+        return view('public/home', compact('MosttractionStartups', 'JustLunchedStartups'));
     }
 }

@@ -11,10 +11,9 @@ use App\Http\Middleware\RoleMiddleware;
 
 
 
-// Public routes
-Route::get('/', function () {
-    return view('public/home');
-})->name('home');
+
+route::get('/',[StartupController::class,'renderHomePage'])->name('home');
+
 Route::get('/deals', [StartupController::class, 'RenderDealsPage'])->name('deals');
 Route::get('/startups/json/{filterParam?}', [StartupController::class, 'GetAllStartupsJson'])->name('startups.json');
 Route::get('/startups/search/{SearchValue}', [StartupController::class, 'SearchStartups'])->name('startups.json.search');
