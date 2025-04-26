@@ -4,11 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Startup;
+use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Services\GeminiService;
 
 class StartupController extends Controller
 {
+    protected $geminiService;
+
+    public function __construct(GeminiService $geminiService)
+    {
+        $this->geminiService = $geminiService;
+    }
+
+    public function GetstartupDetails($id)
+    {
+        
+        $Startup = Startup::findOrFail($id);
+        $amountraised = $Sumconfirmed = Offer::where('status', 'confirmed')->sum('amount');
+        $insights = nl2br($this->geminiService->getSuggestions($Startup));
+        return view('public/deal_details', compact('Startup', 'amountraised','insights'));
+    }
+
+
+
     private function FilterStartups($filterParam)
     {
         if ($filterParam && $filterParam === 'SortByDate') {
@@ -19,9 +38,10 @@ class StartupController extends Controller
             return startup::All();
         }
     }
-    public function SearchStartups($SearchValue){
-       $SearchedForstartups = startup::Where('description','like',"%$SearchValue%")->orWHere('name', 'like', "%$SearchValue%")->orWhere('details', 'like', "%$SearchValue%")->get();
-       return response()->json($SearchedForstartups);
+    public function SearchStartups($SearchValue)
+    {
+        $SearchedForstartups = startup::Where('description', 'like', "%$SearchValue%")->orWHere('name', 'like', "%$SearchValue%")->orWhere('details', 'like', "%$SearchValue%")->get();
+        return response()->json($SearchedForstartups);
     }
 
     public function GetAllStartupsJson($filterParam)
@@ -31,14 +51,9 @@ class StartupController extends Controller
     public function RenderDealsPage()
     {
         $AllStartups = $this->FilterStartups(null);
-        return view('public/deals',compact('AllStartups'));
+        return view('public/deals', compact('AllStartups'));
     }
 
-    public function GetstartupDetails($id)
-    {
-        $Startup = Startup::findOrFail($id);
-        return view('public/deal_details', compact('Startup'));
-    }
     public function GetStartupInfos()
     {
         $myStartup = Startup::where('user_id', Auth::id())->first();

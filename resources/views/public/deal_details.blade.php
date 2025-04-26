@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -468,6 +469,18 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- AI Insights Section -->
+                <div class="content-panel">
+                    <div class="panel-header">
+                        <h3 class="section-heading">AI-Powered Insights</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-gray-700 mb-4">
+                        {!! $insights !!}
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- Sidebar with consolidated startup data -->
@@ -483,13 +496,13 @@
                         <div class="mb-4 pb-4 border-b border-gray-100">
                             <div class="flex justify-between mb-1">
                                 <div class="text-sm font-medium">Funding Progress</div>
-                                <div class="text-sm font-medium">70%</div>
+                                <div class="text-sm font-medium">{{($amountraised * 100)/$Startup->funding_goal}}%</div>
                             </div>
                             <div class="progress-container">
-                                <div class="progress-bar" style="width: 70%"></div>
+                                <div class="progress-bar" style="width: {{ ($amountraised * 100)/$Startup->funding_goal }}% ;"></div>
                             </div>
                             <div class="flex justify-between mt-1">
-                                <span class="text-xs text-gray-500">$8,450,000 raised</span>
+                                <span class="text-xs text-gray-500">${{$amountraised}} raised</span>
                                 <span class="text-xs text-gray-500">Target: ${{ number_format($Startup->funding_goal) }}</span>
                             </div>
                         </div>
