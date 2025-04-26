@@ -29,7 +29,11 @@ class OfferController extends Controller
         $MyOffers = Offer::Where('user_id', Auth::id())->get();
         $Sumconfirmed = Offer::Where('user_id',Auth::id())->where('status', 'confirmed')->sum('amount');
         $SumInNegotioation = Offer::Where('user_id',Auth::id())->where('status', 'in negotiation')->sum('amount');
-        return view('investor/dashboard', compact('MyOffers','Sumconfirmed','SumInNegotioation'));
+        $startupsCount = Offer::where('user_id', Auth::id())
+                      ->distinct('startup_id')
+                      ->count('startup_id');
+        
+        return view('investor/dashboard', compact('MyOffers','Sumconfirmed','SumInNegotioation','startupsCount'));
     }
     public function GetStartupInvestors()
     {

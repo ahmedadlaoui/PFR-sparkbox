@@ -600,7 +600,7 @@
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 mb-1">Startups Invested</p>
-                                            <h3 class="text-2xl font-bold text-gray-800">7</h3>
+                                            <h3 class="text-2xl font-bold text-gray-800">{{$startupsCount}}</h3>
                                         </div>
                                     </div>
                                 </div>
