@@ -619,9 +619,33 @@
 
                                 @foreach($MyOffers as $MyOffer)
                                 <div class="offer-card">
+                                    <!-- Status badge positioned at top left -->
+                                    <div class="absolute top-3 left-3 z-10">
+                                        @php
+                                        $statusColor = 'bg-yellow-50 text-yellow-600 border-yellow-200';
+                                        $statusDot = 'bg-yellow-500';
+
+                                        if($MyOffer->status === 'confirmed') {
+                                        $statusColor = 'bg-green-50 text-green-600 border-green-200';
+                                        $statusDot = 'bg-green-500';
+                                        } elseif($MyOffer->status === 'declined') {
+                                        $statusColor = 'bg-red-50 text-red-600 border-red-200';
+                                        $statusDot = 'bg-red-500';
+                                        } elseif($MyOffer->status === 'in negotiation') {
+                                        $statusColor = 'bg-blue-50 text-blue-600 border-blue-200';
+                                        $statusDot = 'bg-blue-500';
+                                        }
+                                        @endphp
+
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border {{ $statusColor }}">
+                                            <span class="w-2 h-2 rounded-full {{ $statusDot }} mr-1.5"></span>
+                                            {{ ucfirst($MyOffer->status ?? 'Pending') }}
+                                        </span>
+                                    </div>
 
                                     <div class="card-actions">
                                         <div class="relative">
+
                                             <button class="card-btn menu-dots-btn" id="card-menu-btn-{{ $MyOffer->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"

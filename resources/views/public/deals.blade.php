@@ -155,23 +155,15 @@
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-nowrap">
                         <button
                             class="category-filter active whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            Technology
+                            All
                         </button>
                         <button
                             class="category-filter whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            Healthcare
+                            Sort by date
                         </button>
                         <button
                             class="category-filter whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            FinTech
-                        </button>
-                        <button
-                            class="category-filter whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            CleanTech
-                        </button>
-                        <button
-                            class="category-filter whitespace-nowrap px-4 py-2 border rounded-lg text-sm font-medium border-gray-200 text-gray-700">
-                            Other
+                            Number of offers
                         </button>
                     </div>
                 </div>

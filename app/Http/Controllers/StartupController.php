@@ -9,13 +9,25 @@ use Illuminate\Support\Facades\Storage;
 
 class StartupController extends Controller
 {
-    public function GetAllStartups(){
-        $AllStartups = startup::All();
-        return view('public/deals',compact('AllStartups'));
+    private function FilterStartups($filterParam)
+    {
+        if ($filterParam && $filterParam === 'SortByDate') {
+            return startup::orderBy('created_at', 'desc')->get();
+        } elseif ($filterParam && $filterParam === 'SortByOffers') {
+            return startup::withcount('offers')->orderBy('offers_count', 'desc')->get();
+        } else {
+            return startup::All();
+        }
     }
-    public function GetstartupDetails($id){
+    public function GetAllStartups($filterParam = null)
+    {
+        $AllStartups = $this->FilterStartups($filterParam);
+        return view('public/deals', compact('AllStartups'));
+    }
+    public function GetstartupDetails($id)
+    {
         $Startup = Startup::findOrFail($id);
-        return view('public/deal_details',compact('Startup'));
+        return view('public/deal_details', compact('Startup'));
     }
     public function GetStartupInfos()
     {
