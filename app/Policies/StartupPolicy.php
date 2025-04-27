@@ -22,7 +22,7 @@ class StartupPolicy
      */
     public function view(User $user, Startup $startup): bool
     {
-        return false;
+        return $user->role === 'entrepreneur' && $user->startup()->exists() && $user->startup->is($startup);
     }
 
     /**
@@ -30,7 +30,7 @@ class StartupPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'entrepreneur' && !$user->startup->exists();
+        return $user->role === 'entrepreneur' && !$user->startup()->exists();
     }
 
     /**
@@ -38,7 +38,7 @@ class StartupPolicy
      */
     public function update(User $user, Startup $startup): bool
     {
-        return $user->role === 'entrepreneur' && $user->startup = $startup;
+        return $user->role === 'entrepreneur' && $user->startup()->exists() && $user->startup->is($startup);
     }
 
     /**
@@ -46,7 +46,7 @@ class StartupPolicy
      */
     public function delete(User $user, Startup $startup): bool
     {
-        return $user->role === 'entrepreneur' && $user->startup->exists() && $user->startup = $startup;
+        return $user->role === 'entrepreneur' && $user->startup()->exists() && $user->startup->is($startup);
     }
     /**
      * Determine whether the user can restore the model.
