@@ -17,4 +17,4 @@ Investors can browse available startups, make investment offers, and start priva
 - **Blade** (Laravel's Templating Engine)
 - **Tailwind CSS** (Frontend Styling)
 - **JavaScript** (For dynamic interactions)
-- **AI Algorithms** (For financial analysis and startup potential evaluation)
+- **AI API** (For financial analysis and startup potential evaluation)
