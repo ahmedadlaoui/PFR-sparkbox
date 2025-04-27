@@ -1,13 +1,12 @@
 <div class="messages-container h-full flex flex-col">
-    <!-- Chat header -->
+
     <div class="chat-header px-5 py-3.5 border-b border-gray-100 bg-white flex items-center">
         <div class="flex items-center flex-1">
             @if(isset($otherUser))
             <div class="relative flex-shrink-0">
                 <img src="{{ $otherUser->profile_picture_url ?? '' }}"
                     alt="{{ $otherUser->name }}"
-                    class="w-10 h-10 rounded-full object-cover bg-gray-200 mr-3"
-                    onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($otherUser->name) }}&color=7F9CF5&background=EBF4FF'">
+                    class="w-10 h-10 rounded-full object-cover bg-gray-200 mr-3">
 
             </div>
             <div>
@@ -31,7 +30,7 @@
                 </svg>
             </button>
 
-            <!-- Dropdown menu -->
+
             <div id="chat-options-dropdown" class="absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
                 <form method="POST" action="{{ route('chat.delete', ['conversation_id' => $activeConversation->id ?? '']) }}" onsubmit="return confirm('Are you sure you want to delete this conversation?');">
                     @csrf
@@ -48,8 +47,7 @@
         @endif
     </div>
 
-    <!-- Messages area - Adjusted max-height -->
-    <div class="messages-area flex-1 overflow-y-auto p-5 bg-white" id="message-container" style="max-height: calc(100vh - 230px);">
+    <div class="messages-area flex-1 overflow-y-auto p-5 bg-white" id="message-container" style="max-height: calc(100vh - 230px); height: calc(100% - 110px);">
         @if(isset($messages) && count($messages) > 0)
         @php
         $lastDate = null;
@@ -98,7 +96,7 @@
             @if($isSender)
             <div class="flex-shrink-0 ml-2">
                 <div class="w-8 h-8 rounded-full bg-gray-200 invisible">
-                    <!-- Invisible placeholder for alignment -->
+
                 </div>
             </div>
             @endif

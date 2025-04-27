@@ -38,7 +38,7 @@
             flex-direction: column;
         }
 
-        /* Main content - set to height that leaves room for footer */
+
         .main-content {
             flex: 1 0 auto;
             padding-top: 64.8px;
@@ -56,7 +56,7 @@
             margin: 0 auto;
             padding: 0;
             height: calc(100vh - 65px);
-            /* Adjust for header and footer */
+
             display: flex;
             flex-direction: column;
         }
@@ -71,7 +71,7 @@
             margin-bottom: 20px;
         }
 
-        /* Message styling */
+
         .message-bubble {
             max-width: 75%;
             padding: 14px 18px;
@@ -104,24 +104,148 @@
             text-align: right;
         }
 
-        /* Media queries for responsiveness */
+
         @media (max-width: 768px) {
             .chat-container {
                 grid-template-columns: 1fr;
-                height: calc(100vh - 100px);
+
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                max-height: calc(100vh - 130px);
+                margin-bottom: 30px;
             }
 
-            .conversation-mobile-hidden {
-                display: none;
+            .conversations-sidebar {
+                display: block;
+                height: auto;
+                max-height: 220px;
+
+                overflow-y: auto;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .messages-container {
+                display: flex;
+                height: calc(100vh - 350px);
+
+                flex: 1;
+            }
+
+            .content-container {
+                padding-bottom: 30px;
+
+            }
+
+
+            .conversations-sidebar .flex-1.overflow-y-auto {
+                max-height: 180px;
+            }
+
+
+            .messages-area {
+                max-height: calc(100vh - 400px) !important;
+            }
+
+
+            .messages-container .p-4.border-t {
+                flex-shrink: 0;
             }
         }
 
-        /* Auto-resize textarea */
+        @media (max-width: 480px) {
+            .message-bubble {
+                max-width: 85%;
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .chat-header {
+                padding: 10px;
+            }
+
+            .p-4 {
+                padding: 0.75rem;
+            }
+
+
+            .chat-container,
+            .conversations-sidebar,
+            .messages-container {
+                height: calc(100vh - 150px);
+            }
+
+
+            .conversations-sidebar {
+                max-height: 180px;
+            }
+
+            .messages-container {
+                height: calc(100vh - 300px);
+            }
+
+            .messages-area {
+                max-height: calc(100vh - 350px) !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .message-bubble {
+                max-width: 90%;
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+
+            .chat-container,
+            .conversations-sidebar,
+            .messages-container {
+                height: calc(100vh - 160px);
+            }
+
+
+            .conversations-sidebar {
+                max-height: 160px;
+            }
+
+            .messages-container {
+                height: calc(100vh - 280px);
+            }
+
+            .messages-area {
+                max-height: calc(100vh - 330px) !important;
+            }
+        }
+
+
+        .show-conversations .conversations-sidebar {
+            display: block;
+        }
+
+        .show-conversations .messages-container {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+
+
+            .back-to-conversations {
+                display: none;
+
+            }
+
+            .show-conversations .conversations-sidebar {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+
         textarea {
             overflow-y: hidden;
         }
 
-        /* Improved scrollbar styling */
+
         .messages-area::-webkit-scrollbar,
         .flex-1.overflow-y-auto::-webkit-scrollbar {
             width: 6px;
@@ -144,14 +268,14 @@
             background: #9ca3af;
         }
 
-        /* Ensure scrolling works properly on touch devices */
+
         .messages-area,
         .flex-1.overflow-y-auto {
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
         }
 
-        /* Footer styling */
+
         footer {
             flex-shrink: 0;
             width: 100%;
@@ -164,9 +288,9 @@
 
     <div class="main-content bg-white">
         <div class="content-container">
-            <div class="h-full w-full px-4 sm:px-6">
+            <div class="h-full w-full px-2 sm:px-6">
                 <div class="h-full">
-                    <div class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white h-full">
+                    <div id="chat-view" class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white h-full">
                         @include('common.conversations')
                         @include('common.messages')
                     </div>
@@ -179,35 +303,13 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather Icons
-            feather.replace();
-
-            // Auto-resize textarea
-            const textareas = document.querySelectorAll('textarea');
-            textareas.forEach(textarea => {
-                textarea.addEventListener('input', function() {
-                    this.style.height = 'auto';
-                    this.style.height = (this.scrollHeight) + 'px';
-                });
-            });
-
-            // Improved auto-scroll to bottom of messages
             const messageContainer = document.getElementById('message-container');
+
             if (messageContainer) {
-                // Scroll to bottom initially
                 messageContainer.scrollTop = messageContainer.scrollHeight;
-
-                // Ensure we scroll to bottom after dynamic content changes
-                const messagesObserver = new MutationObserver(() => {
-                    messageContainer.scrollTop = messageContainer.scrollHeight;
-                });
-
-                messagesObserver.observe(messageContainer, {
-                    childList: true
-                });
             }
 
-            // Chat options dropdown toggle
+
             const chatOptionsBtn = document.getElementById('chat-options-btn');
             const chatOptionsDropdown = document.getElementById('chat-options-dropdown');
 
@@ -217,7 +319,6 @@
                     chatOptionsDropdown.classList.toggle('hidden');
                 });
 
-                // Close dropdown when clicking elsewhere
                 document.addEventListener('click', function() {
                     if (!chatOptionsDropdown.classList.contains('hidden')) {
                         chatOptionsDropdown.classList.add('hidden');

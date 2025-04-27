@@ -29,8 +29,7 @@
         }
     </script>
     <style>
-        /* Modern minimal aside bar styling */
-        .aside-bar {
+                .aside-bar {
             width: 260px;
             background-color: white;
             height: calc(100vh - 80px);
@@ -66,8 +65,7 @@
             stroke-width: 1.8px;
         }
 
-        /* Main content area styling */
-        .main-content {
+                .main-content {
             padding-top: 30px;
             min-height: 100vh;
             margin-left: 0;
@@ -77,23 +75,19 @@
             width: 100%;
         }
 
-        /* Content container for proper width - match with home page */
-        .content-container {
+                .content-container {
             width: 100%;
             max-width: 1280px;
-            /* Changed from 1400px to match home page max-w-7xl */
-            margin: 0 auto;
+                        margin: 0 auto;
             padding: 0;
         }
 
-        /* Responsive padding for inner content */
-        .inner-content {
+                .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-        /* Mobile styling */
-        @media (max-width: 1024px) {
+                @media (max-width: 1024px) {
             .aside-bar {
                 transform: translateX(-100%);
                 transition: transform 0.25s ease;
@@ -118,8 +112,7 @@
             }
         }
 
-        /* Side navigation styling - for entrepreneur sidebar */
-        .side-nav {
+                .side-nav {
             width: 260px;
             height: calc(100vh - 80px);
             position: fixed;
@@ -155,8 +148,7 @@
             stroke-width: 1.8px;
         }
 
-        /* Settings-specific styling */
-        .settings-card {
+                .settings-card {
             background-color: white;
             border-radius: 12px;
             border: 1px solid #F0F0F0;
@@ -357,10 +349,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather icons with proper timing and parameters
+            
             feather.replace();
 
-            // Add mobile menu toggle button if it doesn't exist
+            
             if (!document.getElementById('mobile-menu-toggle')) {
                 const mobileToggle = document.createElement('button');
                 mobileToggle.id = 'mobile-menu-toggle';
@@ -368,11 +360,11 @@
                 mobileToggle.innerHTML = '<i data-feather="menu" class="h-6 w-6"></i>';
                 document.body.appendChild(mobileToggle);
 
-                // Re-initialize feather icons for the newly added button
+                
                 feather.replace();
             }
 
-            // Mobile menu toggle
+            
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const sideNav = document.querySelector('.side-nav');
 
@@ -382,7 +374,7 @@
                 });
             }
 
-            // Profile picture URL preview
+            
             const profilePictureUrl = document.getElementById('profile-picture-url');
             const previewImg = document.getElementById('profile-preview');
 

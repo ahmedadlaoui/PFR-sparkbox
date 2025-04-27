@@ -41,7 +41,7 @@
         }
     </script>
     <style>
-        /* Base styling with clean modern look - Changed to white background */
+        
         body {
             background-color: #FFFFFF;
         }
@@ -54,7 +54,7 @@
             transform: translateY(-5px);
         }
 
-        /* Card-specific animations - match with index.html */
+        
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -64,7 +64,7 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
-        /* Enhanced category filter style - Changed active color from orange to blue */
+        
         .category-filter {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -80,7 +80,7 @@
             border-color: #0049FF;
         }
 
-        /* Search input clean style */
+        
         .clean-search {
             border: none;
             outline: none;
@@ -93,28 +93,28 @@
             border: none;
         }
 
-        /* Better handling of the search and filters responsiveness */
+        
         @media (max-width: 768px) {
 
-            /* Stack search and filters on smaller screens */
+            
             .flex.flex-wrap.items-center.gap-3 {
                 flex-direction: column;
                 align-items: stretch;
             }
 
-            /* Make filters scroll horizontally on mobile */
+            
             .overflow-x-auto {
                 -webkit-overflow-scrolling: touch;
                 scroll-snap-type: x mandatory;
                 padding-bottom: 8px;
             }
 
-            /* Ensure no scrollbar shown but still scrollable */
+            
             .overflow-x-auto::-webkit-scrollbar {
                 display: none;
             }
 
-            /* Snap elements when scrolling */
+            
             .category-filter {
                 scroll-snap-align: start;
             }
@@ -133,8 +133,7 @@
                 <h1 class="text-3xl md:text-5xl font-extrabold text-black font-['Inter',_sans-serif]">Investment
                     opportunities</h1>
                 <p class="mt-2 text-base text-gray-600 font-['Inter',_sans-serif]">
-                    Browse current investment opportunities on Republic. All companies are
-                    <a href="#" class="text-blue-600 hover:underline">vetted & pass due diligence</a>.
+                    Browse current investment opportunities.
                 </p>
             </div>
 

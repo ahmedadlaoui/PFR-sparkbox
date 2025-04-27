@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Side navigation styling */
         .side-nav {
             width: 260px;
             height: calc(100vh - 80px);
@@ -46,7 +45,7 @@
             stroke-width: 1.8px;
         }
 
-        /* Main content area styling */
+
         .main-content {
             padding-top: 30px;
             min-height: 100vh;
@@ -57,7 +56,7 @@
             width: 100%;
         }
 
-        /* Content container for proper width - match with home page */
+
         .content-container {
             width: 100%;
             max-width: 1280px;
@@ -65,13 +64,13 @@
             padding: 0;
         }
 
-        /* Responsive padding for inner content */
+
         .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-        /* The startup banner should fit within constraints */
+
         .startup-banner-wrapper {
             width: 100%;
             margin-left: auto;
@@ -79,7 +78,7 @@
             max-width: 1280px;
         }
 
-        /* Startup banner styling - updated */
+
         .startup-banner {
             position: relative;
             height: 320px;
@@ -156,7 +155,7 @@
             backdrop-filter: blur(4px);
         }
 
-        /* Statistics section styling */
+
         .stats-section {
             background-color: white;
             padding: 24px 0;
@@ -181,7 +180,7 @@
             font-weight: 400;
         }
 
-        /* Empty state styling */
+
         .empty-state-container {
             display: flex;
             flex-direction: column;
@@ -213,7 +212,7 @@
             color: #9CA3AF;
         }
 
-        /* Mobile responsive adjustments */
+
         @media (max-width: 768px) {
             .side-nav {
                 transform: translateX(-100%);
@@ -253,13 +252,11 @@
                                 <img src="{{$myStartup->logo}}" alt="startup Logo">
                             </div>
 
-                            <!-- Replace standalone delete button with 3-dots menu -->
                             <div class="absolute top-5 right-5">
                                 <div class="relative">
                                     <button id="menu-button" class="flex items-center justify-center w-10 h-10 bg-black bg-opacity-40 hover:bg-opacity-60 text-white rounded-md transition-all duration-200 backdrop-blur-sm">
                                         <i data-feather="more-vertical" class="h-5 w-5 stroke-2"></i>
                                     </button>
-                                    <!-- Dropdown menu with dark background matching the button -->
                                     <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-black bg-opacity-40 backdrop-blur-sm rounded-md shadow-lg py-1 z-10">
                                         <button id="edit-startup-btn" class="w-full flex items-center px-4 py-2.5 text-sm text-white hover:bg-black hover:bg-opacity-20">
                                             <i data-feather="edit-2" class="h-4 w-4 mr-2 stroke-2"></i>
@@ -335,7 +332,6 @@
                             @if(!empty($myStartup->offers))
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 @foreach($myStartup->offers->sortByDesc('amount')->take(3) as $offer)
-                                <!-- Existing investor cards -->
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center mb-5">
                                         <img src="{{$offer->user->profile_picture_url}}" alt="{{$offer->user->name}}"
@@ -372,7 +368,6 @@
                         </div>
                     </section>
 
-                    <!-- Delete Confirmation Modal - Hidden by default -->
                     <div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                         <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8">
                             <div class="text-center mb-6">
@@ -401,7 +396,6 @@
                         </div>
                     </div>
 
-                    <!-- Edit Startup Modal - Hidden by default -->
                     <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                         <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                             <div class="px-8 py-5 border-b flex justify-between items-center sticky top-0 bg-white z-10">
@@ -416,13 +410,10 @@
                                     @csrf
                                     <input type="hidden" name="startup_id" value="{{$myStartup->id}}">
 
-                                    <!-- Modern Step Indicator -->
                                     <div class="relative mb-12">
-                                        <!-- Progress bar -->
                                         <div class="w-full h-1 bg-gray-200 absolute top-4 left-0 z-0"></div>
                                         <div id="edit-progress-bar" class="h-1 bg-blue-500 absolute top-4 left-0 z-0 transition-all duration-300" style="width: 25%"></div>
 
-                                        <!-- Steps -->
                                         <div class="flex justify-between relative z-10">
                                             <div class="edit-step-indicator active flex flex-col items-center" data-step="1">
                                                 <div class="w-8 h-8 rounded-full border-2 border-blue-500 bg-blue-500 text-white flex items-center justify-center font-semibold shadow-md transition-all duration-300">
@@ -451,7 +442,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 1: Basic Information -->
                                     <div class="edit-step-content" id="edit-step-1">
                                         <div class="space-y-6">
                                             <div class="form-group">
@@ -500,7 +490,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 2: Details -->
                                     <div class="edit-step-content hidden" id="edit-step-2">
                                         <div class="space-y-6">
                                             <div class="form-group">
@@ -531,7 +520,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 3: Financial Metrics -->
                                     <div class="edit-step-content hidden" id="edit-step-3">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div class="form-group md:col-span-2">
@@ -596,7 +584,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 4: Media -->
                                     <div class="edit-step-content hidden" id="edit-step-4">
                                         <div class="space-y-8">
                                             <div class="form-group">
@@ -667,7 +654,6 @@
                         </button>
                     </div>
 
-                    <!-- Startup Creation Modal - Hidden by default -->
                     <div id="startup-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                         <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                             <div class="px-8 py-5 border-b flex justify-between items-center sticky top-0 bg-white z-10">
@@ -681,13 +667,10 @@
                                 <form id="create-startup-form" action="{{ route('entreprenor.registerstartup')}}" method="POST" class="space-y-6">
                                     @csrf
 
-                                    <!-- Modern Step Indicator -->
                                     <div class="relative mb-12">
-                                        <!-- Progress bar -->
                                         <div class="w-full h-1 bg-gray-200 absolute top-4 left-0 z-0"></div>
                                         <div id="progress-bar" class="h-1 bg-blue-500 absolute top-4 left-0 z-0 transition-all duration-300" style="width: 25%"></div>
 
-                                        <!-- Steps -->
                                         <div class="flex justify-between relative z-10">
                                             <div class="step-indicator active flex flex-col items-center" data-step="1">
                                                 <div class="w-8 h-8 rounded-full border-2 border-blue-500 bg-blue-500 text-white flex items-center justify-center font-semibold shadow-md transition-all duration-300">
@@ -716,7 +699,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 1: Basic Information -->
                                     <div class="step-content" id="step-1">
                                         <div class="space-y-6">
                                             <div class="form-group">
@@ -766,7 +748,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 2: Details -->
                                     <div class="step-content hidden" id="step-2">
                                         <div class="space-y-6">
                                             <div class="form-group">
@@ -797,7 +778,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 3: Financial Metrics -->
                                     <div class="step-content hidden" id="step-3">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div class="form-group md:col-span-2">
@@ -862,7 +842,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 4: Media -->
                                     <div class="step-content hidden" id="step-4">
                                         <div class="space-y-8">
                                             <div class="form-group">
@@ -965,10 +944,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather Icons
+
             feather.replace();
 
-            // Mobile menu toggle
+
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const sideNav = document.querySelector('.side-nav');
 
@@ -978,7 +957,7 @@
                 });
             }
 
-            // 3-dots menu toggle
+
             const menuButton = document.getElementById('menu-button');
             const dropdownMenu = document.getElementById('dropdown-menu');
 
@@ -988,7 +967,7 @@
                     dropdownMenu.classList.toggle('hidden');
                 });
 
-                // Close dropdown when clicking outside
+
                 document.addEventListener('click', function() {
                     if (!dropdownMenu.classList.contains('hidden')) {
                         dropdownMenu.classList.add('hidden');
@@ -996,35 +975,35 @@
                 });
             }
 
-            // Startup modal functionality
+
             const createStartupBtn = document.getElementById('create-startup-btn');
             const startupModal = document.getElementById('startup-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
 
-            // Open modal function
+
             function openModal() {
                 if (startupModal) {
                     startupModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
-                    feather.replace(); // Re-initialize feather icons in modal
+                    document.body.style.overflow = 'hidden';
+                    feather.replace();
                 }
             }
 
-            // Close modal function
+
             function closeModal() {
                 if (startupModal) {
                     startupModal.classList.add('hidden');
-                    document.body.style.overflow = ''; // Re-enable scrolling
+                    document.body.style.overflow = '';
                     resetForm();
                 }
             }
 
-            // Reset form to first step
+
             function resetForm() {
                 const stepContents = document.querySelectorAll('.step-content');
                 const stepIndicators = document.querySelectorAll('.step-indicator');
 
-                // Show only first step
+
                 stepContents.forEach((step, index) => {
                     if (index === 0) {
                         step.classList.remove('hidden');
@@ -1033,17 +1012,17 @@
                     }
                 });
 
-                // Reset indicators
+
                 updateStepIndicators(1);
 
-                // Clear form fields
+
                 document.getElementById('create-startup-form').reset();
 
-                // Reset progress bar
+
                 document.getElementById('progress-bar').style.width = '25%';
             }
 
-            // Event listeners for modal buttons
+
             if (createStartupBtn) {
                 createStartupBtn.addEventListener('click', openModal);
             }
@@ -1052,42 +1031,42 @@
                 closeModalBtn.addEventListener('click', closeModal);
             }
 
-            // Close modal when clicking outside the modal content
+
             if (startupModal) {
                 startupModal.addEventListener('click', function(e) {
-                    // Only close if the click is on the overlay (the modal itself), not on its contents
+
                     if (e.target === startupModal) {
                         closeModal();
                     }
                 });
             }
 
-            // Delete startup functionality
+
             const deleteStartupBtn = document.getElementById('delete-startup-btn');
             const deleteModal = document.getElementById('delete-modal');
             const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
 
-            // Open delete confirmation modal
+
             if (deleteStartupBtn) {
                 deleteStartupBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     deleteModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                    document.body.style.overflow = 'hidden';
                 });
             }
 
-            // Close delete confirmation modal
+
             if (cancelDeleteBtn) {
                 cancelDeleteBtn.addEventListener('click', function() {
                     deleteModal.classList.add('hidden');
-                    document.body.style.overflow = ''; // Re-enable scrolling
+                    document.body.style.overflow = '';
                 });
             }
 
-            // Close when clicking outside the modal
+
             if (deleteModal) {
                 deleteModal.addEventListener('click', function(e) {
-                    // Only close if the click is on the overlay, not on its contents
+
                     if (e.target === deleteModal) {
                         deleteModal.classList.add('hidden');
                         document.body.style.overflow = '';
@@ -1095,7 +1074,7 @@
                 });
             }
 
-            // Multi-step form navigation
+
             const nextButtons = document.querySelectorAll('.next-step');
             const prevButtons = document.querySelectorAll('.prev-step');
             const progressBar = document.getElementById('progress-bar');
@@ -1107,31 +1086,31 @@
                     const nextStepNumber = currentStepNumber + 1;
                     const nextStep = document.getElementById(`step-${nextStepNumber}`);
 
-                    // Validate current step before proceeding
+
                     if (!validateStep(currentStepNumber)) {
                         return;
                     }
 
-                    // Animation - fade out current step
+
                     currentStep.style.opacity = 0;
 
                     setTimeout(() => {
-                        // Hide current, show next
+
                         currentStep.classList.add('hidden');
                         nextStep.classList.remove('hidden');
 
-                        // Animation - fade in next step
+
                         setTimeout(() => {
                             nextStep.style.opacity = 1;
                         }, 50);
 
-                        // Update indicators
+
                         updateStepIndicators(nextStepNumber);
 
-                        // Update progress bar
+
                         progressBar.style.width = `${nextStepNumber * 25}%`;
 
-                        // Re-initialize feather icons for the next step
+
                         feather.replace();
                     }, 200);
                 });
@@ -1144,23 +1123,23 @@
                     const prevStepNumber = currentStepNumber - 1;
                     const prevStep = document.getElementById(`step-${prevStepNumber}`);
 
-                    // Animation - fade out current step
+
                     currentStep.style.opacity = 0;
 
                     setTimeout(() => {
-                        // Hide current, show previous
+
                         currentStep.classList.add('hidden');
                         prevStep.classList.remove('hidden');
 
-                        // Animation - fade in previous step
+
                         setTimeout(() => {
                             prevStep.style.opacity = 1;
                         }, 50);
 
-                        // Update indicators
+
                         updateStepIndicators(prevStepNumber);
 
-                        // Update progress bar
+
                         progressBar.style.width = `${prevStepNumber * 25}%`;
                     }, 200);
                 });
@@ -1175,19 +1154,19 @@
                     const indicatorText = indicator.querySelector('p');
 
                     if (stepNumber === activeStep) {
-                        // Current step
+
                         indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorText.classList.remove('text-gray-400');
                         indicatorText.classList.add('text-blue-500');
                     } else if (stepNumber < activeStep) {
-                        // Completed step
+
                         indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorText.classList.remove('text-gray-400');
                         indicatorText.classList.add('text-blue-500');
                     } else {
-                        // Upcoming step
+
                         indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorText.classList.remove('text-blue-500');
@@ -1206,7 +1185,7 @@
                         field.classList.add('border-red-500', 'bg-red-50');
                         field.classList.remove('border-gray-300', 'bg-gray-50');
 
-                        // Add shake animation for better feedback
+
                         field.classList.add('animate-shake');
                         setTimeout(() => {
                             field.classList.remove('animate-shake');
@@ -1222,7 +1201,7 @@
                 return valid;
             }
 
-            // Add animation class
+
             const style = document.createElement('style');
             style.textContent = `
                 .step-content {
@@ -1240,34 +1219,34 @@
             `;
             document.head.appendChild(style);
 
-            // Edit startup functionality
+
             const editStartupBtn = document.getElementById('edit-startup-btn');
             const editModal = document.getElementById('edit-modal');
             const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
 
-            // Open edit modal function
+
             function openEditModal() {
                 if (editModal) {
                     editModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
-                    feather.replace(); // Re-initialize feather icons in modal
+                    document.body.style.overflow = 'hidden';
+                    feather.replace();
                 }
             }
 
-            // Close edit modal function
+
             function closeEditModal() {
                 if (editModal) {
                     editModal.classList.add('hidden');
-                    document.body.style.overflow = ''; // Re-enable scrolling
+                    document.body.style.overflow = '';
                     resetEditForm();
                 }
             }
 
-            // Reset edit form to first step
+
             function resetEditForm() {
                 const stepContents = document.querySelectorAll('.edit-step-content');
 
-                // Show only first step
+
                 stepContents.forEach((step, index) => {
                     if (index === 0) {
                         step.classList.remove('hidden');
@@ -1276,19 +1255,19 @@
                     }
                 });
 
-                // Reset indicators
+
                 updateEditStepIndicators(1);
 
-                // Reset progress bar
+
                 document.getElementById('edit-progress-bar').style.width = '25%';
             }
 
-            // Event listeners for edit modal buttons
+
             if (editStartupBtn) {
                 editStartupBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     openEditModal();
-                    dropdownMenu.classList.add('hidden'); // Hide dropdown when modal opens
+                    dropdownMenu.classList.add('hidden');
                 });
             }
 
@@ -1296,17 +1275,17 @@
                 closeEditModalBtn.addEventListener('click', closeEditModal);
             }
 
-            // Close modal when clicking outside the modal content
+
             if (editModal) {
                 editModal.addEventListener('click', function(e) {
-                    // Only close if the click is on the overlay (the modal itself), not on its contents
+
                     if (e.target === editModal) {
                         closeEditModal();
                     }
                 });
             }
 
-            // Multi-step form navigation for edit form
+
             const editNextButtons = document.querySelectorAll('.edit-next-step');
             const editPrevButtons = document.querySelectorAll('.edit-prev-step');
             const editProgressBar = document.getElementById('edit-progress-bar');
@@ -1318,31 +1297,31 @@
                     const nextStepNumber = currentStepNumber + 1;
                     const nextStep = document.getElementById(`edit-step-${nextStepNumber}`);
 
-                    // Validate current step before proceeding
+
                     if (!validateEditStep(currentStepNumber)) {
                         return;
                     }
 
-                    // Animation - fade out current step
+
                     currentStep.style.opacity = 0;
 
                     setTimeout(() => {
-                        // Hide current, show next
+
                         currentStep.classList.add('hidden');
                         nextStep.classList.remove('hidden');
 
-                        // Animation - fade in next step
+
                         setTimeout(() => {
                             nextStep.style.opacity = 1;
                         }, 50);
 
-                        // Update indicators
+
                         updateEditStepIndicators(nextStepNumber);
 
-                        // Update progress bar
+
                         editProgressBar.style.width = `${nextStepNumber * 25}%`;
 
-                        // Re-initialize feather icons for the next step
+
                         feather.replace();
                     }, 200);
                 });
@@ -1355,23 +1334,23 @@
                     const prevStepNumber = currentStepNumber - 1;
                     const prevStep = document.getElementById(`edit-step-${prevStepNumber}`);
 
-                    // Animation - fade out current step
+
                     currentStep.style.opacity = 0;
 
                     setTimeout(() => {
-                        // Hide current, show previous
+
                         currentStep.classList.add('hidden');
                         prevStep.classList.remove('hidden');
 
-                        // Animation - fade in previous step
+
                         setTimeout(() => {
                             prevStep.style.opacity = 1;
                         }, 50);
 
-                        // Update indicators
+
                         updateEditStepIndicators(prevStepNumber);
 
-                        // Update progress bar
+
                         editProgressBar.style.width = `${prevStepNumber * 25}%`;
                     }, 200);
                 });
@@ -1386,19 +1365,19 @@
                     const indicatorText = indicator.querySelector('p');
 
                     if (stepNumber === activeStep) {
-                        // Current step
+
                         indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorText.classList.remove('text-gray-400');
                         indicatorText.classList.add('text-blue-500');
                     } else if (stepNumber < activeStep) {
-                        // Completed step
+
                         indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorText.classList.remove('text-gray-400');
                         indicatorText.classList.add('text-blue-500');
                     } else {
-                        // Upcoming step
+
                         indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
                         indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
                         indicatorText.classList.remove('text-blue-500');
@@ -1417,7 +1396,7 @@
                         field.classList.add('border-red-500', 'bg-red-50');
                         field.classList.remove('border-gray-300', 'bg-gray-50');
 
-                        // Add shake animation for better feedback
+
                         field.classList.add('animate-shake');
                         setTimeout(() => {
                             field.classList.remove('animate-shake');

@@ -31,21 +31,21 @@
         }
     </script>
     <style>
-        /* General styles - Professional design */
+        
         body {
             background-color: #FAFAFA;
             color: #333333;
             font-family: 'Inter', sans-serif;
         }
 
-        /* Container for centered content */
+        
         .container-centered {
             max-width: 1140px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Hero image with professional styling */
+        
         .hero-container {
             margin-top: 1.5rem;
             margin-bottom: 2.5rem;
@@ -62,7 +62,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        /* Hero overlay adjustments - position content properly */
+        
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -73,15 +73,15 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* Changed from center to space-between */
+            
             padding: 2.5rem;
             color: white;
         }
 
-        /* Hero content sections */
+        
         .hero-content-top {
             margin-top: 3rem;
-            /* Add margin at top to push content down slightly */
+            
         }
 
         .hero-content-bottom {
@@ -96,7 +96,7 @@
             gap: 0.75rem;
         }
 
-        /* Tag styling for hero section */
+        
         .hero-tag {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
@@ -107,16 +107,16 @@
             align-items: center;
         }
 
-        /* Clean company logo styling - no white background */
+        
         .company-logo {
             position: absolute;
             top: 1.5rem;
             left: 2.7rem;
-            /* Changed from left to right */
+            
             width: 60px;
-            /* Reduced from 80px */
+            
             height: 60px;
-            /* Reduced from 80px */
+            
             background: transparent;
             border-radius: 2px;
             padding: 0;
@@ -133,7 +133,7 @@
             object-fit: contain;
         }
 
-        /* Unified content styling */
+        
         .content-panel {
             background: white;
             border-radius: 4px;
@@ -151,7 +151,7 @@
             padding: 1.5rem;
         }
 
-        /* Stats sidebar */
+        
         .stats-sidebar {
             position: sticky;
             top: 100px;
@@ -159,7 +159,7 @@
             overflow-y: auto;
         }
 
-        /* Table styles - clean and readable */
+        
         .details-table {
             width: 100%;
             border-collapse: collapse;
@@ -185,7 +185,7 @@
             color: #333;
         }
 
-        /* Minimal tag design */
+        
         .tag {
             display: inline-block;
             background-color: #f0f2f5;
@@ -198,7 +198,7 @@
             font-weight: 500;
         }
 
-        /* Two-column layout */
+        
         .two-column {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -215,7 +215,7 @@
             }
         }
 
-        /* Progress bar styling */
+        
         .progress-container {
             width: 100%;
             height: 6px;
@@ -231,7 +231,7 @@
             border-radius: 0;
         }
 
-        /* Section heading styling */
+        
         .section-heading {
             font-weight: 600;
             font-size: 1.1rem;
@@ -239,7 +239,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Hero CTA button styling */
+        
         .hero-cta {
             position: absolute;
             right: 2rem;
@@ -260,7 +260,7 @@
             cursor: pointer;
         }
 
-        /* Entrepreneur profile styling */
+        
         .entrepreneur-section {
             display: flex;
             align-items: center;
@@ -298,7 +298,7 @@
             margin-right: 0.35rem;
         }
 
-        /* Modal styling */
+        
         .modal {
             position: fixed;
             top: 0;
@@ -328,7 +328,7 @@
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Form styling */
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -379,7 +379,7 @@
             border: none;
         }
 
-        /* Metric and financial data display */
+        
         .financial-metrics {
             display: flex;
             flex-direction: column;
@@ -418,14 +418,12 @@
                 <div class="hero-image"
                     style="background-image: url('{{ $Startup->cover }}')">
                     <div class="hero-overlay">
-                        <!-- Top section with title and description -->
-                        <div class="hero-content-top">
+                                                <div class="hero-content-top">
                             <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white">{{ $Startup->name }}</h1>
                             <p class="text-lg text-white mt-2 max-w-2xl">{{ $Startup->description }}</p>
                         </div>
 
-                        <!-- Bottom section with category and website -->
-                        <div class="hero-content-bottom">
+                                                <div class="hero-content-bottom">
                             <div class="hero-tags">
                                 <span class="hero-tag">{{ $Startup->category }}</span>
                                 @if($Startup->website)
@@ -438,8 +436,7 @@
                         </div>
                     </div>
 
-                    <!-- Create offer button -->
-                    <div class="hero-cta">
+                                        <div class="hero-cta">
                         @if(Auth::id() && Auth::User()->role == 'investor')
                         <button id="create-offer-btn" class="hero-button">
                             <i data-feather="plus-circle" class="h-4 w-4 mr-2 inline-block"></i> Create offer
@@ -458,10 +455,8 @@
 
     <div class="container-centered">
         <div class="two-column">
-            <!-- Main content -->
-            <div>
-                <!-- About the startup - removing category and website -->
-                <div class="content-panel">
+                        <div>
+                                <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">About {{ $Startup->name }}</h3>
                     </div>
@@ -472,8 +467,7 @@
                     </div>
                 </div>
 
-                <!-- AI Insights Section -->
-                @if(Auth::id() && Auth::User()->role == 'investor')
+                                @if(Auth::id() && Auth::User()->role == 'investor')
                 <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">AI-Powered Insights</h3>
@@ -487,16 +481,13 @@
                 @endif
             </div>
 
-            <!-- Sidebar with consolidated startup data -->
-            <div class="stats-sidebar">
-                <!-- Combined financial details in one panel -->
-                <div class="content-panel">
+                        <div class="stats-sidebar">
+                                <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">Company Information</h3>
                     </div>
                     <div class="panel-body">
-                        <!-- Funding Goal -->
-                        @if($Startup->funding_goal)
+                                                @if($Startup->funding_goal)
                         <div class="mb-4 pb-4 border-b border-gray-100">
                             <div class="flex justify-between mb-1">
                                 <div class="text-sm font-medium">Funding Progress</div>
@@ -512,8 +503,7 @@
                         </div>
                         @endif
 
-                        <!-- Consolidated Key Metrics -->
-                        <div class="financial-metrics">
+                                                <div class="financial-metrics">
                             @if($Startup->valuation)
                             <div class="metrics-row">
                                 <span class="metric-label">Valuation</span>
@@ -548,8 +538,7 @@
                     </div>
                 </div>
 
-                <!-- Entrepreneur info -->
-                @if($Startup->user)
+                                @if($Startup->user)
                 <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">Entrepreneur</h3>
@@ -576,8 +565,7 @@
         </div>
     </div>
 
-    <!-- Create Offer Modal - removed equity field -->
-    <div id="offer-modal" class="modal">
+        <div id="offer-modal" class="modal">
         <div class="modal-content">
             <h2 class="text-xl font-bold mb-4">Create an Offer for {{ $Startup->name }}</h2>
 
@@ -621,32 +609,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather icons
+            
             feather.replace();
 
-            // Modal functionality
+            
             const modal = document.getElementById('offer-modal');
             const createOfferBtn = document.getElementById('create-offer-btn');
             const cancelOfferBtn = document.getElementById('cancel-offer-btn');
 
-            // Show modal when create offer button is clicked
+            
             createOfferBtn.addEventListener('click', function() {
                 modal.classList.add('show');
             });
 
-            // Hide modal when cancel button is clicked
+            
             cancelOfferBtn.addEventListener('click', function() {
                 modal.classList.remove('show');
             });
 
-            // Hide modal when clicking outside
+            
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.classList.remove('show');
                 }
             });
 
-            // Form validation
+            
             const offerForm = document.getElementById('offer-form');
             offerForm.addEventListener('submit', function(e) {
                 const amount = document.getElementById('amount').value;

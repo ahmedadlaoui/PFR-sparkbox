@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Side navigation styling */
+        
         .side-nav {
             width: 260px;
             height: calc(100vh - 80px);
@@ -46,7 +46,7 @@
             stroke-width: 1.8px;
         }
 
-        /* Main content area styling */
+        
         .main-content {
             padding-top: 30px;
             min-height: 100vh;
@@ -57,22 +57,22 @@
             width: 100%;
         }
 
-        /* Content container for proper width - match with home page */
+        
         .content-container {
             width: 100%;
             max-width: 1280px;
-            /* Changed from 1400px to match home page max-w-7xl */
+            
             margin: 0 auto;
             padding: 0;
         }
 
-        /* Responsive padding for inner content */
+        
         .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-        /* Amount filter dropdown styling */
+        
         .amount-filter {
             position: relative;
         }
@@ -105,7 +105,7 @@
             background-color: #F9FAFB;
         }
 
-        /* Mobile responsive adjustments */
+        
         @media (max-width: 1024px) {
             .side-nav {
                 transform: translateX(-100%);
@@ -158,8 +158,7 @@
                             @foreach($Investors as $investor)
 
                             <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm relative flex flex-col items-start gap-4">
-                                <!-- Top section: Image + Name + Status -->
-                                <div class="w-full flex items-center justify-between">
+                                                                <div class="w-full flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <img src="{{$investor->user->profile_picture_url}}" alt="Profile Picture"
                                             class="w-12 h-12 rounded-full object-cover border border-gray-200">
@@ -182,15 +181,13 @@
 
                                 </div>
 
-                                <!-- Offer Description -->
-                                <div class="w-full">
+                                                                <div class="w-full">
                                     <p class="text-sm text-gray-600">
                                         {{$investor->offer_message}}
                                     </p>
                                 </div>
 
-                                <!-- Bottom section: Invest Amount + Chat button -->
-                                <div class="w-full flex items-center justify-between">
+                                                                <div class="w-full flex items-center justify-between">
                                     <p class="text-sm text-gray-700">
                                         Ready to invest: <span class="font-bold">{{$investor->amount}} $</span>
                                     </p>
@@ -219,10 +216,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Feather Icons
+            
             feather.replace();
 
-            // Mobile menu toggle
+            
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const sideNav = document.querySelector('.side-nav');
 
@@ -230,7 +227,7 @@
                 sideNav.classList.toggle('show');
             });
 
-            // Amount filter dropdown toggle
+            
             const amountFilterBtn = document.getElementById('amount-filter-btn');
             const amountDropdown = document.getElementById('amount-dropdown');
 
@@ -238,21 +235,21 @@
                 amountDropdown.classList.toggle('open');
             });
 
-            // Close dropdown when clicking elsewhere
+            
             document.addEventListener('click', function(e) {
                 if (!amountFilterBtn.contains(e.target) && !amountDropdown.contains(e.target)) {
                     amountDropdown.classList.remove('open');
                 }
             });
 
-            // Amount filter options
+            
             const amountOptions = document.querySelectorAll('.amount-option');
             amountOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     const value = this.getAttribute('data-value');
                     const text = this.textContent;
 
-                    // Update filter button text
+                    
                     amountFilterBtn.innerHTML = `
                         <i data-feather="dollar-sign" class="h-4 w-4 mr-2 text-gray-500"></i>
                         ${text}
@@ -260,10 +257,10 @@
                     `;
                     feather.replace();
 
-                    // Close the dropdown
+                    
                     amountDropdown.classList.remove('open');
 
-                    // Filter functionality would be implemented here
+                    
                     console.log('Filter by amount:', value);
                 });
             });
