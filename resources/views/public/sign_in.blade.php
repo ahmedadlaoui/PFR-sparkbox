@@ -147,6 +147,30 @@
             text-decoration: underline;
         }
 
+        /* Error message styling */
+        .error-message {
+            background-color: #FEE2E2;
+            border: 1px solid #FECACA;
+            color: #B91C1C;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-icon {
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .error-list {
+            margin: 0;
+            padding: 0;
+            list-style-position: inside;
+        }
+
         @media (max-width: 480px) {
             .sign-in-container {
                 padding: 1.5rem;
@@ -168,6 +192,17 @@
 
         <h1 class="title">Welcome back</h1>
         <p class="subtitle">Sign in to continue your journey</p>
+
+        @if(session('error'))
+        <div class="error-message">
+            <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Invalid email or password. Please try again.</span>
+        </div>
+        @endif
 
         <form action="{{ route('login.submit') }}" method="POST">
             @csrf

@@ -204,11 +204,11 @@
             <div class="flex flex-col md:flex-row items-center justify-between pr-8 ml-0 md:ml-12 lg:ml-16">
                 <div class="flex flex-wrap w-full md:w-full mb-8 md:mb-0">
                     <div class="stat-block w-1/2 sm:w-1/5 text-left sm:border-r sm:border-gray-200 pr-2 mb-6 sm:mb-0">
-                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">3M+</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">12k+</p>
                         <p class="text-[#666666] text-xs sm:text-sm font-normal font-['Inter',_sans-serif]">Global investor community</p>
                     </div>
                     <div class="stat-block w-1/2 sm:w-1/5 text-left sm:border-r sm:border-gray-200 px-2 mb-6 sm:mb-0">
-                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">2,500+</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">200+</p>
                         <p class="text-[#666666] text-xs sm:text-sm font-normal font-['Inter',_sans-serif]">Ventures supported</p>
                     </div>
                     <div class="stat-block w-1/2 sm:w-1/5 text-left sm:border-r sm:border-gray-200 px-2">
@@ -216,7 +216,7 @@
                         <p class="text-[#666666] text-xs sm:text-sm font-normal font-['Inter',_sans-serif]">Unicorns in portfolio</p>
                     </div>
                     <div class="stat-block w-1/2 sm:w-1/5 text-left sm:border-r sm:border-gray-200 px-2">
-                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">$2.6B+</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] font-['Inter',_sans-serif] mb-1">$23M+</p>
                         <p class="text-[#666666] text-xs sm:text-sm font-normal font-['Inter',_sans-serif]">Capital raised</p>
                     </div>
                     <div class="stat-block w-full sm:w-1/5 text-center sm:text-left pl-0 sm:pl-2 mt-4 sm:mt-0">

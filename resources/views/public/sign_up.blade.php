@@ -191,6 +191,44 @@
             text-decoration: underline;
         }
 
+    
+        .error-container {
+            background-color: #FEE2E2;
+            border: 1px solid #FECACA;
+            color: #B91C1C;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .error-icon {
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .error-list {
+            margin: 0;
+            padding: 0;
+            list-style-position: inside;
+            font-size: 0.8rem;
+        }
+
+        .error-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .error-list li:last-child {
+            margin-bottom: 0;
+        }
+
         @media (max-width: 480px) {
             .signup-container {
                 padding: 1.5rem;
@@ -209,6 +247,16 @@
         <div class="logo">
             <span>SparkBox</span>
         </div>
+
+        @if($errors->any())
+        <div class="error-container">
+            <ul class="error-list">
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <h2 class="title">Create your account</h2>
         <p class="subtitle">Start your investment journey with SparkBox</p>
@@ -230,7 +278,7 @@
                 <input type="password" class="form-input" name="password" placeholder="Create a password" required>
             </div>
 
-        
+
             <input type="hidden" id="selected-role" name="role" value="">
 
             <label class="form-label">Choose your role</label>
@@ -267,7 +315,7 @@
 
     <script>
         function selectRole(role) {
-            
+
             document.getElementById('selected-role').value = role;
 
             document.querySelectorAll('.role-option').forEach(option => {

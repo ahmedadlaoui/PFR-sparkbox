@@ -328,8 +328,7 @@
                             </div>
 
 
-
-                            @if(!empty($myStartup->offers))
+                            @if(isset($myStartup->offers) && count($myStartup->offers) > 0)
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 @foreach($myStartup->offers->sortByDesc('amount')->take(3) as $offer)
                                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
@@ -356,13 +355,14 @@
                                 @endforeach
                             </div>
                             @else
-                            <div class="flex flex-col items-center justify-center py-12 px-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <div class="bg-white p-4 rounded-full mb-4">
-                                    <i data-feather="users" class="h-10 w-10 text-gray-400"></i>
+                            <div class="flex flex-col items-center justify-center py-16 px-4">
+                                <div class="bg-gray-100 p-6 rounded-full mb-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">No Investors Yet</h3>
-                                <p class="text-gray-600 text-center max-w-md mb-6">Your startup hasn't received any investment interest yet. Complete your profile and keep building traction to attract potential investors.</p>
-
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">No Investors Yet</h3>
+                                <p class="text-gray-600 text-center max-w-md mb-8">Your startup hasn't received any investment interest yet. Complete your profile and share your startup to attract potential investors.</p>
                             </div>
                             @endif
                         </div>
@@ -944,472 +944,182 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+            
             feather.replace();
 
-
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const sideNav = document.querySelector('.side-nav');
-
-            if (mobileMenuToggle && sideNav) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    sideNav.classList.toggle('open');
-                });
-            }
-
-
+            
             const menuButton = document.getElementById('menu-button');
             const dropdownMenu = document.getElementById('dropdown-menu');
-
             if (menuButton && dropdownMenu) {
                 menuButton.addEventListener('click', function(e) {
                     e.stopPropagation();
                     dropdownMenu.classList.toggle('hidden');
                 });
 
-
+                
                 document.addEventListener('click', function() {
-                    if (!dropdownMenu.classList.contains('hidden')) {
-                        dropdownMenu.classList.add('hidden');
-                    }
-                });
-            }
-
-
-            const createStartupBtn = document.getElementById('create-startup-btn');
-            const startupModal = document.getElementById('startup-modal');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-
-
-            function openModal() {
-                if (startupModal) {
-                    startupModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                    feather.replace();
-                }
-            }
-
-
-            function closeModal() {
-                if (startupModal) {
-                    startupModal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                    resetForm();
-                }
-            }
-
-
-            function resetForm() {
-                const stepContents = document.querySelectorAll('.step-content');
-                const stepIndicators = document.querySelectorAll('.step-indicator');
-
-
-                stepContents.forEach((step, index) => {
-                    if (index === 0) {
-                        step.classList.remove('hidden');
-                    } else {
-                        step.classList.add('hidden');
-                    }
-                });
-
-
-                updateStepIndicators(1);
-
-
-                document.getElementById('create-startup-form').reset();
-
-
-                document.getElementById('progress-bar').style.width = '25%';
-            }
-
-
-            if (createStartupBtn) {
-                createStartupBtn.addEventListener('click', openModal);
-            }
-
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', closeModal);
-            }
-
-
-            if (startupModal) {
-                startupModal.addEventListener('click', function(e) {
-
-                    if (e.target === startupModal) {
-                        closeModal();
-                    }
-                });
-            }
-
-
-            const deleteStartupBtn = document.getElementById('delete-startup-btn');
-            const deleteModal = document.getElementById('delete-modal');
-            const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
-
-
-            if (deleteStartupBtn) {
-                deleteStartupBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    deleteModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-
-
-            if (cancelDeleteBtn) {
-                cancelDeleteBtn.addEventListener('click', function() {
-                    deleteModal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                });
-            }
-
-
-            if (deleteModal) {
-                deleteModal.addEventListener('click', function(e) {
-
-                    if (e.target === deleteModal) {
-                        deleteModal.classList.add('hidden');
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-
-
-            const nextButtons = document.querySelectorAll('.next-step');
-            const prevButtons = document.querySelectorAll('.prev-step');
-            const progressBar = document.getElementById('progress-bar');
-
-            nextButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.step-content');
-                    const currentStepNumber = parseInt(currentStep.id.split('-')[1]);
-                    const nextStepNumber = currentStepNumber + 1;
-                    const nextStep = document.getElementById(`step-${nextStepNumber}`);
-
-
-                    if (!validateStep(currentStepNumber)) {
-                        return;
-                    }
-
-
-                    currentStep.style.opacity = 0;
-
-                    setTimeout(() => {
-
-                        currentStep.classList.add('hidden');
-                        nextStep.classList.remove('hidden');
-
-
-                        setTimeout(() => {
-                            nextStep.style.opacity = 1;
-                        }, 50);
-
-
-                        updateStepIndicators(nextStepNumber);
-
-
-                        progressBar.style.width = `${nextStepNumber * 25}%`;
-
-
-                        feather.replace();
-                    }, 200);
-                });
-            });
-
-            prevButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.step-content');
-                    const currentStepNumber = parseInt(currentStep.id.split('-')[1]);
-                    const prevStepNumber = currentStepNumber - 1;
-                    const prevStep = document.getElementById(`step-${prevStepNumber}`);
-
-
-                    currentStep.style.opacity = 0;
-
-                    setTimeout(() => {
-
-                        currentStep.classList.add('hidden');
-                        prevStep.classList.remove('hidden');
-
-
-                        setTimeout(() => {
-                            prevStep.style.opacity = 1;
-                        }, 50);
-
-
-                        updateStepIndicators(prevStepNumber);
-
-
-                        progressBar.style.width = `${prevStepNumber * 25}%`;
-                    }, 200);
-                });
-            });
-
-            function updateStepIndicators(activeStep) {
-                const stepIndicators = document.querySelectorAll('.step-indicator');
-
-                stepIndicators.forEach((indicator, index) => {
-                    const stepNumber = index + 1;
-                    const indicatorCircle = indicator.querySelector('div');
-                    const indicatorText = indicator.querySelector('p');
-
-                    if (stepNumber === activeStep) {
-
-                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorText.classList.remove('text-gray-400');
-                        indicatorText.classList.add('text-blue-500');
-                    } else if (stepNumber < activeStep) {
-
-                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorText.classList.remove('text-gray-400');
-                        indicatorText.classList.add('text-blue-500');
-                    } else {
-
-                        indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorText.classList.remove('text-blue-500');
-                        indicatorText.classList.add('text-gray-400');
-                    }
-                });
-            }
-
-            function validateStep(stepNumber) {
-                const step = document.getElementById(`step-${stepNumber}`);
-                const requiredFields = step.querySelectorAll('[required]');
-                let valid = true;
-
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.classList.add('border-red-500', 'bg-red-50');
-                        field.classList.remove('border-gray-300', 'bg-gray-50');
-
-
-                        field.classList.add('animate-shake');
-                        setTimeout(() => {
-                            field.classList.remove('animate-shake');
-                        }, 500);
-
-                        valid = false;
-                    } else {
-                        field.classList.remove('border-red-500', 'bg-red-50');
-                        field.classList.add('border-gray-300', 'bg-gray-50');
-                    }
-                });
-
-                return valid;
-            }
-
-
-            const style = document.createElement('style');
-            style.textContent = `
-                .step-content {
-                    transition: opacity 0.2s ease-in-out;
-                    opacity: 1;
-                }
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-8px); }
-                    75% { transform: translateX(8px); }
-                }
-                .animate-shake {
-                    animation: shake 0.3s ease-in-out;
-                }
-            `;
-            document.head.appendChild(style);
-
-
-            const editStartupBtn = document.getElementById('edit-startup-btn');
-            const editModal = document.getElementById('edit-modal');
-            const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
-
-
-            function openEditModal() {
-                if (editModal) {
-                    editModal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                    feather.replace();
-                }
-            }
-
-
-            function closeEditModal() {
-                if (editModal) {
-                    editModal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                    resetEditForm();
-                }
-            }
-
-
-            function resetEditForm() {
-                const stepContents = document.querySelectorAll('.edit-step-content');
-
-
-                stepContents.forEach((step, index) => {
-                    if (index === 0) {
-                        step.classList.remove('hidden');
-                    } else {
-                        step.classList.add('hidden');
-                    }
-                });
-
-
-                updateEditStepIndicators(1);
-
-
-                document.getElementById('edit-progress-bar').style.width = '25%';
-            }
-
-
-            if (editStartupBtn) {
-                editStartupBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openEditModal();
                     dropdownMenu.classList.add('hidden');
                 });
             }
 
+            
+            const createStartupBtn = document.getElementById('create-startup-btn');
+            const startupModal = document.getElementById('startup-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            if (createStartupBtn) {
+                createStartupBtn.addEventListener('click', function() {
+                    startupModal.classList.remove('hidden');
+                });
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function() {
+                    startupModal.classList.add('hidden');
+                    resetForm('step-', '.step-content', '.step-indicator');
+                });
+            }
+
+            
+            const deleteStartupBtn = document.getElementById('delete-startup-btn');
+            const deleteModal = document.getElementById('delete-modal');
+            const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+
+            if (deleteStartupBtn) {
+                deleteStartupBtn.addEventListener('click', function() {
+                    deleteModal.classList.remove('hidden');
+                });
+            }
+
+            if (cancelDeleteBtn) {
+                cancelDeleteBtn.addEventListener('click', function() {
+                    deleteModal.classList.add('hidden');
+                });
+            }
+
+            
+            const editStartupBtn = document.getElementById('edit-startup-btn');
+            const editModal = document.getElementById('edit-modal');
+            const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
+
+            if (editStartupBtn) {
+                editStartupBtn.addEventListener('click', function() {
+                    editModal.classList.remove('hidden');
+                    if (dropdownMenu) dropdownMenu.classList.add('hidden');
+                });
+            }
+
             if (closeEditModalBtn) {
-                closeEditModalBtn.addEventListener('click', closeEditModal);
-            }
-
-
-            if (editModal) {
-                editModal.addEventListener('click', function(e) {
-
-                    if (e.target === editModal) {
-                        closeEditModal();
-                    }
+                closeEditModalBtn.addEventListener('click', function() {
+                    editModal.classList.add('hidden');
+                    resetForm('edit-step-', '.edit-step-content', '.edit-step-indicator');
                 });
             }
 
+            
+            document.addEventListener('click', function(e) {
+                if (e.target === startupModal) startupModal.classList.add('hidden');
+                if (e.target === deleteModal) deleteModal.classList.add('hidden');
+                if (e.target === editModal) editModal.classList.add('hidden');
+            });
 
-            const editNextButtons = document.querySelectorAll('.edit-next-step');
-            const editPrevButtons = document.querySelectorAll('.edit-prev-step');
-            const editProgressBar = document.getElementById('edit-progress-bar');
+            
+            setupFormNavigation('.next-step', '.prev-step', 'step-', 'progress-bar', '.step-indicator');
+            setupFormNavigation('.edit-next-step', '.edit-prev-step', 'edit-step-', 'edit-progress-bar', '.edit-step-indicator');
 
-            editNextButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.edit-step-content');
-                    const currentStepNumber = parseInt(currentStep.id.split('-')[2]);
-                    const nextStepNumber = currentStepNumber + 1;
-                    const nextStep = document.getElementById(`edit-step-${nextStepNumber}`);
+            
+            function resetForm(stepPrefix, contentSelector, indicatorSelector) {
+                const steps = document.querySelectorAll(contentSelector);
 
-
-                    if (!validateEditStep(currentStepNumber)) {
-                        return;
+                steps.forEach((step, index) => {
+                    if (index === 0) {
+                        step.classList.remove('hidden');
+                    } else {
+                        step.classList.add('hidden');
                     }
-
-
-                    currentStep.style.opacity = 0;
-
-                    setTimeout(() => {
-
-                        currentStep.classList.add('hidden');
-                        nextStep.classList.remove('hidden');
-
-
-                        setTimeout(() => {
-                            nextStep.style.opacity = 1;
-                        }, 50);
-
-
-                        updateEditStepIndicators(nextStepNumber);
-
-
-                        editProgressBar.style.width = `${nextStepNumber * 25}%`;
-
-
-                        feather.replace();
-                    }, 200);
                 });
-            });
 
-            editPrevButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.edit-step-content');
-                    const currentStepNumber = parseInt(currentStep.id.split('-')[2]);
-                    const prevStepNumber = currentStepNumber - 1;
-                    const prevStep = document.getElementById(`edit-step-${prevStepNumber}`);
+                const progressBar = document.getElementById(stepPrefix === 'step-' ? 'progress-bar' : 'edit-progress-bar');
+                if (progressBar) progressBar.style.width = '25%';
 
+                updateIndicators(1, indicatorSelector);
+            }
 
-                    currentStep.style.opacity = 0;
+            
+            function setupFormNavigation(nextSelector, prevSelector, stepPrefix, progressBarId, indicatorSelector) {
+                
+                document.querySelectorAll(nextSelector).forEach(button => {
+                    button.addEventListener('click', function() {
+                        const currentStep = this.closest(stepPrefix === 'step-' ? '.step-content' : '.edit-step-content');
+                        const currentStepNumber = parseInt(currentStep.id.split('-').pop());
+                        const nextStepNumber = currentStepNumber + 1;
+                        const nextStepId = stepPrefix + nextStepNumber;
 
-                    setTimeout(() => {
+                        
+                        const requiredFields = currentStep.querySelectorAll('[required]');
+                        let isValid = true;
 
+                        requiredFields.forEach(field => {
+                            if (!field.value.trim()) {
+                                field.classList.add('border-red-500');
+                                isValid = false;
+                            } else {
+                                field.classList.remove('border-red-500');
+                            }
+                        });
+
+                        if (!isValid) return;
+
+                        
                         currentStep.classList.add('hidden');
-                        prevStep.classList.remove('hidden');
+                        document.getElementById(nextStepId).classList.remove('hidden');
 
-
-                        setTimeout(() => {
-                            prevStep.style.opacity = 1;
-                        }, 50);
-
-
-                        updateEditStepIndicators(prevStepNumber);
-
-
-                        editProgressBar.style.width = `${prevStepNumber * 25}%`;
-                    }, 200);
+                        
+                        document.getElementById(progressBarId).style.width = (nextStepNumber * 25) + '%';
+                        updateIndicators(nextStepNumber, indicatorSelector);
+                    });
                 });
-            });
 
-            function updateEditStepIndicators(activeStep) {
-                const stepIndicators = document.querySelectorAll('.edit-step-indicator');
+                
+                document.querySelectorAll(prevSelector).forEach(button => {
+                    button.addEventListener('click', function() {
+                        const currentStep = this.closest(stepPrefix === 'step-' ? '.step-content' : '.edit-step-content');
+                        const currentStepNumber = parseInt(currentStep.id.split('-').pop());
+                        const prevStepNumber = currentStepNumber - 1;
+                        const prevStepId = stepPrefix + prevStepNumber;
 
-                stepIndicators.forEach((indicator, index) => {
+                        
+                        currentStep.classList.add('hidden');
+                        document.getElementById(prevStepId).classList.remove('hidden');
+
+                        
+                        document.getElementById(progressBarId).style.width = (prevStepNumber * 25) + '%';
+                        updateIndicators(prevStepNumber, indicatorSelector);
+                    });
+                });
+            }
+
+            
+            function updateIndicators(activeStep, selector) {
+                document.querySelectorAll(selector).forEach((indicator, index) => {
                     const stepNumber = index + 1;
-                    const indicatorCircle = indicator.querySelector('div');
-                    const indicatorText = indicator.querySelector('p');
+                    const circle = indicator.querySelector('div');
+                    const text = indicator.querySelector('p');
 
-                    if (stepNumber === activeStep) {
-
-                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorText.classList.remove('text-gray-400');
-                        indicatorText.classList.add('text-blue-500');
-                    } else if (stepNumber < activeStep) {
-
-                        indicatorCircle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorCircle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorText.classList.remove('text-gray-400');
-                        indicatorText.classList.add('text-blue-500');
+                    if (stepNumber <= activeStep) {
+                        
+                        circle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
+                        circle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
+                        text.classList.add('text-blue-500');
+                        text.classList.remove('text-gray-400');
                     } else {
-
-                        indicatorCircle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
-                        indicatorCircle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
-                        indicatorText.classList.remove('text-blue-500');
-                        indicatorText.classList.add('text-gray-400');
+                        
+                        circle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
+                        circle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
+                        text.classList.remove('text-blue-500');
+                        text.classList.add('text-gray-400');
                     }
                 });
-            }
-
-            function validateEditStep(stepNumber) {
-                const step = document.getElementById(`edit-step-${stepNumber}`);
-                const requiredFields = step.querySelectorAll('[required]');
-                let valid = true;
-
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.classList.add('border-red-500', 'bg-red-50');
-                        field.classList.remove('border-gray-300', 'bg-gray-50');
-
-
-                        field.classList.add('animate-shake');
-                        setTimeout(() => {
-                            field.classList.remove('animate-shake');
-                        }, 500);
-
-                        valid = false;
-                    } else {
-                        field.classList.remove('border-red-500', 'bg-red-50');
-                        field.classList.add('border-gray-300', 'bg-gray-50');
-                    }
-                });
-
-                return valid;
             }
         });
     </script>

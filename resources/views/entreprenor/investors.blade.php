@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        
         .side-nav {
             width: 260px;
             height: calc(100vh - 80px);
@@ -46,7 +45,7 @@
             stroke-width: 1.8px;
         }
 
-        
+
         .main-content {
             padding-top: 30px;
             min-height: 100vh;
@@ -57,22 +56,22 @@
             width: 100%;
         }
 
-        
+
         .content-container {
             width: 100%;
             max-width: 1280px;
-            
+
             margin: 0 auto;
             padding: 0;
         }
 
-        
+
         .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-        
+
         .amount-filter {
             position: relative;
         }
@@ -105,7 +104,7 @@
             background-color: #F9FAFB;
         }
 
-        
+
         @media (max-width: 1024px) {
             .side-nav {
                 transform: translateX(-100%);
@@ -147,18 +146,22 @@
                                     <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">
                                         People interested in your startup</h1>
                                 </div>
-                                <p class="text-gray-600 mt-2">5 investors · $1.2M total possible investment</p>
+                                @if(isset($Investors) && count($Investors) > 0)
+                                <p class="text-gray-600 mt-2">{{ count($Investors) }} investors · ${{ number_format($Investors->sum('amount')) }} total possible investment</p>
+                                @else
+                                <p class="text-gray-600 mt-2">No investors yet</p>
+                                @endif
                             </div>
                         </div>
                     </div>
 
                     <div class="container mx-auto px-6 py-8">
+                        @if(isset($Investors) && count($Investors) > 0)
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                             @foreach($Investors as $investor)
 
                             <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm relative flex flex-col items-start gap-4">
-                                                                <div class="w-full flex items-center justify-between">
+                                <div class="w-full flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <img src="{{$investor->user->profile_picture_url}}" alt="Profile Picture"
                                             class="w-12 h-12 rounded-full object-cover border border-gray-200">
@@ -181,13 +184,13 @@
 
                                 </div>
 
-                                                                <div class="w-full">
+                                <div class="w-full">
                                     <p class="text-sm text-gray-600">
                                         {{$investor->offer_message}}
                                     </p>
                                 </div>
 
-                                                                <div class="w-full flex items-center justify-between">
+                                <div class="w-full flex items-center justify-between">
                                     <p class="text-sm text-gray-700">
                                         Ready to invest: <span class="font-bold">{{$investor->amount}} $</span>
                                     </p>
@@ -205,6 +208,17 @@
 
                             @endforeach
                         </div>
+                        @else
+                        <div class="flex flex-col items-center justify-center py-16 px-4">
+                            <div class="bg-gray-100 p-6 rounded-full mb-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">No Investors Yet</h3>
+                            <p class="text-gray-600 text-center max-w-md mb-8">Your startup hasn't received any investment interest yet. Complete your profile and share your startup to attract potential investors.</p>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -214,59 +228,7 @@
         <x-footer />
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            feather.replace();
-
-            
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const sideNav = document.querySelector('.side-nav');
-
-            mobileMenuToggle.addEventListener('click', function() {
-                sideNav.classList.toggle('show');
-            });
-
-            
-            const amountFilterBtn = document.getElementById('amount-filter-btn');
-            const amountDropdown = document.getElementById('amount-dropdown');
-
-            amountFilterBtn.addEventListener('click', function() {
-                amountDropdown.classList.toggle('open');
-            });
-
-            
-            document.addEventListener('click', function(e) {
-                if (!amountFilterBtn.contains(e.target) && !amountDropdown.contains(e.target)) {
-                    amountDropdown.classList.remove('open');
-                }
-            });
-
-            
-            const amountOptions = document.querySelectorAll('.amount-option');
-            amountOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    const text = this.textContent;
-
-                    
-                    amountFilterBtn.innerHTML = `
-                        <i data-feather="dollar-sign" class="h-4 w-4 mr-2 text-gray-500"></i>
-                        ${text}
-                        <i data-feather="chevron-down" class="h-4 w-4 ml-2"></i>
-                    `;
-                    feather.replace();
-
-                    
-                    amountDropdown.classList.remove('open');
-
-                    
-                    console.log('Filter by amount:', value);
-                });
-            });
-
-
-        });
+    <script>        
         var statusSelects = document.querySelectorAll('.status-select');
         statusSelects.forEach((selectElement) => {
             selectElement.addEventListener('change', () => {

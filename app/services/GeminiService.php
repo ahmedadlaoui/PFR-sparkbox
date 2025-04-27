@@ -69,7 +69,7 @@ clear and concise, when generating a response rewrite the numbers i gave you, an
 
 
             return $data['candidates'][0]['content']['parts'][0]['text'] ?? 'Pas de suggestion disponible.';
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return 'Error generating insights';
         }
     }

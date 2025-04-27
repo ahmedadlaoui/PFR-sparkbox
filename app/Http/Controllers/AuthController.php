@@ -17,13 +17,10 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
-
+    
         if (!Auth::attempt(request()->only('email', 'password'), request()->filled('remember'))) {
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+            return redirect()->route('login')->with('error', 'Invalid email or password');
         }
-
         session()->regenerate();
         return redirect()->route('home');
     }
@@ -39,7 +36,6 @@ class AuthController extends Controller
 
         $New_user = new User;
         $hashedPassword = Hash::make(request('password'));
-
         $New_user->name = request('full_name');
         $New_user->email = request('email');
         $New_user->password = $hashedPassword;
@@ -47,7 +43,7 @@ class AuthController extends Controller
 
         $New_user->save();
 
-        Auth::login($New_user); 
+        Auth::login($New_user);
         return redirect()->route('home');
     }
 
