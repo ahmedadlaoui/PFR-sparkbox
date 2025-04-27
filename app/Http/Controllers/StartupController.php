@@ -7,9 +7,12 @@ use App\Models\Startup;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 use App\Services\GeminiService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Monolog\Handler\WebRequestRecognizerTrait;
 
 class StartupController extends Controller
 {
+    use AuthorizesRequests;
     protected $geminiService;
 
     public function __construct(GeminiService $geminiService)
@@ -62,6 +65,7 @@ class StartupController extends Controller
 
     public function RegsiterStartup(Request $request)
     {
+        $this->authorize('create', Startup::class);
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -103,6 +107,7 @@ class StartupController extends Controller
     {
         $myStartup = Startup::where('user_id', Auth::id())->first();
 
+        $this->authorize('delete',$myStartup);
         if ($myStartup) {
             $myStartup->delete();
         }
@@ -131,11 +136,7 @@ class StartupController extends Controller
 
         $startup = Startup::findOrFail($request->input('startup_id'));
 
-        // Check if the startup belongs to the authenticated user
-        if ($startup->user_id !== Auth::id()) {
-            return redirect()->route('entreprenor.mystartup')
-                ->with('error', 'You are not authorized to update this startup.');
-        }
+        $this->authorize('update',$startup);
 
         $startup->name = $request->input('name');
         $startup->description = $request->input('description');

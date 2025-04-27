@@ -33,7 +33,7 @@ return new class extends Migration
             $table->integer('gross_margin');
             $table->integer('burn_rate');
             $table->integer('runway');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
