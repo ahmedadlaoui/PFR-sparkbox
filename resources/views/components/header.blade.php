@@ -1,20 +1,20 @@
 <header class="bg-white backdrop-blur-sm fixed w-full z-50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto">
         <div class="flex items-center justify-between h-16 px-6">
-                        <div class="pl-6 sm:pl-8 md:pl-12">
+            <div class="pl-6 sm:pl-8 md:pl-12">
                 <a href="{{ route('home') }}" class="text-xl font-bold text-dark">SparkBox</a>
             </div>
 
-                        <div class="flex-1 flex justify-center items-center">
+            <div class="flex-1 flex justify-center items-center">
 
-                                <nav class="hidden md:flex items-center space-x-8">
+                <nav class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="text-sm md:text-base font-medium font-['Inter',_sans-serif] {{ request()->routeIs('home') ? 'text-blue-600' : 'text-gray-600' }}">Home</a>
                     <a href="{{ route('deals') }}" class="text-sm md:text-base font-medium hover:text-blue-600 transition-colors font-['Inter',_sans-serif] {{ request()->routeIs('deals') ? 'text-blue-600' : 'text-gray-600' }}">Deals</a>
                 </nav>
             </div>
 
             @if(Auth()->user())
-                        <div class="relative">
+            <div class="relative">
                 <button id="profileDropdownButton" class="flex items-center space-x-3 focus:outline-none">
                     <div class="text-right mr-2 hidden sm:block">
                         <p class="text-sm font-medium text-gray-800">
@@ -29,7 +29,7 @@
                     </svg>
                 </button>
 
-                                <div id="profileDropdown" class="absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-md shadow-lg border border-gray-100 hidden">
+                <div id="profileDropdown" class="absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-md shadow-lg border border-gray-100 hidden">
                     <div class="py-1">
                         @if(Auth()->user()->role === 'investor')
                         <a href="{{ route('investor.dashboard') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 {{ request()->routeIs('investor.dashboard') ? 'bg-gray-50 text-blue-600' : '' }}">
@@ -121,22 +121,17 @@
         const profileDropdown = document.getElementById('profileDropdown');
 
         if (profileDropdownButton && profileDropdown) {
-            
+
             profileDropdownButton.addEventListener('click', function() {
                 profileDropdown.classList.toggle('hidden');
             });
 
-            
-            document.addEventListener('click', function(event) {
-                if (!profileDropdownButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+
+            document.addEventListener('click', function(e) {
+                if (e.target.id !== 'profileDropdownButton' && e.target.id !== 'profileDropdown') {
                     profileDropdown.classList.add('hidden');
                 }
             });
-        }
-
-        
-        if (typeof feather !== 'undefined') {
-            feather.replace();
         }
     });
 </script>

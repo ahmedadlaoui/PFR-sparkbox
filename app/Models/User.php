@@ -49,15 +49,34 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
 
-public function startup()
-{
-    return $this->hasOne(Startup::class);
-}
-public function offers()
-{
-    return $this->hasMany(Offer::class);
-}
+    /**
+     * Get the profile picture URL
+     * 
+     * @return string
+     */
+    public function getProfilePictureUrlAttribute($value)
+    {
+        if (!$value) {
+            return 'https://i.pinimg.com/474x/07/c4/72/07c4720d19a9e9edad9d0e939eca304a.jpg';
+        }
 
+        // If the value starts with http or https, it's a URL (legacy data)
+        if (filter_var($value, FILTER_VALIDATE_URL) || strpos($value, 'http') === 0) {
+            return $value;
+        }
+
+        // Otherwise, it's a path to a file in storage, construct URL properly
+        return asset('storage/' . $value);
+    }
+
+    public function startup()
+    {
+        return $this->hasOne(Startup::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

@@ -29,7 +29,8 @@
         }
     </script>
     <style>
-                .aside-bar {
+        
+        .aside-bar {
             width: 260px;
             background-color: white;
             height: calc(100vh - 80px);
@@ -65,7 +66,7 @@
             stroke-width: 1.8px;
         }
 
-                .main-content {
+        .main-content {
             padding-top: 30px;
             min-height: 100vh;
             margin-left: 0;
@@ -75,19 +76,19 @@
             width: 100%;
         }
 
-                .content-container {
+        .content-container {
             width: 100%;
             max-width: 1280px;
-                        margin: 0 auto;
+            margin: 0 auto;
             padding: 0;
         }
 
-                .inner-content {
+        .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-                @media (max-width: 1024px) {
+        @media (max-width: 1024px) {
             .aside-bar {
                 transform: translateX(-100%);
                 transition: transform 0.25s ease;
@@ -112,7 +113,7 @@
             }
         }
 
-                .side-nav {
+        .side-nav {
             width: 260px;
             height: calc(100vh - 80px);
             position: fixed;
@@ -148,7 +149,7 @@
             stroke-width: 1.8px;
         }
 
-                .settings-card {
+        .settings-card {
             background-color: white;
             border-radius: 12px;
             border: 1px solid #F0F0F0;
@@ -272,7 +273,7 @@
 <body>
     <x-header />
 
-    <div class="main-content bg-white">
+    <div class="main-content bg-[#FAFAFA]">
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
 
@@ -284,26 +285,30 @@
                     </div>
 
                     <div class="settings-section">
-                        <form action="{{ route('settings')}}" method="POST">
+                        <form action="{{ route('settings')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="settings-card">
                                 <h3 class="settings-section-title">Profile Picture</h3>
                                 <div class="flex flex-col md:flex-row items-start md:items-center">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview">
-                                            <img src="{{Auth()->user()->profile_picture_url ? Auth()->user()->profile_picture_url :'https://i.pinimg.com/474x/07/c4/72/07c4720d19a9e9edad9d0e939eca304a.jpg'}}" id="profile-preview" alt="Current Profile Picture">
+                                            <img src="{{Auth()->user()->profile_picture_url}}" id="profile-preview" alt="Current Profile Picture">
                                         </div>
                                     </div>
 
-                                    <div class="ml-0 md:ml-6 mt-4 md:mt-0">
-                                        <p class="text-gray-700 mb-2">Enter the URL of your profile picture</p>
-                                        <input type="text" id="profile-picture-url" name="new_profile" class="form-input"
-                                            placeholder="Enter image URL" value="">
-                                        <p class="text-gray-500 text-xs mt-2">Recommended: Square image, at least 400x400 pixels.</p>
+                                    <div class="ml-0 md:ml-6 mt-4 md:mt-0 w-full md:w-auto">
+                                        <p class="text-gray-700 mb-2">Upload a new profile picture</p>
+                                        <div class="flex items-center space-x-3">
+                                            <label for="profile-image-file" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer transition-colors font-medium text-sm flex items-center">
+                                                <i data-feather="upload" class="h-4 w-4 mr-2"></i>
+                                                Choose Image
+                                            </label>
+                                        </div>
+                                        <input type="file" id="profile-image-file" name="profile_image" class="hidden" accept="image/*">
+                                        <p class="text-gray-500 text-xs mt-2">Recommended: Square image, at least 400x400 pixels (JPG, PNG, GIF).</p>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="settings-card">
                                 <h3 class="settings-section-title">Personal Information</h3>
@@ -320,7 +325,7 @@
                                             value="{{Auth()->user()->email}}">
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label"  for="phone">Phone Number</label>
+                                        <label class="form-label" for="phone">Phone Number</label>
                                         <input type="tel" id="phone" name="new_phone" class="form-input" placeholder="Enter your phone number"
                                             value="{{Auth()->user()->phone}}">
                                     </div>
@@ -349,44 +354,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            feather.replace();
 
-            
-            if (!document.getElementById('mobile-menu-toggle')) {
-                const mobileToggle = document.createElement('button');
-                mobileToggle.id = 'mobile-menu-toggle';
-                mobileToggle.className = 'md:hidden fixed bottom-6 right-6 bg-[#0049FF] text-white p-3 rounded-full shadow-lg z-50';
-                mobileToggle.innerHTML = '<i data-feather="menu" class="h-6 w-6"></i>';
-                document.body.appendChild(mobileToggle);
-
-                
-                feather.replace();
-            }
-
-            
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const sideNav = document.querySelector('.side-nav');
-
-            if (mobileMenuToggle && sideNav) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    sideNav.classList.toggle('open');
-                });
-            }
-
-            
-            const profilePictureUrl = document.getElementById('profile-picture-url');
             const previewImg = document.getElementById('profile-preview');
+            const profileImageFile = document.getElementById('profile-image-file');
+            const selectedFileName = document.getElementById('selected-file-name');
 
-            profilePictureUrl?.addEventListener('change', function() {
-                if (this.value.trim()) {
-                    previewImg.src = this.value.trim();
-                }
-            });
-
-            profilePictureUrl?.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    previewImg.src = this.value.trim();
+            profileImageFile?.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                    selectedFileName.textContent = this.files[0].name;
+                } else {
+                    selectedFileName.textContent = 'No file selected';
                 }
             });
         });

@@ -234,7 +234,7 @@
     </style>
 </head>
 
-<body class="font-inter bg-white text-[#1A1A1A] text-sm antialiased">
+<body class="font-inter bg-[#FAFAFA] text-[#1A1A1A] text-sm antialiased">
     <x-header />
 
 
@@ -406,7 +406,7 @@
                             </div>
 
                             <div class="p-8">
-                                <form id="edit-startup-form" action="{{ route('entreprenor.updatestartup') }}" method="POST" class="space-y-6">
+                                <form id="edit-startup-form" action="{{ route('entreprenor.updatestartup') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="startup_id" value="{{$myStartup->id}}">
 
@@ -587,39 +587,38 @@
                                     <div class="edit-step-content hidden" id="edit-step-4">
                                         <div class="space-y-8">
                                             <div class="form-group">
-                                                <label for="edit-startup-logo" class="block text-sm font-medium text-gray-700 mb-2">Logo URL</label>
-                                                <div class="relative">
-                                                    <input type="url" id="edit-startup-logo" name="logo" value="{{$myStartup->logo}}" required placeholder="https://example.com/logo.png" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
-                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
-                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                <label for="edit_logo_image" class="block text-sm font-medium text-gray-700 mb-2">Upload Logo</label>
+                                                <div class="mt-2">
+                                                    <div id="edit-logo-preview-container" class="mb-4">
+                                                        <img id="edit-logo-preview" src="{{$myStartup->logo}}" class="mx-auto h-32 w-32 object-cover" alt="Logo preview">
                                                     </div>
+                                                    <div class="flex items-center space-x-3">
+                                                        <label for="edit_logo_image" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer transition-colors font-medium text-sm flex items-center">
+                                                            <i data-feather="upload" class="h-4 w-4 mr-2"></i>
+                                                            Select Logo Image
+                                                        </label>
+                                                        <span class="text-sm text-gray-500" id="edit-logo-file-name">No file selected</span>
+                                                    </div>
+                                                    <input id="edit_logo_image" name="logo_image" type="file" class="hidden" accept="image/*">
+                                                    <p class="text-xs text-gray-500 mt-2">PNG, JPG, GIF up to 2MB (square format recommended)</p>
                                                 </div>
-                                                <p class="text-xs text-gray-500 mt-2">Link to your startup logo (square format recommended, minimum 400x400px)</p>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="edit-cover-image" class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
-                                                <div class="relative">
-                                                    <input type="url" id="edit-cover-image" name="cover" value="{{$myStartup->cover}}" required placeholder="https://example.com/cover.jpg" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
-                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
-                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                <label for="edit_cover_image" class="block text-sm font-medium text-gray-700 mb-2">Upload Cover Image</label>
+                                                <div class="mt-2">
+                                                    <div id="edit-cover-preview-container" class="mb-4">
+                                                        <img id="edit-cover-preview" src="{{$myStartup->cover}}" class="mx-auto h-32 w-full object-cover" alt="Cover preview">
                                                     </div>
-                                                </div>
-                                                <p class="text-xs text-gray-500 mt-2">Link to a banner image for your startup profile (recommended size: 1400x400px)</p>
-                                            </div>
-
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                                                <div class="border rounded-lg p-4">
-                                                    <p class="text-sm font-medium text-gray-700 mb-2">Current Logo</p>
-                                                    <div class="w-32 h-32 bg-gray-100 rounded-md flex items-center justify-center mx-auto mb-2">
-                                                        <img src="{{$myStartup->logo}}" alt="Current logo" class="max-w-full max-h-full object-contain rounded-md">
+                                                    <div class="flex items-center space-x-3">
+                                                        <label for="edit_cover_image" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer transition-colors font-medium text-sm flex items-center">
+                                                            <i data-feather="upload" class="h-4 w-4 mr-2"></i>
+                                                            Select Cover Image
+                                                        </label>
+                                                        <span class="text-sm text-gray-500" id="edit-cover-file-name">No file selected</span>
                                                     </div>
-                                                </div>
-                                                <div class="border rounded-lg p-4">
-                                                    <p class="text-sm font-medium text-gray-700 mb-2">Current Cover</p>
-                                                    <div class="w-full h-32 bg-gray-100 rounded-md flex items-center justify-center mb-2">
-                                                        <img src="{{$myStartup->cover}}" alt="Current cover" class="max-w-full max-h-full object-contain rounded-md">
-                                                    </div>
+                                                    <input id="edit_cover_image" name="cover_image" type="file" class="hidden" accept="image/*">
+                                                    <p class="text-xs text-gray-500 mt-2">PNG, JPG, GIF up to 2MB (recommended size: 1400x400px)</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -664,7 +663,7 @@
                             </div>
 
                             <div class="p-8">
-                                <form id="create-startup-form" action="{{ route('entreprenor.registerstartup')}}" method="POST" class="space-y-6">
+                                <form id="create-startup-form" action="{{ route('entreprenor.registerstartup')}}" method="POST" class="space-y-6" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="relative mb-12">
@@ -845,25 +844,39 @@
                                     <div class="step-content hidden" id="step-4">
                                         <div class="space-y-8">
                                             <div class="form-group">
-                                                <label for="startup-logo" class="block text-sm font-medium text-gray-700 mb-2">Logo URL</label>
-                                                <div class="relative">
-                                                    <input type="url" id="startup-logo" name="logo" required placeholder="https://example.com/logo.png" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
-                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
-                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                <label for="logo_image" class="block text-sm font-medium text-gray-700 mb-2">Upload Logo</label>
+                                                <div class="mt-2">
+                                                    <div id="logo-preview-container" class="hidden mb-4">
+                                                        <img id="logo-preview" class="mx-auto h-32 w-32 object-cover" alt="Logo preview">
                                                     </div>
+                                                    <div class="flex items-center space-x-3">
+                                                        <label for="logo_image" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer transition-colors font-medium text-sm flex items-center">
+                                                            <i data-feather="upload" class="h-4 w-4 mr-2"></i>
+                                                            Select Logo Image
+                                                        </label>
+                                                        <span class="text-sm text-gray-500" id="logo-file-name">No file selected</span>
+                                                    </div>
+                                                    <input id="logo_image" name="logo_image" type="file" class="hidden" accept="image/*">
+                                                    <p class="text-xs text-gray-500 mt-2">PNG, JPG, GIF up to 2MB (square format recommended)</p>
                                                 </div>
-                                                <p class="text-xs text-gray-500 mt-2">Link to your startup logo (square format recommended, minimum 400x400px)</p>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="cover-image" class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
-                                                <div class="relative">
-                                                    <input type="url" id="cover-image" name="cover" required placeholder="https://example.com/cover.jpg" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10 transition-all">
-                                                    <div class="absolute left-0 top-0 h-full flex items-center pl-4">
-                                                        <i data-feather="image" class="h-4 w-4 text-gray-500"></i>
+                                                <label for="cover_image" class="block text-sm font-medium text-gray-700 mb-2">Upload Cover Image</label>
+                                                <div class="mt-2">
+                                                    <div id="cover-preview-container" class="hidden mb-4">
+                                                        <img id="cover-preview" class="mx-auto h-32 w-full object-cover" alt="Cover preview">
                                                     </div>
+                                                    <div class="flex items-center space-x-3">
+                                                        <label for="cover_image" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer transition-colors font-medium text-sm flex items-center">
+                                                            <i data-feather="upload" class="h-4 w-4 mr-2"></i>
+                                                            Select Cover Image
+                                                        </label>
+                                                        <span class="text-sm text-gray-500" id="cover-file-name">No file selected</span>
+                                                    </div>
+                                                    <input id="cover_image" name="cover_image" type="file" class="hidden" accept="image/*">
+                                                    <p class="text-xs text-gray-500 mt-2">PNG, JPG, GIF up to 2MB (recommended size: 1400x400px)</p>
                                                 </div>
-                                                <p class="text-xs text-gray-500 mt-2">Link to a banner image for your startup profile (recommended size: 1400x400px)</p>
                                             </div>
                                         </div>
 
@@ -944,10 +957,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             feather.replace();
 
-            
+
             const menuButton = document.getElementById('menu-button');
             const dropdownMenu = document.getElementById('dropdown-menu');
             if (menuButton && dropdownMenu) {
@@ -956,13 +969,13 @@
                     dropdownMenu.classList.toggle('hidden');
                 });
 
-                
+
                 document.addEventListener('click', function() {
                     dropdownMenu.classList.add('hidden');
                 });
             }
 
-            
+
             const createStartupBtn = document.getElementById('create-startup-btn');
             const startupModal = document.getElementById('startup-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
@@ -980,7 +993,7 @@
                 });
             }
 
-            
+
             const deleteStartupBtn = document.getElementById('delete-startup-btn');
             const deleteModal = document.getElementById('delete-modal');
             const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
@@ -997,7 +1010,7 @@
                 });
             }
 
-            
+
             const editStartupBtn = document.getElementById('edit-startup-btn');
             const editModal = document.getElementById('edit-modal');
             const closeEditModalBtn = document.getElementById('close-edit-modal-btn');
@@ -1016,18 +1029,18 @@
                 });
             }
 
-            
+
             document.addEventListener('click', function(e) {
                 if (e.target === startupModal) startupModal.classList.add('hidden');
                 if (e.target === deleteModal) deleteModal.classList.add('hidden');
                 if (e.target === editModal) editModal.classList.add('hidden');
             });
 
-            
+
             setupFormNavigation('.next-step', '.prev-step', 'step-', 'progress-bar', '.step-indicator');
             setupFormNavigation('.edit-next-step', '.edit-prev-step', 'edit-step-', 'edit-progress-bar', '.edit-step-indicator');
 
-            
+
             function resetForm(stepPrefix, contentSelector, indicatorSelector) {
                 const steps = document.querySelectorAll(contentSelector);
 
@@ -1045,9 +1058,9 @@
                 updateIndicators(1, indicatorSelector);
             }
 
-            
+
             function setupFormNavigation(nextSelector, prevSelector, stepPrefix, progressBarId, indicatorSelector) {
-                
+
                 document.querySelectorAll(nextSelector).forEach(button => {
                     button.addEventListener('click', function() {
                         const currentStep = this.closest(stepPrefix === 'step-' ? '.step-content' : '.edit-step-content');
@@ -1055,7 +1068,7 @@
                         const nextStepNumber = currentStepNumber + 1;
                         const nextStepId = stepPrefix + nextStepNumber;
 
-                        
+
                         const requiredFields = currentStep.querySelectorAll('[required]');
                         let isValid = true;
 
@@ -1070,17 +1083,17 @@
 
                         if (!isValid) return;
 
-                        
+
                         currentStep.classList.add('hidden');
                         document.getElementById(nextStepId).classList.remove('hidden');
 
-                        
+
                         document.getElementById(progressBarId).style.width = (nextStepNumber * 25) + '%';
                         updateIndicators(nextStepNumber, indicatorSelector);
                     });
                 });
 
-                
+
                 document.querySelectorAll(prevSelector).forEach(button => {
                     button.addEventListener('click', function() {
                         const currentStep = this.closest(stepPrefix === 'step-' ? '.step-content' : '.edit-step-content');
@@ -1088,18 +1101,18 @@
                         const prevStepNumber = currentStepNumber - 1;
                         const prevStepId = stepPrefix + prevStepNumber;
 
-                        
+
                         currentStep.classList.add('hidden');
                         document.getElementById(prevStepId).classList.remove('hidden');
 
-                        
+
                         document.getElementById(progressBarId).style.width = (prevStepNumber * 25) + '%';
                         updateIndicators(prevStepNumber, indicatorSelector);
                     });
                 });
             }
 
-            
+
             function updateIndicators(activeStep, selector) {
                 document.querySelectorAll(selector).forEach((indicator, index) => {
                     const stepNumber = index + 1;
@@ -1107,13 +1120,13 @@
                     const text = indicator.querySelector('p');
 
                     if (stepNumber <= activeStep) {
-                        
+
                         circle.classList.add('border-blue-500', 'bg-blue-500', 'text-white');
                         circle.classList.remove('border-gray-300', 'text-gray-400', 'bg-white');
                         text.classList.add('text-blue-500');
                         text.classList.remove('text-gray-400');
                     } else {
-                        
+
                         circle.classList.remove('border-blue-500', 'bg-blue-500', 'text-white');
                         circle.classList.add('border-gray-300', 'text-gray-400', 'bg-white');
                         text.classList.remove('text-blue-500');

@@ -14,13 +14,16 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         primary: '#0049FF',
                         secondary: '#F8F9FA',
                         dark: '#1A1A1A',
                         'text-secondary': '#666666',
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
                     }
                 }
             }
@@ -28,8 +31,8 @@
     </script>
     <style>
         body {
-            background-color: #ffffff;
-            color: #333333;
+            background-color: #FAFAFA;
+            color: #262626;
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
@@ -38,277 +41,267 @@
             flex-direction: column;
         }
 
-
         .main-content {
-            flex: 1 0 auto;
-            padding-top: 64.8px;
-            padding-bottom: 0;
+            margin-top: 64px;
+            padding-top: 20px;
+            padding-bottom: 20px;
             display: flex;
             flex-direction: column;
-            background-color: white;
             width: 100%;
-            height: 100vh;
+            min-height: calc(100vh - 64px);
+            align-items: center;
         }
 
         .content-container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0;
-            height: calc(100vh - 65px);
-
+            padding: 0 1rem;
             display: flex;
             flex-direction: column;
         }
 
-        .chat-container {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            height: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
-            margin-bottom: 20px;
+        .chat-header-section {
+            padding-bottom: 24px;
+            width: 100%;
+            text-align: left;
         }
 
+        .chat-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 550px;
+            max-height: 70vh;
+            width: 100%;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            margin: 0 auto;
+        }
+
+        .conversations-sidebar {
+            border-right: 1px solid #dbdbdb;
+            background-color: white;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-height: 100%;
+        }
+
+        .chat-header {
+            height: 60px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #dbdbdb;
+            flex-shrink: 0;
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #ffffff;
+            scrollbar-width: thin;
+            max-height: calc(100% - 120px);
+        }
+
+        .px-3.py-3.border-t.border-gray-100.bg-white {
+            height: 60px;
+            flex-shrink: 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .message-input-area {
+            height: 60px;
+            border-top: 1px solid #dbdbdb;
+            flex-shrink: 0;
+            padding: 0.75rem;
+            background-color: #ffffff;
+        }
 
         .message-bubble {
-            max-width: 75%;
-            padding: 14px 18px;
-            border-radius: 18px;
-            margin-bottom: 16px;
+            max-width: 70%;
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 6px;
             position: relative;
-            line-height: 1.5;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
         }
 
         .message-sent {
-            background-color: #f3f2f3;
-            color: #1A1A1A;
-            border: 1px solid #ededed;
-            margin-left: auto;
-            border-bottom-right-radius: 4px;
+            background-color: #efefef;
+            color: #262626;
+            align-self: flex-end;
         }
 
         .message-received {
             background-color: white;
-            color: #1A1A1A;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #EDF2F7;
+            color: #262626;
+            border: 1px solid #dbdbdb;
+            align-self: flex-start;
         }
 
         .message-time {
             font-size: 10px;
-            opacity: 0.7;
-            margin-top: 6px;
+            color: #8e8e8e;
+            margin-top: 4px;
             text-align: right;
         }
 
+        .messages-area::-webkit-scrollbar,
+        .conversations-sidebar::-webkit-scrollbar,
+        .flex-1.overflow-y-auto::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .messages-area::-webkit-scrollbar-track,
+        .conversations-sidebar::-webkit-scrollbar-track,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages-area::-webkit-scrollbar-thumb,
+        .conversations-sidebar::-webkit-scrollbar-thumb,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 2px;
+        }
+
+        .messages-area::-webkit-scrollbar-thumb:hover,
+        .conversations-sidebar::-webkit-scrollbar-thumb:hover,
+        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        .message-input-container {
+            border: 1px solid #dbdbdb;
+            border-radius: 22px;
+            background-color: #ffffff;
+            height: 38px;
+            display: flex;
+            align-items: center;
+        }
+
+        textarea.message-input {
+            resize: none;
+            min-height: 24px;
+            max-height: 38px;
+            background-color: transparent;
+        }
+
+        .send-button {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #0095f6;
+        }
+
+        .conversation-item {
+            transition: background-color 0.15s ease;
+        }
+
+        .conversation-item:hover {
+            background-color: #fafafa;
+        }
+
+        .conversation-item.active {
+            background-color: #efefef;
+        }
+
+        footer {
+            flex-shrink: 0;
+            width: 100%;
+        }
 
         @media (max-width: 768px) {
             .chat-container {
                 grid-template-columns: 1fr;
-
                 display: flex;
                 flex-direction: column;
-                height: auto;
-                max-height: calc(100vh - 130px);
-                margin-bottom: 30px;
+                height: 500px;
+                margin: 0 auto 2rem;
             }
 
             .conversations-sidebar {
-                display: block;
-                height: auto;
-                max-height: 220px;
-
+                height: 150px;
+                min-height: 150px;
                 overflow-y: auto;
-                border-bottom: 1px solid #e2e8f0;
             }
 
             .messages-container {
-                display: flex;
-                height: calc(100vh - 350px);
-
-                flex: 1;
+                height: calc(100% - 150px);
             }
 
             .content-container {
-                padding-bottom: 30px;
-
-            }
-
-
-            .conversations-sidebar .flex-1.overflow-y-auto {
-                max-height: 180px;
-            }
-
-
-            .messages-area {
-                max-height: calc(100vh - 400px) !important;
-            }
-
-
-            .messages-container .p-4.border-t {
-                flex-shrink: 0;
+                padding: 0 0.75rem;
             }
         }
 
         @media (max-width: 480px) {
             .message-bubble {
                 max-width: 85%;
-                padding: 12px 16px;
-                font-size: 0.9rem;
+                padding: 10px 14px;
+                font-size: 0.875rem;
             }
 
             .chat-header {
-                padding: 10px;
+                padding: 0 12px;
             }
-
-            .p-4 {
-                padding: 0.75rem;
-            }
-
-
-            .chat-container,
-            .conversations-sidebar,
-            .messages-container {
-                height: calc(100vh - 150px);
-            }
-
-
-            .conversations-sidebar {
-                max-height: 180px;
-            }
-
-            .messages-container {
-                height: calc(100vh - 300px);
-            }
-
-            .messages-area {
-                max-height: calc(100vh - 350px) !important;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .message-bubble {
-                max-width: 90%;
-                padding: 10px 14px;
-                font-size: 0.85rem;
-            }
-
-
-            .chat-container,
-            .conversations-sidebar,
-            .messages-container {
-                height: calc(100vh - 160px);
-            }
-
-
-            .conversations-sidebar {
-                max-height: 160px;
-            }
-
-            .messages-container {
-                height: calc(100vh - 280px);
-            }
-
-            .messages-area {
-                max-height: calc(100vh - 330px) !important;
-            }
-        }
-
-
-        .show-conversations .conversations-sidebar {
-            display: block;
-        }
-
-        .show-conversations .messages-container {
-            display: flex;
-        }
-
-        @media (max-width: 768px) {
-
-
-            .back-to-conversations {
-                display: none;
-
-            }
-
-            .show-conversations .conversations-sidebar {
-                flex-direction: column;
-                width: 100%;
-            }
-        }
-
-
-        textarea {
-            overflow-y: hidden;
-        }
-
-
-        .messages-area::-webkit-scrollbar,
-        .flex-1.overflow-y-auto::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .messages-area::-webkit-scrollbar-track,
-        .flex-1.overflow-y-auto::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 6px;
-        }
-
-        .messages-area::-webkit-scrollbar-thumb,
-        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 6px;
-        }
-
-        .messages-area::-webkit-scrollbar-thumb:hover,
-        .flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
-        }
-
-
-        .messages-area,
-        .flex-1.overflow-y-auto {
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
-        }
-
-
-        footer {
-            flex-shrink: 0;
-            width: 100%;
         }
     </style>
 </head>
 
-<body class="font-sans bg-white text-gray-900 text-sm antialiased">
+<body class="font-sans text-gray-900 text-sm antialiased">
     <x-header />
 
-    <div class="main-content bg-white">
+    <div class="main-content">
         <div class="content-container">
-            <div class="h-full w-full px-2 sm:px-6">
-                <div class="h-full">
-                    <div id="chat-view" class="chat-container border border-gray-200 rounded-lg overflow-hidden bg-white h-full">
-                        @include('common.conversations')
-                        @include('common.messages')
-                    </div>
+            <div class="chat-header-section">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Messages</h1>
+                <p class="text-gray-600 font-['Inter',_sans-serif]">Chat & negotiate with investors .</p>
+            </div>
+
+            <div class="h-full w-full p-0">
+                <div id="chat-view" class="chat-container">
+                    @include('common.conversations')
+                    @include('common.messages')
                 </div>
             </div>
         </div>
     </div>
 
-    <x-footer />
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+
             const messageContainer = document.getElementById('message-container');
 
             if (messageContainer) {
                 messageContainer.scrollTop = messageContainer.scrollHeight;
             }
 
+            const messageInput = document.getElementById('message-input');
+            if (messageInput) {
+                messageInput.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    const newHeight = Math.min(this.scrollHeight, 38);
+                    this.style.height = newHeight + 'px';
+                });
+            }
 
             const chatOptionsBtn = document.getElementById('chat-options-btn');
             const chatOptionsDropdown = document.getElementById('chat-options-dropdown');
@@ -327,6 +320,7 @@
             }
         });
     </script>
+    <x-footer />
 </body>
 
 </html>

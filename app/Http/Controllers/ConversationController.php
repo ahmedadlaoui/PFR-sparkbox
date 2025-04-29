@@ -22,12 +22,10 @@ class ConversationController extends Controller
             });
         $MyConversations = $MyConversations->values();
 
-        // Initialize variables to prevent undefined variable errors
         $activeConversation = null;
         $messages = collect([]);
         $otherUser = null;
 
-        // Check if a conversation_id is provided or if we should use the first one
         $conversationId = $request->input('conversation_id');
 
         if (!$conversationId && $MyConversations->count() > 0) {
@@ -43,7 +41,6 @@ class ConversationController extends Controller
                     ->orderBy('created_at')
                     ->get();
 
-                // Format message details
                 $messages->each(function ($message) {
                     $message->formatted_time = $message->created_at->format('h:i A');
                     $message->is_sender = $message->sender_id == Auth::id();
@@ -59,7 +56,9 @@ class ConversationController extends Controller
             'messages',
             'otherUser'
         ));
+        
     }
+
 
     public function AddConversation(Request $request)
     {

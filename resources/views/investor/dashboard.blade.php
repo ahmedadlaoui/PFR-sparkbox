@@ -29,7 +29,6 @@
         }
     </script>
     <style>
-        
         .aside-bar {
             width: 260px;
             background-color: white;
@@ -66,7 +65,7 @@
             stroke-width: 1.8px;
         }
 
-        
+
         .stat-card {
             position: relative;
             background-color: white;
@@ -75,7 +74,7 @@
             padding: 1.25rem;
         }
 
-        
+
         .main-content {
             padding-top: 30px;
             min-height: 100vh;
@@ -86,22 +85,22 @@
             width: 100%;
         }
 
-        
+
         .content-container {
             width: 100%;
             max-width: 1280px;
-            
+
             margin: 0 auto;
             padding: 0;
         }
 
-        
+
         .inner-content {
             padding: 0 24px;
             width: 100%;
         }
 
-        
+
         .opportunity-card {
             background-color: white;
             border-radius: 12px;
@@ -109,7 +108,7 @@
             overflow: hidden;
         }
 
-        
+
         @media (max-width: 1024px) {
             .aside-bar {
                 transform: translateX(-100%);
@@ -135,7 +134,7 @@
             }
         }
 
-        
+
         .filter-btn {
             transition: all 0.1s;
             cursor: pointer;
@@ -152,7 +151,7 @@
             background-color: rgba(0, 73, 255, 0.05);
         }
 
-        
+
         .clean-search {
             border: none;
             outline: none;
@@ -165,7 +164,7 @@
             border: none;
         }
 
-        
+
         .investment-card {
             background-color: white;
             border-radius: 12px;
@@ -175,7 +174,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        
+
         .investment-amount-text {
             color: #4B5563;
             font-size: 13px;
@@ -186,7 +185,7 @@
             padding-left: 4px;
         }
 
-        
+
         .action-button {
             background-color: white;
             color: #0049FF;
@@ -210,7 +209,7 @@
             margin-right: 6px;
         }
 
-        
+
         .offer-card {
             background-color: white;
             border-radius: 12px;
@@ -243,7 +242,7 @@
             object-fit: cover;
         }
 
-        
+
         .card-actions {
             position: absolute;
             top: 12px;
@@ -280,7 +279,7 @@
             color: #0049FF;
         }
 
-        
+
         .company-logo {
             position: absolute;
             bottom: -16px;
@@ -305,7 +304,7 @@
             border-radius: 6px;
         }
 
-        
+
         .offer-content {
             padding: 20px 24px;
             display: flex;
@@ -313,7 +312,7 @@
             position: relative;
         }
 
-        
+
         .offer-owner {
             display: flex;
             align-items: center;
@@ -345,7 +344,7 @@
             font-weight: 500;
         }
 
-        
+
         .offer-header {
             display: flex;
             flex-direction: column;
@@ -360,7 +359,7 @@
             line-height: 1.3;
         }
 
-        
+
         .tags-container {
             display: flex;
             gap: 6px;
@@ -376,7 +375,7 @@
             border-radius: 6px;
         }
 
-        
+
         .offer-description {
             color: #4B5563;
             font-size: 13px;
@@ -389,7 +388,7 @@
             margin-bottom: 20px;
         }
 
-        
+
         .action-buttons {
             display: flex;
             gap: 12px;
@@ -434,7 +433,7 @@
             margin-right: 8px;
         }
 
-        
+
         .tooltip {
             position: relative;
         }
@@ -453,7 +452,7 @@
             z-index: 30;
         }
 
-        
+
         .dropdown-menu {
             position: absolute;
             right: 0;
@@ -525,7 +524,7 @@
 <body>
     <x-header />
 
-    <div class="main-content bg-white">
+    <div class="main-content bg-[#FAFAFA]">
         <div class="content-container">
             <div class="ml-0 md:ml-12 lg:ml-16">
                 <div class="max-w-7xl mx-auto px-6 py-10">
@@ -533,7 +532,7 @@
 
                         <div class="mb-16">
 
-                                                        <div class="flex justify-between items-end mb-6">
+                            <div class="flex justify-between items-end mb-6">
                                 <div>
                                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Statistics</h2>
                                     <p class="text-gray-600 font-['Inter',_sans-serif]">
@@ -542,8 +541,8 @@
                                 </div>
                             </div>
 
-                                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-                                                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center">
                                         <div class="p-2 bg-gray-100 rounded-lg mr-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -557,7 +556,7 @@
                                     </div>
                                 </div>
 
-                                                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center">
                                         <div class="p-2 bg-gray-100 rounded-lg mr-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -571,7 +570,7 @@
                                     </div>
                                 </div>
 
-                                                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center">
                                         <div class="p-2 bg-gray-100 rounded-lg mr-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -585,7 +584,7 @@
                                     </div>
                                 </div>
 
-                                                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
+                                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
                                     <div class="flex items-center">
                                         <div class="p-2 bg-gray-100 rounded-lg mr-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -613,7 +612,7 @@
 
                                 @foreach($MyOffers as $MyOffer)
                                 <div class="offer-card">
-                                                                        <div class="absolute top-3 left-3 z-10">
+                                    <div class="absolute top-3 left-3 z-10">
                                         @php
                                         $statusColor = 'bg-yellow-50 text-yellow-600 border-yellow-200';
                                         $statusDot = 'bg-yellow-500';
@@ -772,31 +771,31 @@
                 asideBar.classList.toggle('show');
             });
 
-            
+
             document.querySelectorAll('.menu-dots-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const menuId = this.id.replace('card-menu-btn-', 'dropdown-menu-');
                     const dropdown = document.getElementById(menuId);
 
-                    
+
                     document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
                         if (menu.id !== menuId) menu.classList.remove('show');
                     });
 
-                    
+
                     dropdown.classList.toggle('show');
                 });
             });
 
-            
+
             document.addEventListener('click', function() {
                 document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
                     menu.classList.remove('show');
                 });
             });
 
-            
+
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 menu.addEventListener('click', function(e) {
                     e.stopPropagation();

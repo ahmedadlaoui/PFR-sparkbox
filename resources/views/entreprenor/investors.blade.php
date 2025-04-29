@@ -132,7 +132,7 @@
     </style>
 </head>
 
-<body class="font-inter bg-white text-[#1A1A1A] text-sm antialiased">
+<body class="font-inter bg-[#FAFAFA] text-[#1A1A1A] text-sm antialiased">
     <x-header />
 
     <main class="main-content">

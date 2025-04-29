@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/conversations/{conversation_id}', [ConversationController::class, 'deleteConversation'])->name('chat.delete');
     Route::get('/conversations/{id}/messages', [MessageController::class, 'getMessages'])->name('messages.get');
     Route::get('/chat', [ConversationController::class, 'GetConversations'])->name('chat');
+    // route::get('/chat/infos',[ConversationController::class,'GetConversations'])->name('live.rendering');
     Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
     Route::get('/settings', [UserController::class, 'RenderSettingsPage'])->name('settings');
     Route::POST('/settings', [UserController::class, 'EditProfile'])->name('edit.profile');

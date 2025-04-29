@@ -1,142 +1,95 @@
-<div class="messages-container h-full flex flex-col">
-
-    <div class="chat-header px-5 py-3.5 border-b border-gray-100 bg-white flex items-center">
+<div class="messages-container h-full flex flex-col bg-white" style="overflow: scroll;">
+    <div class="chat-header flex items-center px-4 border-b border-gray-100 h-[60px] flex-shrink-0">
+        @if(isset($otherUser))
         <div class="flex items-center flex-1">
-            @if(isset($otherUser))
             <div class="relative flex-shrink-0">
                 <img src="{{ $otherUser->profile_picture_url ?? '' }}"
                     alt="{{ $otherUser->name }}"
-                    class="w-10 h-10 rounded-full object-cover bg-gray-200 mr-3">
-
+                    class="w-7 h-7 rounded-full object-cover bg-gray-100 mr-2">
             </div>
             <div>
-                <h4 class="font-medium text-gray-800">{{ $otherUser->name }}</h4>
-                <div class="flex items-center">
-                    <span class="text-xs text-gray-500">{{ $otherUser->bio}}</span>
-                </div>
+                <h4 class="font-medium text-gray-900 text-xs">{{ $otherUser->name }}</h4>
+                <p class="text-[10px] text-gray-500">{{ $otherUser->bio }}</p>
             </div>
-            @else
-            <div>
-                <h4 class="font-medium text-gray-900">Select a conversation</h4>
-            </div>
-            @endif
         </div>
-
-        @if(isset($otherUser))
-        <div class="flex items-center relative">
-            <button id="chat-options-btn" class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+        <div class="flex items-center">
+            <button id="chat-options-btn" class="p-1.5 text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="19" cy="12" r="1"></circle>
+                    <circle cx="5" cy="12" r="1"></circle>
                 </svg>
             </button>
-
-
-            <div id="chat-options-dropdown" class="absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
-                <form method="POST" action="{{ route('chat.delete', ['conversation_id' => $activeConversation->id ?? '']) }}" onsubmit="return confirm('Are you sure you want to delete this conversation?');">
+            <div id="chat-options-dropdown" class="absolute right-4 top-16 mt-1 w-40 bg-white rounded shadow-sm py-1 z-10 hidden border border-gray-100">
+                <form method="POST" action="{{ route('chat.delete', ['conversation_id' => $activeConversation->id ?? '']) }}" onsubmit="return confirm('Delete this conversation?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    <button type="submit" class="w-full text-left px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-50 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-2 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                         </svg>
                         Delete Chat
                     </button>
                 </form>
             </div>
         </div>
-        @endif
-    </div>
-
-    <div class="messages-area flex-1 overflow-y-auto p-5 bg-white" id="message-container" style="max-height: calc(100vh - 230px); height: calc(100% - 110px);">
-        @if(isset($messages) && count($messages) > 0)
-        @php
-        $lastDate = null;
-        $today = \Carbon\Carbon::now()->startOfDay();
-        $yesterday = \Carbon\Carbon::now()->subDay()->startOfDay();
-        @endphp
-
-        @foreach($messages as $message)
-        @php
-        $messageDate = $message->created_at->startOfDay();
-        $showDateSeparator = $lastDate === null || !$messageDate->equalTo($lastDate);
-        $lastDate = $messageDate;
-        $isSender = $message->sender_id == Auth::id();
-
-        // Format date header
-        if($messageDate->equalTo($today)) {
-        $dateHeader = 'Today';
-        } elseif($messageDate->equalTo($yesterday)) {
-        $dateHeader = 'Yesterday';
-        } else {
-        $dateHeader = $messageDate->format('F j, Y');
-        }
-        @endphp
-
-        @if($showDateSeparator)
-        <div class="flex justify-center my-4">
-            <div class="bg-gray-100 text-gray-500 text-xs px-3 py-1 rounded-full">{{ $dateHeader }}</div>
-        </div>
-        @endif
-
-        <div class="flex items-end mb-4 {{ $isSender ? 'justify-end' : 'justify-start' }}">
-            @if(!$isSender)
-            <div class="flex-shrink-0 mr-2">
-                <img src="{{ $otherUser->profile_picture_url ?? '' }}"
-                    alt="{{ $otherUser->name }}"
-                    class="w-8 h-8 rounded-full bg-gray-200"
-                    onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($otherUser->name) }}&color=7F9CF5&background=EBF4FF'">
-            </div>
-            @endif
-
-            <div class="message-bubble {{ $isSender ? 'message-sent' : 'message-received' }}">
-                <p class="text-sm">{{ $message->message }}</p>
-                <div class="message-time">{{ $message->created_at->format('g:i A') }}</div>
-            </div>
-
-            @if($isSender)
-            <div class="flex-shrink-0 ml-2">
-                <div class="w-8 h-8 rounded-full bg-gray-200 invisible">
-
-                </div>
-            </div>
-            @endif
-        </div>
-        @endforeach
         @else
-
-        <div class="flex items-center justify-center h-full">
-            <div class="text-center">
-                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                    </svg>
-                </div>
-                <p class="text-gray-700 font-medium text-sm">No messages yet</p>
-                <p class="text-xs text-gray-500 mt-1">Send a message to start the conversation</p>
-            </div>
+        <div>
+            <h4 class="font-medium text-gray-900 text-xs">Select a conversation</h4>
         </div>
         @endif
     </div>
 
+    <div class="messages-area flex-1 overflow-y-auto p-3 bg-white" id="message-container" style="max-height: calc(100% - 120px); height: auto;">
+        @if(isset($messages) && count($messages) > 0)
+        <div class="flex flex-col">
+            @foreach($messages as $message)
+            @php
+            $isSender = $message->sender_id == Auth::id();
+            @endphp
+
+            <div class="flex {{ $isSender ? 'justify-end' : 'justify-start' }} mb-1.5">
+                <div class="message-bubble {{ $isSender ? 'message-sent' : 'message-received' }}">
+                    <p class="text-xs">{{ $message->message }}</p>
+                    <div class="message-time">{{ $message->created_at->format('g:i A') }}</div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="flex flex-col items-center justify-center h-full text-center">
+            <div class="mb-3 p-3 bg-gray-50 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <h5 class="text-xs font-medium text-gray-800 mb-1">No messages</h5>
+            <p class="text-xs text-gray-500">Send a message to start a conversation</p>
+        </div>
+        @endif
+    </div>
 
     @if(isset($otherUser))
-    <div class="p-4 border-t border-gray-100 bg-white">
-        <form method="POST" action="{{ route('messages.send') }}" class="relative">
+    <div class="px-3 py-3 border-t border-gray-100 bg-white h-[60px] flex-shrink-0">
+        <form method="POST" id="message-form" action="{{ route('messages.send') }}" class="flex items-center h-full">
             @csrf
             <input type="hidden" name="conversation_id" value="{{ $activeConversation->id ?? '' }}">
-            <div class="flex items-center rounded-full border border-gray-200 py-2 pl-4 pr-2 focus-within:border-gray-300 focus-within:ring-1 focus-within:ring-gray-200">
+            <div class="message-input-container flex items-center px-3 py-1.5 flex-1">
                 <textarea
+                    id="message-input"
                     name="message"
                     rows="1"
-                    placeholder="Type a message..."
-                    class="text-sm flex-1 outline-none resize-none bg-transparent py-1 max-h-32"
+                    placeholder="Message..."
+                    class="message-input text-xs flex-1 outline-none border-none focus:ring-0"
                     required></textarea>
-                <button type="submit" class="ml-2 p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                    </svg>
-                </button>
             </div>
+            <button type="submit" class="send-button ml-2 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
         </form>
     </div>
     @endif
