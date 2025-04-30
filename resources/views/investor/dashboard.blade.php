@@ -395,7 +395,6 @@
             margin-top: auto;
         }
 
-        .view-btn,
         .chat-btn {
             padding: 8px 16px;
             font-size: 13px;
@@ -406,15 +405,6 @@
             cursor: pointer;
         }
 
-        .view-btn {
-            background-color: #F5F7FA;
-            color: #374151;
-            border: 1px solid #E5E7EB;
-        }
-
-        .view-btn:hover {
-            background-color: #EBEEF2;
-        }
 
         .chat-btn {
             background-color: #0049FF;
@@ -426,8 +416,7 @@
             background-color: #003CD9;
         }
 
-        .chat-btn svg,
-        .view-btn svg {
+        .chat-btn svg {
             width: 15px;
             height: 15px;
             margin-right: 8px;
@@ -720,31 +709,9 @@
 
                                         <p class="offer-description">{{$MyOffer->startup->description}}</p>
 
-
-
-                                        <div class="action-buttons">
-                                            <button class="view-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                    <circle cx="12" cy="12" r="3"></circle>
-                                                </svg>
-                                                View Details
-                                            </button>
-
-
-
-                                        </div>
-
                                     </div>
                                 </div>
                                 @endforeach
-
-
-
-
-
                             </div>
 
 

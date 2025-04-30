@@ -49,10 +49,19 @@
             $isSender = $message->sender_id == Auth::id();
             @endphp
 
-            <div class="flex {{ $isSender ? 'justify-end' : 'justify-start' }} mb-1.5">
-                <div class="message-bubble {{ $isSender ? 'message-sent' : 'message-received' }}">
+            <div class="flex {{ $isSender ? 'justify-end' : 'justify-start' }} mb-1.5 group">
+                <div class="message-bubble {{ $isSender ? 'message-sent' : 'message-received' }} relative">
                     <p class="text-xs">{{ $message->message }}</p>
                     <div class="message-time">{{ $message->created_at->format('g:i A') }}</div>
+
+                    @if($isSender)
+                    <button class="delete-message-btn absolute -right-2 -top-2 bg-white rounded-full shadow-sm p-1 opacity-0 group-hover:opacity-100 transition-opacity" data-message-id="{{ $message->id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 hover:text-red-500">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                    @endif
                 </div>
             </div>
             @endforeach

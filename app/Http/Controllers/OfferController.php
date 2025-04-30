@@ -15,7 +15,7 @@ class OfferController extends Controller
 
         request()->validate([
             'amount' => 'required|integer|min:500',
-            'offer_message' => 'required|string|max:60'
+            'offer_message' => 'required|string|max:100'
         ]);
 
         $NewOffer = new Offer;
@@ -24,7 +24,6 @@ class OfferController extends Controller
         $NewOffer->user_id = Auth::id();
         $NewOffer->startup_id = $id;
         $NewOffer->save();
-
         return redirect()->route('details', ['id' => $id]);
     }
     public function GetMyoffers()

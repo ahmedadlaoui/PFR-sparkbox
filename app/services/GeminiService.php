@@ -55,7 +55,7 @@ clear and concise, when generating a response rewrite the numbers i gave you, an
     ";
 
         try {
-            $response = $this->client->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" . $this->apiKey, [
+            $response = $this->client->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $this->apiKey, [
                 'json' => [
                     'contents' => [
                         ['parts' => [['text' => $prompt]]],
@@ -69,8 +69,9 @@ clear and concise, when generating a response rewrite the numbers i gave you, an
 
 
             return $data['candidates'][0]['content']['parts'][0]['text'] ?? 'Pas de suggestion disponible.';
-        } catch (\Exception) {
-            return 'Error generating insights';
+        } catch (\Exception $e) {
+            return 'request errors : ' . $e->getMessage();
+            // return 'Error generating insights';
         }
     }
 }

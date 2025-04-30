@@ -238,10 +238,10 @@
     <x-header />
 
 
-    <main class="main-content">
+    <main class="main-content bg-[#FAFAFA]">
         <div class="content-container">
-            <div class="ml-0 md:ml-12 lg:ml-16">
-                <div class="w-full px-6 py-10">
+            <div class="mx-auto px-4 md:px-8 lg:px-12 max-w-7xl">
+                <div class="w-full py-10">
 
                     @if(!empty($myStartup))
                     <div class="startup-banner-wrapper">

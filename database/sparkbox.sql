@@ -73,4 +73,4 @@ INSERT INTO startups (
 );
 
 --@block 
-select * from users
+select * from offers

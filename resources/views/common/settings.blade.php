@@ -29,7 +29,6 @@
         }
     </script>
     <style>
-        
         .aside-bar {
             width: 260px;
             background-color: white;
@@ -275,9 +274,9 @@
 
     <div class="main-content bg-[#FAFAFA]">
         <div class="content-container">
-            <div class="ml-0 md:ml-12 lg:ml-16">
+            <div class="mx-auto px-4 md:px-8 lg:px-12 max-w-7xl">
 
-                <div class="max-w-7xl mx-auto px-6 py-10">
+                <div class="w-full py-10">
 
                     <div class="mb-8 mt-8">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Account Informations</h1>

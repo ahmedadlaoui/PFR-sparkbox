@@ -8,9 +8,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StartupController;
 use App\Http\Middleware\RoleMiddleware;
-
-
-
+use App\Models\Startup;
 
 route::get('/', [StartupController::class, 'renderHomePage'])->name('home');
 
@@ -48,6 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [OfferController::class, 'GetMyoffers'])->name('investor.dashboard');
         Route::post('/dashboard', [ConversationController::class, 'AddConversation'])->name('add.conv');
         Route::delete('/dashboard', [OfferController::class, 'DeleteOffer'])->name('delete.offer');
+        route::get('deal_details/json/{id}',[StartupController::class ,'GetInsights'])->name('get.insights');
     });
 
     //common routes

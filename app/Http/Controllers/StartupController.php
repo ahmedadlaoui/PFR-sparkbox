@@ -25,8 +25,12 @@ class StartupController extends Controller
     {
         $Startup = Startup::findOrFail($id);
         $amountraised = $Sumconfirmed = Offer::where('status', 'confirmed')->sum('amount');
+        return view('public/deal_details', compact('Startup', 'amountraised'));
+    }
+    public function GetInsights($id){
+        $Startup = Startup::findOrFail($id);
         $insights = nl2br($this->geminiService->getSuggestions($Startup));
-        return view('public/deal_details', compact('Startup', 'amountraised', 'insights'));
+        return response()->json($insights);
     }
 
     private function FilterStartups($filterParam)
@@ -42,7 +46,7 @@ class StartupController extends Controller
 
     public function SearchStartups($SearchValue)
     {
-        $SearchedForstartups = startup::Where('description', 'like', "%$SearchValue%")->orWHere('name', 'like', "%$SearchValue%")->orWhere('details', 'like', "%$SearchValue%")->get();
+        $SearchedForstartups = startup::Where('description', 'like', "%$SearchValue%")->orWHere('name', 'like', "%$SearchValue%")->get();
         return response()->json($SearchedForstartups);
     }
 
@@ -79,8 +83,8 @@ class StartupController extends Controller
             'gross_margin' => 'required|integer|min:0|max:100',
             'burn_rate' => 'required|integer|min:0',
             'runway' => 'required|integer|min:0',
-            'logo_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'cover_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
         ];
 
         $request->validate($validationRules);

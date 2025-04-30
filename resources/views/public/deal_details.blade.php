@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,21 +30,20 @@
         }
     </script>
     <style>
-        
         body {
             background-color: #FAFAFA;
             color: #333333;
             font-family: 'Inter', sans-serif;
         }
 
-        
+
         .container-centered {
             max-width: 1140px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        
+
         .hero-container {
             margin-top: 1.5rem;
             margin-bottom: 2.5rem;
@@ -62,7 +60,6 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -73,15 +70,15 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
+
             padding: 2.5rem;
             color: white;
         }
 
-        
+
         .hero-content-top {
             margin-top: 3rem;
-            
+
         }
 
         .hero-content-bottom {
@@ -96,7 +93,7 @@
             gap: 0.75rem;
         }
 
-        
+
         .hero-tag {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
@@ -107,16 +104,16 @@
             align-items: center;
         }
 
-        
+
         .company-logo {
             position: absolute;
             top: 1.5rem;
             left: 2.7rem;
-            
+
             width: 60px;
-            
+
             height: 60px;
-            
+
             background: transparent;
             border-radius: 2px;
             padding: 0;
@@ -133,7 +130,7 @@
             object-fit: contain;
         }
 
-        
+
         .content-panel {
             background: white;
             border-radius: 4px;
@@ -151,7 +148,7 @@
             padding: 1.5rem;
         }
 
-        
+
         .stats-sidebar {
             position: sticky;
             top: 100px;
@@ -159,7 +156,7 @@
             overflow-y: auto;
         }
 
-        
+
         .details-table {
             width: 100%;
             border-collapse: collapse;
@@ -185,7 +182,7 @@
             color: #333;
         }
 
-        
+
         .tag {
             display: inline-block;
             background-color: #f0f2f5;
@@ -198,7 +195,7 @@
             font-weight: 500;
         }
 
-        
+
         .two-column {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -215,7 +212,7 @@
             }
         }
 
-        
+
         .progress-container {
             width: 100%;
             height: 6px;
@@ -231,7 +228,7 @@
             border-radius: 0;
         }
 
-        
+
         .section-heading {
             font-weight: 600;
             font-size: 1.1rem;
@@ -239,7 +236,7 @@
             margin-bottom: 1rem;
         }
 
-        
+
         .hero-cta {
             position: absolute;
             right: 2rem;
@@ -260,7 +257,7 @@
             cursor: pointer;
         }
 
-        
+
         .entrepreneur-section {
             display: flex;
             align-items: center;
@@ -298,7 +295,7 @@
             margin-right: 0.35rem;
         }
 
-        
+
         .modal {
             position: fixed;
             top: 0;
@@ -328,7 +325,7 @@
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
         }
 
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -379,7 +376,7 @@
             border: none;
         }
 
-        
+
         .financial-metrics {
             display: flex;
             flex-direction: column;
@@ -418,12 +415,12 @@
                 <div class="hero-image"
                     style="background-image: url('{{ $Startup->cover }}')">
                     <div class="hero-overlay">
-                                                <div class="hero-content-top">
+                        <div class="hero-content-top">
                             <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white">{{ $Startup->name }}</h1>
                             <p class="text-lg text-white mt-2 max-w-2xl">{{ $Startup->description }}</p>
                         </div>
 
-                                                <div class="hero-content-bottom">
+                        <div class="hero-content-bottom">
                             <div class="hero-tags">
                                 <span class="hero-tag">{{ $Startup->category }}</span>
                                 @if($Startup->website)
@@ -436,7 +433,7 @@
                         </div>
                     </div>
 
-                                        <div class="hero-cta">
+                    <div class="hero-cta">
                         @if(Auth::id() && Auth::User()->role == 'investor')
                         <button id="create-offer-btn" class="hero-button">
                             <i data-feather="plus-circle" class="h-4 w-4 mr-2 inline-block"></i> Create offer
@@ -455,8 +452,8 @@
 
     <div class="container-centered">
         <div class="two-column">
-                        <div>
-                                <div class="content-panel">
+            <div>
+                <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">About {{ $Startup->name }}</h3>
                     </div>
@@ -467,27 +464,27 @@
                     </div>
                 </div>
 
-                                @if(Auth::id() && Auth::User()->role == 'investor')
+                @if(Auth::id() && Auth::User()->role == 'investor')
                 <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">AI-Powered Insights</h3>
                     </div>
                     <div class="panel-body">
-                        <p class="text-gray-700 mb-4">
-                        {!! $insights !!}
+                        <p class="text-gray-700 mb-4" id="insights-para">
+
                         </p>
                     </div>
                 </div>
                 @endif
             </div>
 
-                        <div class="stats-sidebar">
-                                <div class="content-panel">
+            <div class="stats-sidebar">
+                <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">Company Information</h3>
                     </div>
                     <div class="panel-body">
-                                                @if($Startup->funding_goal)
+                        @if($Startup->funding_goal)
                         <div class="mb-4 pb-4 border-b border-gray-100">
                             <div class="flex justify-between mb-1">
                                 <div class="text-sm font-medium">Funding Progress</div>
@@ -503,7 +500,7 @@
                         </div>
                         @endif
 
-                                                <div class="financial-metrics">
+                        <div class="financial-metrics">
                             @if($Startup->valuation)
                             <div class="metrics-row">
                                 <span class="metric-label">Valuation</span>
@@ -538,7 +535,7 @@
                     </div>
                 </div>
 
-                                @if($Startup->user)
+                @if($Startup->user)
                 <div class="content-panel">
                     <div class="panel-header">
                         <h3 class="section-heading">Entrepreneur</h3>
@@ -565,7 +562,7 @@
         </div>
     </div>
 
-        <div id="offer-modal" class="modal">
+    <div id="offer-modal" class="modal">
         <div class="modal-content">
             <h2 class="text-xl font-bold mb-4">Create an Offer for {{ $Startup->name }}</h2>
 
@@ -575,13 +572,13 @@
                 <input type="hidden" name="EquityOffered" value="0">
 
                 <div class="form-group">
-                    <label for="amount" class="form-label">Investment Amount ($)</label>
+                    <label for="amount" class="form-label">Amount ($)</label>
                     <input type="number" id="amount" name="amount" class="form-input" placeholder="Enter investment amount" min="500" step="1" required>
                     <p class="text-xs text-gray-500 mt-1">Minimum investment: $500</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="offer_message" class="form-label">Message to Founder</label>
+                    <label for="offer_message" class="form-label">Message</label>
                     <textarea id="offer_message" name="offer_message" class="form-input" rows="4"
                         placeholder="Introduce yourself and explain why you're interested in investing in this startup"></textarea>
                     <p class="text-xs text-gray-500 mt-1">A personal message can increase your chances of connecting with the founder</p>
@@ -589,7 +586,7 @@
 
                 <div class="form-group">
                     <p class="text-sm text-gray-600">
-                        By submitting this offer, you agree to enter into negotiations with {{ $Startup->name }}. Your offer will be visible to the founder and can be accepted or declined.
+                        By submitting, your offer will be visible to the founder and can be accepted or declined.
                     </p>
                 </div>
 
@@ -609,32 +606,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             feather.replace();
 
-            
+
             const modal = document.getElementById('offer-modal');
             const createOfferBtn = document.getElementById('create-offer-btn');
             const cancelOfferBtn = document.getElementById('cancel-offer-btn');
 
-            
+
             createOfferBtn.addEventListener('click', function() {
                 modal.classList.add('show');
             });
 
-            
+
             cancelOfferBtn.addEventListener('click', function() {
                 modal.classList.remove('show');
             });
 
-            
+
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.classList.remove('show');
                 }
             });
 
-            
+
             const offerForm = document.getElementById('offer-form');
             offerForm.addEventListener('submit', function(e) {
                 const amount = document.getElementById('amount').value;
@@ -645,6 +642,15 @@
                     return;
                 }
             });
+            let insights_container = document.getElementById('insights-para')
+            let startupID = <?= json_encode($Startup->id) ?>;
+            fetch(`/deal_details/json/${startupID}`)
+                .then(response => response.json())
+                .then(data => {
+                    setTimeout(() => {
+                        insights_container.innerHTML = data;
+                    }, 1000);
+                })
         });
     </script>
 </body>

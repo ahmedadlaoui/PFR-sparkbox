@@ -137,8 +137,8 @@
 
     <main class="main-content">
         <div class="content-container">
-            <div class="ml-0 md:ml-12 lg:ml-16">
-                <div class="w-full px-6 py-10">
+            <div class="mx-auto px-4 md:px-8 lg:px-12 max-w-7xl">
+                <div class="w-full py-10">
                     <div class="container mx-auto px-6">
                         <div class="flex justify-between items-center mb-6 mt-8">
                             <div>
@@ -228,7 +228,7 @@
         <x-footer />
     </main>
 
-    <script>        
+    <script>
         var statusSelects = document.querySelectorAll('.status-select');
         statusSelects.forEach((selectElement) => {
             selectElement.addEventListener('change', () => {
